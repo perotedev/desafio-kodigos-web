@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import {environment} from '../environments/environments';
+import {environment} from '../environments/environment';
 
 const PREFIX = `${environment.prefix} ${environment.appName}`;
 

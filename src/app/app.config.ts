@@ -5,6 +5,7 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { routes } from './app.routes';
 import {IsMobile} from './shared/services/is-mobile';
+import {CurrentUser} from './shared/services/current-user';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +27,13 @@ export const appConfig: ApplicationConfig = {
         return isMobileService.isMobile;
       },
       deps: [IsMobile]
+    },
+    {
+      provide: 'CURRENT_USER',
+      useFactory: (currentUserService: CurrentUser) => {
+        return currentUserService.currentUser;
+      },
+      deps: [CurrentUser]
     }
   ]
 };
