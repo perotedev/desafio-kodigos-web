@@ -4,6 +4,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { routes } from './app.routes';
+import {IsMobile} from './shared/services/is-mobile';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,13 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.dark-mode'
         }
       }
-    })
+    }),
+    {
+      provide: 'IS_MOBILE',
+      useFactory: (isMobileService: IsMobile) => {
+        return isMobileService.isMobile;
+      },
+      deps: [IsMobile]
+    }
   ]
 };
