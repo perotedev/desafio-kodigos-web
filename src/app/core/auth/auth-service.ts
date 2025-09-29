@@ -5,7 +5,6 @@ import {Router} from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import {IAuthLogin} from '../../shared/interfaces/IAuth';
 import {environment} from '../../../environments/environment';
-import {IUserConfig} from '../../shared/interfaces/IUserConfig';
 import {ILoginResponse} from '../../shared/interfaces/ILoginResponse';
 import {IMessage} from '../../shared/interfaces/IMessage';
 
@@ -14,8 +13,6 @@ export const APP_REFRESH_TOKEN: string = "appRefreshToken";
 
 export const USER_ID: string = "appUserId";
 export const USER_ROLE: string = "appUserRole";
-export const APP_THEME: string = "appTheme";
-export const MENU_EXPANDED: string = "appExpanded";
 
 
 @Injectable({
@@ -82,12 +79,5 @@ export class AuthService {
     this.router.navigate(['/login'], {
       queryParams: stateUrl?{ fromUrl: stateUrl }:{}
     });
-  }
-
-  public setConfig(data?: IUserConfig): void {
-    if (data) {
-      localStorage.setItem(APP_THEME, data.theme ?? 'light');
-      localStorage.setItem(MENU_EXPANDED, String(data.expanded ?? true));
-    }
   }
 }

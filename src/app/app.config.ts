@@ -6,6 +6,7 @@ import Aura from '@primeuix/themes/aura';
 import { routes } from './app.routes';
 import {IsMobile} from './shared/services/is-mobile';
 import {CurrentUser} from './shared/services/current-user';
+import {AppTheme} from './shared/services/app-theme';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,6 +35,13 @@ export const appConfig: ApplicationConfig = {
         return currentUserService.currentUser;
       },
       deps: [CurrentUser]
+    },
+    {
+      provide: 'IS_DARK_MODE',
+      useFactory: (appThemeService: AppTheme) => {
+        return appThemeService.isDarkMode;
+      },
+      deps: [AppTheme]
     }
   ]
 };
