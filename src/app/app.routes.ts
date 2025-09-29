@@ -11,6 +11,7 @@ export const routes: Routes = [
   },
   {
     path: "login",
+    title: `${PREFIX} - Login`,
     loadComponent: () => import("./modules/login/login-home/login-home").then(m => m.LoginHome),
     canActivate: []
   },
@@ -19,6 +20,13 @@ export const routes: Routes = [
     title: `${PREFIX} - Início`,
     loadComponent: () => import("./core/home/home").then(m => m.Home),
     canActivate: [],
-    children: []
+    children: [
+      {
+        path: "home",
+        title: `${PREFIX} - Início`,
+        loadComponent: () => import("./modules/service-order/service-order-home/service-order-home").then(m => m.ServiceOrderHome),
+        canActivate: []
+      }
+    ]
   }
 ];
