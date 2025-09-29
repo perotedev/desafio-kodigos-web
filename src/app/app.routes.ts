@@ -28,5 +28,10 @@ export const routes: Routes = [
         canActivate: []
       }
     ]
+  },
+  {
+    path: "**",
+    title: `${PREFIX} - Página Não Encontrada`,
+    loadComponent: () => import("./core/page-not-found/page-not-found").then(m => m.PageNotFound)
   }
 ];
