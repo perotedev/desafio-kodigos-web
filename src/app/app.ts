@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import {afterNextRender, Component, inject, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {AppTheme} from './shared/services/app-theme';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {}
+export class App {
+  private readonly _theme = inject(AppTheme);
+
+  constructor() {
+    afterNextRender(() => {
+      this._theme.setTheme();
+    })
+  }
+}

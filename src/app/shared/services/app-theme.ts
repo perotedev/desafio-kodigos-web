@@ -17,14 +17,7 @@ export class AppTheme {
     return this._isDarkMode;
   }
 
-  public setConfig(data?: IUserConfig): void {
-    if (data) {
-      localStorage.setItem(APP_THEME, data.theme ?? 'light');
-      localStorage.setItem(MENU_EXPANDED, String(data.expanded ?? true));
-    }
-  }
-
-  private setTheme(theme: ThemeType): void {
+  private toggleTheme(theme: ThemeType): void {
     const htmlElement = document.documentElement;
     if (theme === 'dark') {
       htmlElement.classList.add('dark-mode');
@@ -33,5 +26,19 @@ export class AppTheme {
       htmlElement.classList.remove('dark-mode');
       this._isDarkMode.set(false);
     }
+  }
+
+  public setConfig(data?: IUserConfig): void {
+    if (data) {
+      localStorage.setItem(APP_THEME, data.theme ?? 'light');
+      localStorage.setItem(MENU_EXPANDED, String(data.expanded ?? true));
+    }
+  }
+
+  public setTheme(theme?: ThemeType): void {
+    if (!theme) {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    this.toggleTheme(theme);
   }
 }
