@@ -10,10 +10,17 @@ export const routes: Routes = [
     redirectTo: "login"
   },
   {
-    path: "login",
-    title: `${PREFIX} - Login`,
+    path: "",
+    title: `${PREFIX}`,
     loadComponent: () => import("./modules/login/login-home/login-home").then(m => m.LoginHome),
-    canActivate: []
+    children: [
+      {
+        path: "login",
+        title: `${PREFIX} - Login`,
+        loadComponent: () => import("./modules/login/login-signin/login-signin").then(m => m.LoginSignin),
+        canActivate: []
+      },
+    ]
   },
   {
     path: "",
