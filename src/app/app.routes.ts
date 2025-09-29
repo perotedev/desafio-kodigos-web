@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import {environment} from '../environments/environment';
+import {authGuard, homeAuthGuard, loginAuthGuard} from './core/auth/auth-guards';
 
 const PREFIX = `${environment.prefix} ${environment.appName}`;
 
@@ -18,7 +19,7 @@ export const routes: Routes = [
         path: "login",
         title: `${PREFIX} - Login`,
         loadComponent: () => import("./modules/login/login-signin/login-signin").then(m => m.LoginSignin),
-        canActivate: []
+        canActivate: [loginAuthGuard]
       },
     ]
   },
@@ -26,13 +27,13 @@ export const routes: Routes = [
     path: "",
     title: `${PREFIX} - Início`,
     loadComponent: () => import("./core/home/home").then(m => m.Home),
-    canActivate: [],
+    canActivate: [homeAuthGuard],
     children: [
       {
         path: "home",
         title: `${PREFIX} - Início`,
         loadComponent: () => import("./modules/service-order/service-order-home/service-order-home").then(m => m.ServiceOrderHome),
-        canActivate: []
+        canActivate: [authGuard]
       }
     ]
   },

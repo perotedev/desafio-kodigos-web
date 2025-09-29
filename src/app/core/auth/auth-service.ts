@@ -12,7 +12,6 @@ export const APP_ACCESS_TOKEN: string = "appToken";
 export const APP_REFRESH_TOKEN: string = "appRefreshToken";
 
 export const USER_ID: string = "appUserId";
-export const USER_ROLE: string = "appUserRole";
 
 
 @Injectable({
@@ -60,14 +59,6 @@ export class AuthService {
 
   public getUserId(): string {
     return localStorage.getItem(USER_ID)??"";
-  }
-
-  public setRole(role: string): void {
-    localStorage.setItem(USER_ROLE, role);
-  }
-
-  public getRole(): string {
-    return localStorage.getItem(USER_ROLE)??"";
   }
 
   public isLogged(): boolean {
