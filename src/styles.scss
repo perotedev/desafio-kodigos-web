@@ -25,6 +25,11 @@ html, body {
   overflow-y: hidden;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 .animation-slidedown {
   animation: slidedown 1.5s forwards;
   overflow: hidden;

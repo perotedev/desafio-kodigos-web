@@ -1,6 +1,26 @@
-<div class="content-outlet">
-  <router-outlet/>
+<div class="home">
+  <div class="menu-container">
+    @if (isMobile()) {
+      <app-menu-mobile/>
+    } @else {
+      <app-menu-desktop/>
+    }
+  </div>
+
+  <div class="home-container">
+    <div>
+      <app-header-bar-home/>
+    </div>
+    <div>
+      <app-breadcrumb/>
+    </div>
+
+    <div class="content-outlet pr-4" [class.pl-4]="isMobile()">
+      <router-outlet/>
+    </div>
+  </div>
 </div>
+
 
 <app-file-transfer/>
 <app-loading-component/>
