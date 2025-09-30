@@ -48,6 +48,18 @@
 
     <div class="mt-3">
       <p-float-label variant="on">
+        <p-select
+          id="userRole"
+          [options]="['USER', 'ADMIN']"
+          formControlName="role"
+          class="w-full"
+        />
+        <label for="userRole">Role *</label>
+      </p-float-label>
+    </div>
+
+    <div class="mt-3">
+      <p-float-label variant="on">
         <p-input-mask
           inputId="userCpf"
           name="userCpf"

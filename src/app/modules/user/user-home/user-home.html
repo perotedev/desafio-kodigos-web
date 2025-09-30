@@ -34,27 +34,27 @@
       <span cl-cell [autoCol]="false" style="width: 70px">{{item.id}}</span>
     </ng-template>
 
-    <span cl-header>Descrição</span>
+    <span cl-header>Nome</span>
     <ng-template clTCell let-item>
       <span cl-cell>{{item.name}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" style="width: 100px">Código</span>
+    <span cl-header [autoCol]="false" style="width: 100px">Email</span>
     <ng-template clTCell let-item>
       <span cl-cell [autoCol]="false" style="width: 100px">{{item.code}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" style="width: 100px" class="text-center">Qtd.</span>
+    <span cl-header [autoCol]="false" style="width: 100px" class="text-center">CPF.</span>
     <ng-template clTCell let-item>
       <span cl-cell [autoCol]="false" style="width: 100px" class="text-center">{{item.quantity}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" class="text-center" style="width: 100px">Preço</span>
+    <span cl-header [autoCol]="false" class="text-center" style="width: 100px">Telefone</span>
     <ng-template clTCell let-item>
       <span cl-cell [autoCol]="false" class="text-center" style="width: 100px">{{item.price}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" class="col-2">Categoria</span>
+    <span cl-header [autoCol]="false" class="col-2">Role</span>
     <ng-template clTCell let-item>
       <span cl-cell [autoCol]="false" class="col-2">{{item.category}}</span>
     </ng-template>

@@ -1,4 +1,4 @@
-import {Component, inject, input, InputSignal, output, OutputEmitterRef} from '@angular/core';
+import {Component, inject, input, InputSignal, OnInit, output, OutputEmitterRef} from '@angular/core';
 import {IUser} from '../../../shared/interfaces/IUser';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {cpfValidator} from '../../../shared/validators/cpfValidator';
@@ -12,7 +12,7 @@ import {ToastService} from '../../../shared/services/toast';
 import {markDirtyFields} from '../../../shared/utils/form-utils';
 import {UserService} from '../user-service';
 import {Loading} from '../../../shared/services/loading';
-import {DialogService} from 'primeng/dynamicdialog';
+import {Select} from 'primeng/select';
 
 @Component({
   selector: 'app-user-form',
@@ -22,12 +22,13 @@ import {DialogService} from 'primeng/dynamicdialog';
     FloatLabel,
     Button,
     DatePicker,
-    InputMask
+    InputMask,
+    Select
   ],
   templateUrl: './user-form.html',
   styleUrl: './user-form.scss'
 })
-export class UserForm {
+export class UserForm implements OnInit {
   public editUser: InputSignal<IUser | undefined> = input<IUser | undefined>(undefined);
   public isMobile: InputSignal<boolean> = input(false);
   public onClose: OutputEmitterRef<void> = output();
@@ -46,6 +47,8 @@ export class UserForm {
       birth: ['', Validators.required],
       cpf: ['', [cpfValidator()]],
       phone: ['', [phoneValidator()]],
+      active: [false, [Validators.required]],
+      role: ['', [Validators.required]]
     });
   }
 
@@ -63,6 +66,12 @@ export class UserForm {
     }).catch((err: any) => {
       this._toast.showToastError(`Erro ao ${this.editUser()?'atualizar':'cadastrar'} usuário!`);
     }).finally(() => this._loading.dismiss());
+  }
+
+  public ngOnInit(): void {
+    if (!this.editUser()) {
+      this.formUser.controls['active'].setValue(true);
+    }
   }
 
   public closeDialog(): void {

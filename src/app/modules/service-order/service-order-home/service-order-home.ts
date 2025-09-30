@@ -1,22 +1,27 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal, WritableSignal} from '@angular/core';
 import {Button} from 'primeng/button';
 import {RouterLink} from '@angular/router';
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {PaginatorState} from 'primeng/paginator';
 import {ContentListModule} from '../../../shared/components/content-list/content-list.module';
+import {InputSearch} from '../../../shared/components/input-search/input-search';
+import {NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-service-order-home',
   imports: [
     Button,
     ContentListModule,
-    RouterLink
+    RouterLink,
+    InputSearch,
+    NgStyle
   ],
   templateUrl: './service-order-home.html',
   styleUrl: './service-order-home.scss'
 })
 export class ServiceOrderHome {
   public readonly isMobile = inject(IS_MOBILE);
+  public search: WritableSignal<string> = signal("");
   public total: number = 10;
   public page: number = 1;
   public size: number = 10;

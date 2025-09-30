@@ -5,6 +5,7 @@ import {RoleEnum} from '../enums/RoleEnum';
 export const CURRENT_USER = new InjectionToken<Signal<IUser>>('CURRENT_USER');
 const EMPTY_USER: IUser = {
   email: "user@gmail.com",
+  active: true,
   person: {
     name: "Usuário Teste",
     birth: "10/05/2001"
