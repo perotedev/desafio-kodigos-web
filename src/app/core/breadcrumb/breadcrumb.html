@@ -1,14 +1,4 @@
 <div class="breadcrumb flex align-items-center">
-  @if (routeList.length > 2) {
-    <p-button
-      icon="pi pi-chevron-left"
-      styleClass="mr-3"
-      size="small"
-      [rounded]="true"
-      (onClick)="goBack()"
-    />
-  }
-
   <div class="flex align-items-baseline gap-2'">
     <div class="mr-4">
       <h2 class="m-0 p-0 font-bold text-xl">{{currentTitle}}</h2>
@@ -38,5 +28,17 @@
         }
       </div>
     }
+  </div>
+</ng-template>
+
+<ng-template #backButton>
+  <div>
+    <p-button
+      icon="pi pi-chevron-left"
+      styleClass="mr-1 fadein"
+      size="small"
+      [rounded]="true"
+      (onClick)="goBack()"
+    />
   </div>
 </ng-template>

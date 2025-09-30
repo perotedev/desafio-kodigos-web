@@ -11,6 +11,8 @@ $mobile-button-height: 38px;
   --btn-height-mobile: $mobile-button-height;
   --form-height-mobile: $mobile-button-height;
   --p-button-border-radius: 15px !important;
+  --p-stepper-steppanel-background: transparent !important;
+  --p-stepper-separator-background: var(--p-surface-300) !important;
 }
 
 *{
@@ -91,6 +93,15 @@ p {
 
 .p-datepicker-header {
   padding-bottom: 0 !important;
+}
+
+.p-step {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.p-stepper-separator {
+  left: -9px !important;
 }
 
 input, .p-select {

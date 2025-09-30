@@ -67,7 +67,7 @@ export const routes: Routes = [
           {
             path: "create",
             title: `${PREFIX} - Cadastrar Ordem de Serviço`,
-            loadComponent: () => import("./modules/service-order/service-order-form/service-order-form").then(m => m.ServiceOrderForm),
+            loadComponent: () => import("./modules/service-order/service-order-create/service-order-create").then(m => m.ServiceOrderCreate),
             canActivate: [authGuard],
           }
         ]

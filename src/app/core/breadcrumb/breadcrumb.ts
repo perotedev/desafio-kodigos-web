@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {routes} from '../../app.routes';
 import {NavigationEnd, Router} from '@angular/router';
 import {Location, NgTemplateOutlet} from '@angular/common';
@@ -6,6 +6,7 @@ import {environment} from '../../../environments/environment';
 import {CURRENT_USER} from '../../shared/services/current-user';
 import {Button} from 'primeng/button';
 import {IS_MOBILE} from '../../shared/services/is-mobile';
+import {HeaderBarService} from '../header-bar/header-bar-service';
 
 interface IRoute {
   path: string;
@@ -23,8 +24,10 @@ interface IRoute {
   styleUrl: './breadcrumb.scss'
 })
 export class Breadcrumb implements OnInit {
+  @ViewChild('backButton') private _backButton!: TemplateRef<any>;
   private readonly _appRoutes = routes;
   private readonly _router = inject(Router);
+  private readonly _headerBarService: HeaderBarService = inject(HeaderBarService);
   private readonly _currentUser = inject(CURRENT_USER);
   private readonly _location = inject(Location);
   private readonly _prefix: string = `${environment.prefix} ${environment.appName} - `;
@@ -36,6 +39,10 @@ export class Breadcrumb implements OnInit {
     this._router.events.subscribe((res) => {
       if (res instanceof NavigationEnd) {
         this.setup();
+
+        if (this.routeList.length > 2) {
+          this._headerBarService.setTemplateBefore(this._backButton);
+        }
       }
     });
   }
@@ -111,6 +118,12 @@ export class Breadcrumb implements OnInit {
 
   public ngOnInit(): void {
     this.setup();
+
+    setTimeout(() => {
+      if (this.routeList.length > 2) {
+        this._headerBarService.setTemplateBefore(this._backButton);
+      }
+    }, 200)
   }
 
   public navigateTo(index: number): void {

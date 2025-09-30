@@ -1,5 +1,5 @@
 import {inject, Injectable, Signal, signal, TemplateRef, WritableSignal} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import {NavigationStart, Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class HeaderBarService {
 
   constructor() {
     this._router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationStart) {
         this.clearAllTemplates();
       }
     });
