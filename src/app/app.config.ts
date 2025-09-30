@@ -8,9 +8,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { routes } from './app.routes';
-import {IsMobile} from './shared/services/is-mobile';
-import {CurrentUser} from './shared/services/current-user';
-import {AppTheme} from './shared/services/app-theme';
+import {IS_MOBILE, IsMobile} from './shared/services/is-mobile';
+import {CURRENT_USER, CurrentUser} from './shared/services/current-user';
+import {AppTheme, IS_DARK_MODE} from './shared/services/app-theme';
 import {provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
 import {authInterceptorFn} from './core/auth/auth-interceptor';
 
@@ -31,21 +31,21 @@ export const appConfig: ApplicationConfig = {
       }
     }),
     {
-      provide: 'IS_MOBILE',
+      provide: IS_MOBILE,
       useFactory: (isMobileService: IsMobile) => {
         return isMobileService.isMobile;
       },
       deps: [IsMobile]
     },
     {
-      provide: 'CURRENT_USER',
+      provide: CURRENT_USER,
       useFactory: (currentUserService: CurrentUser) => {
         return currentUserService.currentUser;
       },
       deps: [CurrentUser]
     },
     {
-      provide: 'IS_DARK_MODE',
+      provide: IS_DARK_MODE,
       useFactory: (appThemeService: AppTheme) => {
         return appThemeService.isDarkMode;
       },

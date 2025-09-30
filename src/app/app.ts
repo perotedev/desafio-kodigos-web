@@ -9,11 +9,11 @@ import {AppTheme} from './shared/services/app-theme';
   styleUrl: './app.scss'
 })
 export class App {
-  private readonly _theme = inject(AppTheme);
+  private readonly _theme: AppTheme = inject(AppTheme);
 
   constructor() {
     afterNextRender(() => {
-      this._theme.setTheme();
+      this._theme.setTheme('light');
     })
   }
 }

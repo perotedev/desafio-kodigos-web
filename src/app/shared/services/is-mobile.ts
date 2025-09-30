@@ -1,4 +1,4 @@
-import {computed, Injectable, InjectionToken, Signal} from '@angular/core';
+import {computed, effect, Injectable, InjectionToken, Signal} from '@angular/core';
 import {fromEvent, map, Observable, startWith} from 'rxjs';
 import {toSignal} from '@angular/core/rxjs-interop';
 
@@ -14,6 +14,16 @@ export class IsMobile {
   );
   private readonly _windowWidth: Signal<number> = toSignal(this.resize$, {initialValue: 0});
   private readonly _isMobile: Signal<boolean> = computed(() => this.checkIsMobile(this._windowWidth()));
+
+  constructor() {
+    effect(() => {
+      if (this._isMobile()) {
+        document.documentElement.classList.add('mobileversion');
+      } else {
+        document.documentElement.classList.remove('mobileversion');
+      }
+    });
+  }
 
   get isMobile(): Signal<boolean> {
     return this._isMobile;

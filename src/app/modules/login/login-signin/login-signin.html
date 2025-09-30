@@ -1,1 +1,53 @@
-<p>login-signin works!</p>
+<div class="flex align-items-center justify-content-center w-full h-full">
+  <div class="w-tr text-white animation-slidedown" [ngStyle]="{width: isMobile()?'90%':'330px'}">
+    <app-container-card>
+      <div class="p-3">
+        <div class="my-2 text-center">
+          <span class="select-none">Bem vindo!</span>
+        </div>
+
+        <app-logo-header/>
+
+        <div class="mt-5 text-center">
+          <form [formGroup]="formLogin" (submit)="onSubmit($event)">
+            <div class="my-3 w-full">
+              <input
+                type="email"
+                name="email"
+                pInputText
+                placeholder="E-mail"
+                class="w-full"
+                formControlName="email"
+                autocomplete="off"
+                aria-autocomplete="none"
+              />
+            </div>
+
+            <div class="my-3 w-full">
+              <p-password
+                placeholder="Senha"
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                class="w-full"
+                autocomplete="off"
+              />
+            </div>
+
+
+            <div class="w-full my-4">
+              <p-button label="Entrar" type="submit" styleClass="w-full p-button-mobile"/>
+            </div>
+
+            <div class="mb-2 mt-4">
+              <p class="text-sm cursor-pointer select-none">Esqueci minha senha!</p>
+            </div>
+            <div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </app-container-card>
+  </div>
+</div>
+

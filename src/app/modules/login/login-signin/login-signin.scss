@@ -1,0 +1,18 @@
+.w-tr {
+  transition: width 0.5s;
+}
+
+.text-white {
+  color: white;
+}
+
+::ng-deep {
+  .w-tr .p-password-input {
+    width: 100%;
+  }
+
+  .w-tr .p-password-toggle-mask-icon {
+    cursor: pointer;
+  }
+}
+

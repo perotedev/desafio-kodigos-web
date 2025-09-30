@@ -1,18 +1,8 @@
 #loginHome {
-  position: fixed;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
+  background: #002326;
   margin: 0;
   padding: 0;
-  background: #f6f6f6; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ffffff, #f6f6f6); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ffffff, #f6f6f6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-:host-context(.dark-mode) {
-  #loginHome {
-    background: #232526;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #333333, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #333333, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
 }

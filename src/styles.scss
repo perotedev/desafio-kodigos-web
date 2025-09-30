@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 $font-family: Roboto, serif;
+
+:root{
+  --color-background-blur: rgba(56, 61, 73, 0.5);
+}
 
 *{
   font-family: $font-family;
@@ -17,4 +20,40 @@ html, body {
   height: 100%;
   width: 100%;
   overflow-y: hidden;
+}
+
+.animation-slidedown {
+  animation: slidedown 1.5s forwards;
+  overflow: hidden;
+}
+
+@keyframes slidedown {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+  100% {
+    max-height: 720px;
+    opacity: 1;
+  }
+}
+
+
+// mobile styles
+.mobileversion {
+  input {
+    min-height: 38px;
+  }
+
+  .p-select, .p-multiselect{
+    min-height: 38px;
+
+    .p-select-label, .p-multiselect-label {
+      margin-top: 3px;
+    }
+  }
+
+  .p-button-mobile {
+    min-height: 38px;
+  }
 }
