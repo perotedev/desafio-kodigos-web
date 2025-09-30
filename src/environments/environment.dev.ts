@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   prefix: '[DEV]',
-  appName: "AppOs",
+  appName: "AppOS",
   apiUrl: "http://localhost:8001",
 }

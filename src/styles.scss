@@ -10,6 +10,7 @@ $mobile-button-height: 38px;
   --color-light: #ffffff;
   --btn-height-mobile: $mobile-button-height;
   --form-height-mobile: $mobile-button-height;
+  --p-button-border-radius: 15px !important;
 }
 
 *{
@@ -62,7 +63,6 @@ p {
 .w-transition {
   transition: width 0.5s;
 }
-
 
 .p-datepicker-select-month, .p-datepicker-select-year, .p-datepicker-day {
   font-size: 14px;

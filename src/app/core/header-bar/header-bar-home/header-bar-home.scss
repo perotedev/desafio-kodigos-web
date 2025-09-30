@@ -5,3 +5,26 @@
   justify-content: space-between;
   align-items: center;
 }
+
+::ng-deep.btn-header{
+  .pi {
+    font-size: 14px !important;
+  }
+
+  &:hover {
+    background: var(--color-light) !important;
+
+    img {
+      filter: brightness(0) saturate(100%) invert(27%) sepia(34%) saturate(1367%) hue-rotate(118deg) brightness(91%) contrast(95%);
+    }
+  }
+}
+
+::ng-deep.btn-user {
+  background: var(--p-primary-color) !important;
+  color: var(--p-primary-contrast-color) !important;
+
+  &:hover {
+    background: var(--p-primary-600) !important;
+  }
+}

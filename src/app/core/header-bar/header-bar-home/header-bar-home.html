@@ -3,7 +3,29 @@
     <span class="font-bold">{{(today | date: 'EEEE dd/MM/yyyy') | titlecase}}</span>
   </div>
 
-  <div class="flex align-items-center">
-    <span (click)="toggleTheme()" class="cursor-pointer">{{isDarkMode()?'light':'dark'}}</span>
+  <div class="flex align-items-center gap-3">
+    <p-button
+      (onClick)="toggleTheme()"
+      icon="pi {{isDarkMode()?'pi-sun':'pi-moon'}}"
+      styleClass="btn-header"
+      size="small"
+      [rounded]="true"
+      [text]="true"
+    />
+
+    <p-button
+      icon="pi pi-bell"
+      styleClass="btn-header"
+      size="small"
+      [rounded]="true"
+      [text]="true"
+    />
+
+    <p-button
+      icon="pi pi-user"
+      styleClass="btn-user ml-2"
+      [rounded]="true"
+      [text]="true"
+    />
   </div>
 </nav>

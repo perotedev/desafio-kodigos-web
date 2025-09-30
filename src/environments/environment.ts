@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   prefix: '',
-  appName: "AppOs",
+  appName: "AppOS",
   apiUrl: "https://meudominio.com.br",
 }
