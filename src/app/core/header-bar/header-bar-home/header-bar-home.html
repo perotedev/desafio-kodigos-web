@@ -1,3 +1,7 @@
 <nav class="header-bar-home">
   <p>header-bar-home works!</p>
+
+  <div class="flex align-items-center">
+    <span (click)="toggleTheme()" class="cursor-pointer">{{isDarkMode()?'light':'dark'}}</span>
+  </div>
 </nav>

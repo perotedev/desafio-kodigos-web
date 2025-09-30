@@ -1,7 +1,7 @@
 import {Injectable, InjectionToken, Signal, signal, WritableSignal} from '@angular/core';
 import {IUserConfig} from '../interfaces/IUserConfig';
 
-export const IS_DARK_MODE = new InjectionToken<boolean>('IS_DARK_MODE');
+export const IS_DARK_MODE = new InjectionToken<Signal<boolean>>('IS_DARK_MODE');
 
 export const APP_THEME: string = "appTheme";
 export const MENU_EXPANDED: string = "appExpanded";
