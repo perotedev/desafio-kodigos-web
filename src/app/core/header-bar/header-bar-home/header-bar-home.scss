@@ -6,6 +6,26 @@
   align-items: center;
 }
 
+
+.header-app-name-div {
+  display: flex;
+  align-items: baseline;
+
+}
+
+.header-app-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 11px;
+}
+
+.header-app-version {
+  font-size: 10px;
+  margin-left: 8px;
+  text-align: left;
+  color: var(--color-light);
+}
+
 ::ng-deep.btn-header{
   .pi {
     font-size: 14px !important;
@@ -26,5 +46,20 @@
 
   &:hover {
     background: var(--p-primary-600) !important;
+  }
+}
+
+::ng-deep.btn-menu-header {
+  width: 32.4px;
+  height: 32px;
+
+  &:hover {
+    background: var(--color-light) !important;
+
+    img {
+      height: 20px;
+      width: auto;
+      filter: brightness(0) saturate(100%) invert(27%) sepia(34%) saturate(1367%) hue-rotate(118deg) brightness(91%) contrast(95%);
+    }
   }
 }

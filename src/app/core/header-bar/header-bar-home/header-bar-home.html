@@ -1,6 +1,23 @@
 <nav class="header-bar-home">
   <div>
-    <span class="font-bold">{{(today | date: 'EEEE dd/MM/yyyy') | titlecase}}</span>
+    @if (isMobile()) {
+      <div class="fadein flex cursor-pointer select-none align-items-center w-full">
+        <div
+          class="app-logo-menu"
+        >
+          <p-button styleClass="btn-menu-header" [rounded]="true" [text]="true">
+            <img src="svg/menu.svg" alt="Menu"/>
+          </p-button>
+        </div>
+
+        <div class="header-app-name-div">
+          <div class="header-app-name">{{appName}}</div>
+          <div class="header-app-version">V {{appVersion}}</div>
+        </div>
+      </div>
+    } @else {
+      <span class="font-bold">{{(today | date: 'EEEE dd/MM/yyyy') | titlecase}}</span>
+    }
   </div>
 
   <div class="flex align-items-center gap-3">

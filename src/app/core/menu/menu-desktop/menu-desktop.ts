@@ -26,19 +26,19 @@ export class MenuDesktop {
   private readonly _currentUser = inject(CURRENT_USER);
   public readonly isMobile = inject(IS_MOBILE);
 
-  public readonly appVersion = version;
-  public readonly appName = environment.appName;
+  public readonly appVersion: string = version;
+  public readonly appName: string = environment.appName;
 
   private readonly _menuItems: IMenuItem[] = [
     {
-      label: 'Home',
+      label: 'Início',
       icon: 'pi pi-home',
       route: '/',
       roles: []
     },
     {
       label: 'Ordens de Serviço',
-      icon: 'pi pi-list',
+      icon: 'pi pi-tags',
       route: '/service-order',
       roles: []
     },
