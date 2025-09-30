@@ -32,7 +32,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
   const toast: ToastService = inject(ToastService);
   const currentUser = inject(CURRENT_USER);
 
-  const expectedRoles: string[] = route.data['role'] ?? [];
+  const expectedRoles: string[] = route.data['roles'] ?? [];
   if (expectedRoles.length === 0) return true;
 
   const userRole: string = currentUser().role;

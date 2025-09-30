@@ -1,5 +1,5 @@
 import {
-  ApplicationConfig,
+  ApplicationConfig, DEFAULT_CURRENCY_CODE, importProvidersFrom, LOCALE_ID,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection
 } from '@angular/core';
@@ -13,6 +13,8 @@ import {AppTheme, IS_DARK_MODE} from './shared/services/app-theme';
 import {provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
 import {authInterceptorFn} from './core/auth/auth-interceptor';
 import {AppOsTheme, AppOsTranslation} from '../primeng.theme';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,8 +22,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideHttpClient(withInterceptors([authInterceptorFn]), withFetch()),
+    importProvidersFrom(ToastModule),
     provideRouter(routes),
     provideAnimationsAsync(),
+    MessageService,
     providePrimeNG({
       theme: {
         preset: AppOsTheme,
@@ -51,6 +55,14 @@ export const appConfig: ApplicationConfig = {
         return appThemeService.isDarkMode;
       },
       deps: [AppTheme]
-    }
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-PT'
+    },
+    {
+      provide: DEFAULT_CURRENCY_CODE,
+      useValue: 'BRL'
+    },
   ]
 };

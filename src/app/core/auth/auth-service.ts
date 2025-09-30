@@ -10,7 +10,6 @@ import {IMessage} from '../../shared/interfaces/IMessage';
 
 export const APP_ACCESS_TOKEN: string = "appToken";
 export const APP_REFRESH_TOKEN: string = "appRefreshToken";
-
 export const USER_ID: string = "appUserId";
 
 

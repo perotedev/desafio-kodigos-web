@@ -44,8 +44,44 @@ export const routes: Routes = [
       {
         path: "home",
         title: `${PREFIX} - Início`,
-        loadComponent: () => import("./modules/service-order/service-order-home/service-order-home").then(m => m.ServiceOrderHome),
-        canActivate: [authGuard]
+        loadComponent: () => import("./modules/dash-home/dash-home").then(m => m.DashHome),
+        canActivate: [authGuard],
+        data: {
+          roles: []
+        }
+      },
+      {
+        path: "service-order",
+        title: `${PREFIX} - Ordens de Serviço`,
+        children: [
+          {
+            path: "",
+            title: `${PREFIX} - Ordens de Serviço`,
+            loadComponent: () => import("./modules/service-order/service-order-home/service-order-home").then(m => m.ServiceOrderHome),
+            canActivate: [authGuard],
+            data: {
+              roles: []
+            }
+          },
+          {
+            path: ":id",
+            title: `${PREFIX} - Ver Ordem de Serviço`,
+            loadComponent: () => import("./modules/service-order/service-order-view/service-order-view").then(m => m.ServiceOrderView),
+            canActivate: [authGuard],
+            data: {
+              roles: []
+            }
+          },
+          {
+            path: "create",
+            title: `${PREFIX} - Cadastrar Ordem de Serviço`,
+            loadComponent: () => import("./modules/service-order/service-order-form/service-order-form").then(m => m.ServiceOrderForm),
+            canActivate: [authGuard],
+            data: {
+              roles: []
+            }
+          }
+        ]
       }
     ]
   },
