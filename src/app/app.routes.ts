@@ -21,6 +21,18 @@ export const routes: Routes = [
         loadComponent: () => import("./modules/login/login-signin/login-signin").then(m => m.LoginSignin),
         canActivate: [loginAuthGuard]
       },
+      {
+        path: "recover-password",
+        title: `${PREFIX} - Recuperar Senha`,
+        loadComponent: () => import("./modules/login/login-recover-password/login-recover-password").then(m => m.LoginRecoverPassword),
+        canActivate: [loginAuthGuard]
+      },
+      {
+        path: "signup",
+        title: `${PREFIX} - Cadastro`,
+        loadComponent: () => import("./modules/login/login-signup/login-signup").then(m => m.LoginSignup),
+        canActivate: [loginAuthGuard]
+      }
     ]
   },
   {
