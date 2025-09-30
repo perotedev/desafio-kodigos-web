@@ -16,7 +16,17 @@
         </div>
       </div>
     } @else {
-      <span class="font-bold">{{(today | date: 'EEEE dd/MM/yyyy') | titlecase}}</span>
+      <div class="flex align-items-center gap-3">
+        @if (templateBefore()) {
+          <ng-container [ngTemplateOutlet]="templateBefore()" />
+        }
+
+        <span class="font-bold">{{(today | date: 'EEEE dd/MM/yyyy') | titlecase}}</span>
+
+        @if (templateAfter()) {
+          <ng-container [ngTemplateOutlet]="templateAfter()" />
+        }
+      </div>
     }
   </div>
 

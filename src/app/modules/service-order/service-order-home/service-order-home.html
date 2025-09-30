@@ -1,23 +1,23 @@
-<div
-  class="mb-3 flex align-items-center gap-3"
-  [class.justify-content-between]="!isMobile()"
-  [class.flex-column]="isMobile()"
->
-  <div [ngStyle]="{width: isMobile() ? '100%' : '260px'}">
-    <app-input-search [(value)]="search"/>
+<div class="py-2">
+  <div
+    class="mb-3 flex align-items-center gap-3"
+    [class.justify-content-between]="!isMobile()"
+    [class.flex-column]="isMobile()"
+  >
+    <div [ngStyle]="{width: isMobile() ? '100%' : '260px'}">
+      <app-input-search [(value)]="search"/>
+    </div>
+
+    <div [class.w-full]="isMobile()">
+      <p-button
+        routerLink="create"
+        styleClass="px-3 {{isMobile() ? 'w-full' : 'w-auto'}}"
+        label="Adicionar"
+        icon="pi pi-plus"
+      />
+    </div>
   </div>
 
-  <div [class.w-full]="isMobile()">
-    <p-button
-      routerLink="create"
-      styleClass="px-3 {{isMobile() ? 'w-full' : 'w-auto'}}"
-      label="Adicionar"
-      icon="pi pi-plus"
-    />
-  </div>
-</div>
-
-<div class="pt-2">
   <app-content-list
     [dataList]="test"
     [isMobile]="isMobile()"

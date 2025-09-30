@@ -17,6 +17,7 @@ import {Paginator, PaginatorState} from 'primeng/paginator';
 import {Checkbox} from 'primeng/checkbox';
 import {FormsModule} from '@angular/forms';
 import {Message} from 'primeng/message';
+import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 
 export interface IItemListContent {
   cellTemplate: ClCellTemplateDirective;
@@ -27,6 +28,20 @@ export interface ISelectedItem {
   checked: boolean,
   item: any;
 }
+
+export const listAnimation = trigger('listAnimation', [
+  transition(':enter', [
+    query(':enter', [
+      style({ opacity: 0, transform: 'translateY(20px)' }),
+      stagger(100, [ // 100ms de atraso entre cada item
+        animate('200ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ], { optional: true })
+  ]),
+  transition(':leave', [
+    animate('200ms ease-in', style({ opacity: 0, transform: 'translateX(50px)' }))
+  ])
+]);
 
 @Component({
   standalone: true,
@@ -41,6 +56,7 @@ export interface ISelectedItem {
   ],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss',
+  animations: [listAnimation]
 })
 export class ContentList implements AfterContentInit {
   public isMobile: InputSignal<boolean> = input(false);

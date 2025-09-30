@@ -32,6 +32,7 @@ export class UserHome {
   private readonly _toast: ToastService = inject(ToastService);
   public readonly isMobile = inject(IS_MOBILE);
   public search: WritableSignal<string> = signal('');
+  public isLoadingUsers: boolean = false;
   public dialogVisible: boolean = false;
   public selectedUser?: IUser;
   public total: number = 10;
@@ -48,14 +49,14 @@ export class UserHome {
   }
 
   private getUsers(page: number, size: number, search = ""): void {
-    this._loading.present();
+    this.isLoadingUsers = true;
     this._userService.getUsers(page, size, search)
       .then((res: IPaginationResponse<IUser>) => {
         this.users = res.items;
         this.page = res.page;
         this.size = res.size;
         this.total = res.total;
-      }).finally(() => this._loading.dismiss());
+      }).finally(() => this.isLoadingUsers = false);
   }
 
   private deleteUser(userId: number): void {
@@ -63,6 +64,7 @@ export class UserHome {
     this._userService.deleteUser(userId)
       .then((res: any) => {
         this.users = [...this.users.filter(user => user.id !== userId)];
+        this._toast.showToastSuccess("Usuário excluído com sucesso!");
       }).finally(() => this._loading.dismiss());
   }
 

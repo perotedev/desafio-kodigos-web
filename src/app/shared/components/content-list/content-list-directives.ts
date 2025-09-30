@@ -46,7 +46,6 @@ export class ClCellDirective implements OnInit {
       if (this.autoCol()) this.elementRef.nativeElement.classList.add('col');
       if (this.ellipsis()) this.elementRef.nativeElement.classList.add('cell-ellipsis');
     }
-
   }
 }
 

@@ -60,7 +60,7 @@
 
 .cl-row {
   margin-top: 8px;
-  background: var(--p-message-secondary-background);
+  background: var(--p-surface-50);
   border-radius: 15px;
   padding: 0 15px 0 15px;
   min-height: 34px;
@@ -85,6 +85,17 @@
 }
 
 ::ng-deep {
+  :root {
+    --p-progressspinner-color-two: var(--p-primary-color) ;
+    --p-progressspinner-color-one: var(--p-primary-600) ;
+    --p-progressspinner-color-three: var(--p-primary-700) ;
+    --p-progressspinner-color-four: var(--p-primary-800) ;
+  }
+
+  .empty-default {
+    height: 34px;
+  }
+
   .cl-content-headers{
     span {
       font-weight: bold;
@@ -178,24 +189,20 @@
 }
 
 .loading-absolute {
-  position: absolute;
   height: 100%;
   width: 100%;
   min-height: 140px ;
   z-index: 40;
-  border-radius: 8px;
-}
-
-.empty-bg .loading-absolute {
-  background: rgba(black, 0.07);
+  border-radius: 12px;
 }
 
 :host-context(.dark-mode) {
+  .cl-row {
+    background: var(--p-surface-800);
+  }
+
   .cl-row:hover {
     background: var(--p-surface-700);
   }
-
- .empty-bg .loading-absolute {
-    background: rgba(black, 0.1);
-  }
 }
+

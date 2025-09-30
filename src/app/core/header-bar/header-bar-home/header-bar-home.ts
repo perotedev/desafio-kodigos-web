@@ -1,10 +1,11 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, Signal, TemplateRef} from '@angular/core';
 import {AppTheme, IS_DARK_MODE} from '../../../shared/services/app-theme';
 import {CommonModule} from '@angular/common';
 import {Button} from 'primeng/button';
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import pkg from '../../../../../package.json';
 import {environment} from '../../../../environments/environment';
+import {HeaderBarService} from '../header-bar-service';
 
 const version = pkg.version;
 
@@ -15,13 +16,15 @@ const version = pkg.version;
   styleUrl: './header-bar-home.scss'
 })
 export class HeaderBarHome {
+  private readonly _headerBarService: HeaderBarService = inject(HeaderBarService);
   private readonly _themeService: AppTheme = inject(AppTheme);
   public readonly isDarkMode = inject(IS_DARK_MODE);
   public readonly isMobile = inject(IS_MOBILE);
   public readonly today: Date = new Date();
   public readonly appVersion: string = version;
   public readonly appName: string = environment.appName;
-
+  public readonly templateBefore: Signal<TemplateRef<any>|null> = this._headerBarService.templateBefore;
+  public readonly templateAfter: Signal<TemplateRef<any>|null> = this._headerBarService.templateAfter;
 
   public toggleTheme(): void {
     this._themeService.setTheme(this.isDarkMode()?'light':'dark');

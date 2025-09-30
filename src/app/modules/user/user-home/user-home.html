@@ -1,5 +1,4 @@
 <div class="py-2">
-
   <div
     class="mb-3 flex align-items-center gap-3"
     [class.justify-content-between]="!isMobile()"
@@ -22,6 +21,7 @@
   <app-content-list
     [dataList]="users"
     [isMobile]="isMobile()"
+    [isLoading]="isLoadingUsers"
     [paginator]="true"
     [rows]="size"
     [first]="1"
@@ -44,7 +44,7 @@
       <span cl-cell [autoCol]="false" style="width: 100px">{{item.code}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" style="width: 100px" class="text-center">CPF.</span>
+    <span cl-header [autoCol]="false" style="width: 100px" class="text-center">CPF</span>
     <ng-template clTCell let-item>
       <span cl-cell [autoCol]="false" style="width: 100px" class="text-center">{{item.quantity}}</span>
     </ng-template>
