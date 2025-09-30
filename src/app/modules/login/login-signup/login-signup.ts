@@ -9,6 +9,7 @@ import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {Loading} from '../../../shared/services/loading';
 import {NgStyle} from '@angular/common';
 import {DatePicker} from 'primeng/datepicker';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-login-signup',
@@ -21,7 +22,8 @@ import {DatePicker} from 'primeng/datepicker';
     Password,
     ReactiveFormsModule,
     NgStyle,
-    DatePicker
+    DatePicker,
+    RouterLink
   ],
   templateUrl: './login-signup.html',
   styleUrl: './login-signup.scss'

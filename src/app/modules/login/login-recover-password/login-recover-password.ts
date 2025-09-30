@@ -9,17 +9,17 @@ import {Password} from "primeng/password";
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {Loading} from '../../../shared/services/loading';
 import {NgStyle} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-login-recover-password',
     imports: [
       Button,
       ContainerCard,
-      DatePicker,
       FormsModule,
       InputText,
       LogoHeader,
-      Password,
+      RouterLink,
       ReactiveFormsModule,
       NgStyle
     ],
