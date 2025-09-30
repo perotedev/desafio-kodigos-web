@@ -15,6 +15,7 @@ import {authInterceptorFn} from './core/auth/auth-interceptor';
 import {AppOsTheme, AppOsTranslation} from '../primeng.theme';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
+import {FILE_TRANSFER, FileTransferService} from './shared/services/file-transfer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -55,6 +56,13 @@ export const appConfig: ApplicationConfig = {
         return appThemeService.isDarkMode;
       },
       deps: [AppTheme]
+    },
+    {
+      provide: FILE_TRANSFER,
+      useFactory: (fileTransferService: FileTransferService) => {
+        return fileTransferService.fileTransfer;
+      },
+      deps: [FileTransferService]
     },
     {
       provide: LOCALE_ID,
