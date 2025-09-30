@@ -20,7 +20,7 @@
         <div class="mb-3">
           <app-menu-item
             [item]="item"
-            [active]="$index === 0"
+            [active]="currentRoute === item.route"
             [expanded]="expanded()"
           />
         </div>
