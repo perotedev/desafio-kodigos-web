@@ -1,9 +1,11 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {routes} from '../../app.routes';
 import {NavigationEnd, Router} from '@angular/router';
-import {Location} from '@angular/common';
+import {Location, NgTemplateOutlet} from '@angular/common';
 import {environment} from '../../../environments/environment';
 import {CURRENT_USER} from '../../shared/services/current-user';
+import {Button} from 'primeng/button';
+import {IS_MOBILE} from '../../shared/services/is-mobile';
 
 interface IRoute {
   path: string;
@@ -14,6 +16,10 @@ interface IRoute {
 @Component({
   selector: 'app-breadcrumb',
   templateUrl: './breadcrumb.html',
+  imports: [
+    Button,
+    NgTemplateOutlet
+  ],
   styleUrl: './breadcrumb.scss'
 })
 export class Breadcrumb implements OnInit {
@@ -21,7 +27,8 @@ export class Breadcrumb implements OnInit {
   private readonly _router = inject(Router);
   private readonly _currentUser = inject(CURRENT_USER);
   private readonly _location = inject(Location);
-  private readonly _prefix: string = `${environment.prefix} ${environment.appName} - `
+  private readonly _prefix: string = `${environment.prefix} ${environment.appName} - `;
+  public readonly isMobile = inject(IS_MOBILE);
   public currentTitle: string = '';
   public routeList: IRoute[] = [];
 
@@ -113,5 +120,9 @@ export class Breadcrumb implements OnInit {
       .map(route => route.path)
       .join('/');
     this._router.navigate([path]);
+  }
+
+  public goBack(): void {
+    this._location.back();
   }
 }

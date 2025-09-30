@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import {ContainerContent} from '../../shared/components/container-content/container-content';
 import {ContentListModule} from '../../shared/components/content-list/content-list.module';
 import {IS_MOBILE} from '../../shared/services/is-mobile';
 import {PaginatorState} from 'primeng/paginator';
@@ -10,7 +9,6 @@ import {RouterLink} from '@angular/router';
   selector: 'app-dash-home',
   imports: [
     ContentListModule,
-    ContainerContent,
     Button,
     RouterLink
   ],

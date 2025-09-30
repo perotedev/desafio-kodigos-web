@@ -1,9 +1,33 @@
-<div class="breadcrumb">
+<div class="breadcrumb flex align-items-center">
+  @if (routeList.length > 2) {
+    <p-button
+      icon="pi pi-chevron-left"
+      styleClass="mr-3"
+      size="small"
+      [rounded]="true"
+      (onClick)="goBack()"
+    />
+  }
+
   <div class="flex align-items-baseline gap-2'">
     <div class="mr-4">
       <h2 class="m-0 p-0 font-bold text-xl">{{currentTitle}}</h2>
     </div>
 
+    @if (!isMobile()) {
+      <ng-container [ngTemplateOutlet]="routesTemplate" />
+    }
+  </div>
+</div>
+
+@if (isMobile()) {
+  <div class="pt-2 pb-3">
+    <ng-container [ngTemplateOutlet]="routesTemplate" />
+  </div>
+}
+
+<ng-template #routesTemplate>
+  <div class="flex">
     @for (route of routeList; track route) {
       <div>
         <span class="route" (click)="navigateTo($index)" [class.active]="$last">{{route.title}}</span>
@@ -15,4 +39,4 @@
       </div>
     }
   </div>
-</div>
+</ng-template>

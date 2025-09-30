@@ -37,6 +37,12 @@
   background: var(--p-surface-200);
 }
 
+.content-outlet {
+  overflow-y: auto;
+  height: calc(100% - 105px);
+}
+
+
 :host-context(.dark-mode) {
   .home-content-container {
     background: var(--color-background-blur);
@@ -47,9 +53,8 @@
   .home-content-container {
     border-top-left-radius: 0;
   }
-}
 
-.content-outlet {
-  overflow-y: auto;
-  height: calc(100% - 105px);
+  .content-outlet {
+    height: calc(100% - 143.5px);
+  }
 }
