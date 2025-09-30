@@ -1,6 +1,6 @@
 .background {
   height: 100dvh;
-  background-color: var(--color-background);
+  background-color: var(--p-primary-950);
   overflow: hidden;
   position: relative;
   color: var(--color-light) !important;
@@ -13,7 +13,7 @@
   width: 600px;
   height: 680px;
   border-radius: 50%;
-  background-color: var(--color-ellipse);
+  background-color: var(--p-primary-600);
   filter: blur(100px);
   mix-blend-mode: overlay;
   position: absolute;

@@ -4,9 +4,7 @@ import pkg from '../../../../../package.json';
 import {environment} from '../../../../environments/environment';
 import {IMenuItem, MenuItem} from '../menu-item/menu-item';
 import {CURRENT_USER} from '../../../shared/services/current-user';
-import {RoleEnum} from '../../../shared/enums/RoleEnum';
 import {Button} from 'primeng/button';
-import {RouterLink} from '@angular/router';
 
 const version = pkg.version;
 
@@ -14,8 +12,7 @@ const version = pkg.version;
   selector: 'app-menu-desktop',
   imports: [
     MenuItem,
-    Button,
-    RouterLink
+    Button
   ],
   templateUrl: './menu-desktop.html',
   styleUrl: './menu-desktop.scss'

@@ -37,7 +37,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
 
   const userRole: string = currentUser().role;
 
-  const hasRole: boolean = expectedRoles.some(role => role === userRole);
+  const hasRole: boolean = expectedRoles.includes(userRole);
   if (hasRole) return true;
 
   toast.showToastInfo("Você não tem permissão para o acessar este módulo!");

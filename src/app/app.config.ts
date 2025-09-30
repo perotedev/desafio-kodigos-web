@@ -16,6 +16,10 @@ import {AppOsTheme, AppOsTranslation} from '../primeng.theme';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {FILE_TRANSFER, FileTransferService} from './shared/services/file-transfer';
+import localePt from '@angular/common/locales/pt'
+import {registerLocaleData} from '@angular/common';
+
+registerLocaleData(localePt)
 
 export const appConfig: ApplicationConfig = {
   providers: [

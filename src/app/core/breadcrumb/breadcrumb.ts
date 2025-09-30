@@ -75,7 +75,6 @@ export class Breadcrumb implements OnInit {
     };
 
     findRouteRecursively(this._appRoutes as IRoute[]);
-    console.log(this.routeList);
   }
 
 
