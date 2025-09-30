@@ -16,6 +16,7 @@ import {NgTemplateOutlet} from '@angular/common';
 import {Paginator, PaginatorState} from 'primeng/paginator';
 import {Checkbox} from 'primeng/checkbox';
 import {FormsModule} from '@angular/forms';
+import {Message} from 'primeng/message';
 
 export interface IItemListContent {
   cellTemplate: ClCellTemplateDirective;
@@ -35,7 +36,8 @@ export interface ISelectedItem {
     Paginator,
     Checkbox,
     FormsModule,
-    ProgressSpinner
+    ProgressSpinner,
+    Message
   ],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss',

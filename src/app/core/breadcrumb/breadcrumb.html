@@ -28,7 +28,7 @@
 
 <ng-template #routesTemplate>
   <div class="flex">
-    @for (route of routeList; track route) {
+    @for (route of routeList; track route.path) {
       <div>
         <span class="route" (click)="navigateTo($index)" [class.active]="$last">{{route.title}}</span>
         @if (!$last) {

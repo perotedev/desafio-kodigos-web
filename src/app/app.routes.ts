@@ -47,9 +47,6 @@ export const routes: Routes = [
         title: `${PREFIX} - Início`,
         loadComponent: () => import("./modules/dash-home/dash-home").then(m => m.DashHome),
         canActivate: [authGuard],
-        data: {
-          roles: []
-        }
       },
       {
         path: "service-order",
@@ -60,27 +57,18 @@ export const routes: Routes = [
             title: `${PREFIX} - Ordens de Serviço`,
             loadComponent: () => import("./modules/service-order/service-order-home/service-order-home").then(m => m.ServiceOrderHome),
             canActivate: [authGuard],
-            data: {
-              roles: []
-            }
           },
           {
             path: "view/:id",
             title: `${PREFIX} - Ver Ordem de Serviço`,
             loadComponent: () => import("./modules/service-order/service-order-view/service-order-view").then(m => m.ServiceOrderView),
             canActivate: [authGuard],
-            data: {
-              roles: []
-            }
           },
           {
             path: "create",
             title: `${PREFIX} - Cadastrar Ordem de Serviço`,
             loadComponent: () => import("./modules/service-order/service-order-form/service-order-form").then(m => m.ServiceOrderForm),
             canActivate: [authGuard],
-            data: {
-              roles: []
-            }
           }
         ]
       },
@@ -90,7 +78,7 @@ export const routes: Routes = [
         loadComponent: () => import("./modules/user/user-home/user-home").then(m => m.UserHome),
         canActivate: [authGuard],
         data: {
-          roles: [RoleEnum.ADMIN]
+          // roles: [RoleEnum.ADMIN]
         }
       },
     ]

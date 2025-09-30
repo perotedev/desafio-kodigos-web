@@ -68,6 +68,15 @@ p {
   font-size: 14px;
 }
 
+.p-dialog-header {
+  padding-top: 10px !important;
+  padding-bottom: 8px !important;
+}
+
+.p-datepicker-input{
+  width: 100%;
+}
+
 .p-datepicker-weekday {
   font-size: 13px;
 }
@@ -82,6 +91,10 @@ p {
 
 .p-datepicker-header {
   padding-bottom: 0 !important;
+}
+
+input {
+  border-radius: 12px !important;
 }
 
 

@@ -112,13 +112,15 @@
       @if (emptyTemplate) {
         <ng-container [ngTemplateOutlet]="emptyTemplate.template" />
       } @else {
-        <div class="w-full p-3 flex justify-content-center">
-          <div class="flex w-full align-items-center">
-            <span class="pi pi-info-circle"></span>
-            <span class="flex-1 text-sm">
+        <div class="w-full flex justify-content-center">
+          <p-message class="w-full" styleClass="w-full border-round-3xl" severity="secondary">
+            <div class="flex w-full align-items-center">
+              <span class="pi pi-info-circle"></span>
+              <span class="ml-3 flex-1">
               Não há itens cadastrados no momento.
             </span>
-          </div>
+            </div>
+          </p-message>
         </div>
       }
     }

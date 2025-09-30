@@ -1,1 +1,91 @@
-<p>user-home works!</p>
+<div class="py-2">
+
+  <div
+    class="mb-3 flex align-items-center gap-3"
+    [class.justify-content-between]="!isMobile()"
+    [class.flex-column]="isMobile()"
+  >
+    <div [ngStyle]="{width: isMobile() ? '100%' : '260px'}">
+      <app-input-search [(value)]="search"/>
+    </div>
+
+    <div [class.w-full]="isMobile()">
+      <p-button
+        (onClick)="toggleDialog()"
+        styleClass="px-3 {{isMobile() ? 'w-full' : 'w-auto'}}"
+        label="Adicionar"
+        icon="pi pi-plus"
+      />
+    </div>
+  </div>
+
+  <app-content-list
+    [dataList]="users"
+    [isMobile]="isMobile()"
+    [paginator]="true"
+    [rows]="size"
+    [first]="1"
+    [totalRecords]="total"
+    [rowsPerPageOptions]="[10, 20, 30]"
+    (onPageChange)="onPageChange($event)"
+  >
+    <span cl-header [autoCol]="false" style="width: 70px;">ID</span>
+    <ng-template clTCell [mobileHiden]="true" let-item>
+      <span cl-cell [autoCol]="false" style="width: 70px">{{item.id}}</span>
+    </ng-template>
+
+    <span cl-header>Descrição</span>
+    <ng-template clTCell let-item>
+      <span cl-cell>{{item.name}}</span>
+    </ng-template>
+
+    <span cl-header [autoCol]="false" style="width: 100px">Código</span>
+    <ng-template clTCell let-item>
+      <span cl-cell [autoCol]="false" style="width: 100px">{{item.code}}</span>
+    </ng-template>
+
+    <span cl-header [autoCol]="false" style="width: 100px" class="text-center">Qtd.</span>
+    <ng-template clTCell let-item>
+      <span cl-cell [autoCol]="false" style="width: 100px" class="text-center">{{item.quantity}}</span>
+    </ng-template>
+
+    <span cl-header [autoCol]="false" class="text-center" style="width: 100px">Preço</span>
+    <ng-template clTCell let-item>
+      <span cl-cell [autoCol]="false" class="text-center" style="width: 100px">{{item.price}}</span>
+    </ng-template>
+
+    <span cl-header [autoCol]="false" class="col-2">Categoria</span>
+    <ng-template clTCell let-item>
+      <span cl-cell [autoCol]="false" class="col-2">{{item.category}}</span>
+    </ng-template>
+
+    <span cl-header [autoCol]="false" class="col-2">Status</span>
+    <ng-template clTCell let-item>
+      <span cl-cell [autoCol]="false" class="col-2">{{item.inventoryStatus}}</span>
+    </ng-template>
+
+    <span cl-header [autoCol]="false" style="width: 72px;" class="text-right"></span>
+    <ng-template clTCell [isAction]="true" let-item>
+      <span cl-cell [autoCol]="false" style="width: 72px;" class="text-right">
+        <p-button (onClick)="toggleDialog(item)" size="small" styleClass="px-2" [rounded]="true" [text]="true">
+          <span class="pi pi-eye"></span>
+        </p-button>
+      </span>
+    </ng-template>
+  </app-content-list>
+</div>
+
+<p-dialog
+  header="{{selectedUser?'Editar':'Adicionar'}} Usuário"
+  [(visible)]="dialogVisible"
+  [modal]="true"
+  [style]="{width: isMobile()?'90%':'380px'}"
+>
+  @if(dialogVisible) {
+    <app-user-form
+      [editUser]="selectedUser"
+      [isMobile]="isMobile()"
+      (onClose)="toggleDialog()"
+    />
+  }
+</p-dialog>

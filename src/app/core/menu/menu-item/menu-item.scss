@@ -50,7 +50,7 @@
   .menu-item {
     .button-menu {
       height: 32px;
-      transition: padding-left 0.5s;
+      transition: padding-left 0.5s, background-color 0.2s, border-color 0.2s;
     }
   }
 
