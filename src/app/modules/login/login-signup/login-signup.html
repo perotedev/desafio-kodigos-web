@@ -1,3 +1,94 @@
-<div class="login-signup">
-  <p>login-signup works!</p>
+<div class="flex align-items-center justify-content-center w-full h-full">
+  <div class="w-transition text-white animation-slidedown" [ngStyle]="{width: isMobile()?'90%':'330px'}">
+    <app-container-card>
+      <div class="p-3">
+        <div class="reduce-header">
+          <app-logo-header/>
+        </div>
+
+        <div class="text-center mt-3">
+          <h2 class="my-0 subtitle-signup">Criar Conta</h2>
+        </div>
+
+        <div class="mt-3 text-center">
+          <form [formGroup]="formSignup" (submit)="onSubmit($event)">
+            <div class="my-3 w-full">
+              <input
+                type="text"
+                name="personName"
+                pInputText
+                placeholder="Nome *"
+                class="w-full"
+                formControlName="name"
+                autocomplete="off"
+                aria-autocomplete="none"
+              />
+            </div>
+
+            <div class="my-3 w-full">
+              <input
+                type="email"
+                name="email"
+                pInputText
+                placeholder="E-mail *"
+                class="w-full"
+                formControlName="email"
+                autocomplete="off"
+                aria-autocomplete="none"
+              />
+            </div>
+
+            <div class="my-3 w-full">
+              <p-date-picker
+                formControlName="birth"
+                placeholder="Data Nascimento *"
+                class="w-full"
+                aria-autocomplete="none"
+                name="birth"
+                appendTo="body"
+                readonlyInput="true"
+                dateFormat="dd/mm/yy"
+                [showClear]="true"
+                [maxDate]="maxDate"
+              />
+
+            </div>
+
+            <div class="my-3 w-full">
+              <p-password
+                placeholder="Senha *"
+                formControlName="password"
+                [toggleMask]="true"
+                class="w-full"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="my-3 w-full">
+              <p-password
+                placeholder="Confirme a senha *"
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                class="w-full"
+                autocomplete="off"
+              />
+            </div>
+
+
+            <div class="w-full my-4">
+              <p-button label="Cadastrar" type="submit" styleClass="w-full p-button-mobile"/>
+            </div>
+
+            <div class="mb-2 mt-4">
+              <p class="text-sm cursor-pointer select-none">Voltar para o login</p>
+            </div>
+            <div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </app-container-card>
+  </div>
 </div>
+

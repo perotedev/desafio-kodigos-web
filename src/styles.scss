@@ -4,6 +4,7 @@ $font-family: Roboto, serif;
 
 :root{
   --color-background-blur: rgba(56, 61, 73, 0.5);
+  --color-ellipse: #1489a3;
 }
 
 *{
@@ -36,6 +37,32 @@ html, body {
     max-height: 720px;
     opacity: 1;
   }
+}
+
+// custom styles
+.w-transition {
+  transition: width 0.5s;
+}
+
+
+.p-datepicker-select-month, .p-datepicker-select-year, .p-datepicker-day {
+  font-size: 14px;
+}
+
+.p-datepicker-weekday {
+  font-size: 13px;
+}
+
+.p-datepicker-day-cell  {
+  padding: 0 !important;
+}
+
+.p-datepicker-panel {
+  padding-top: 2px !important;
+}
+
+.p-datepicker-header {
+  padding-bottom: 0 !important;
 }
 
 

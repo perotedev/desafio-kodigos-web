@@ -1,10 +1,10 @@
-import {IPeople} from './IPeople';
+import {IPerson} from './IPerson';
 import {IUserConfig} from './IUserConfig';
 
 export interface IUser {
   id?: number;
   email: string;
-  people: IPeople;
+  people: IPerson;
   role: string;
   userConfig: IUserConfig;
 }

@@ -3,17 +3,22 @@ import { definePreset } from "@primeuix/themes";
 
 export const AppOsTranslation = {
   apply: 'Aplicar',
-    clear: 'Limpar',
-    accept: 'Sim',
-    reject: 'Não',
-    firstDayOfWeek: 0,
-    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-    dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
-    'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-    today: 'Hoje'
+  clear: 'Limpar',
+  accept: 'Sim',
+  reject: 'Não',
+  firstDayOfWeek: 0,
+  dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+  dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+  dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+  monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
+  'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+  monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+  today: 'Hoje',
+  weak: 'Fraco',
+  strong: 'Forte',
+  medium: 'Médio',
+  passwordPrompt: 'Digite sua senha',
+
 }
 
 export const AppOsTheme = definePreset(Lara, {
@@ -561,10 +566,10 @@ export const AppOsTheme = definePreset(Lara, {
           950: "#09090b"
         },
         primary: {
-          color: "{primary.400}",
-          contrastColor: "{surface.0}",
-          hoverColor: "{primary.300}",
-          activeColor: "{primary.200}"
+          color: "{primary.500}",
+          contrastColor: "#ffffff",
+          hoverColor: "{primary.600}",
+          activeColor: "{primary.700}"
         },
         highlight: {
           background: "color-mix(in srgb, {primary.400}, transparent 84%)",
@@ -577,11 +582,11 @@ export const AppOsTheme = definePreset(Lara, {
           color: "{surface.200}"
         },
         formField: {
-          background: "{surface.800}",
-          disabledBackground: "{surface.700}",
-          filledBackground: "{surface.800}",
-          filledHoverBackground: "{surface.800}",
-          filledFocusBackground: "{surface.800}",
+          background: "{surface.950}",
+          disabledBackground: "{surface.900}",
+          filledBackground: "{surface.950}",
+          filledHoverBackground: "{surface.950}",
+          filledFocusBackground: "{surface.950}",
           borderColor: "{surface.500}",
           hoverBorderColor: "{surface.400}",
           focusBorderColor: "{primary.color}",

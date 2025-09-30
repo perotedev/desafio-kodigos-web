@@ -1,8 +1,34 @@
 #loginHome {
   width: 100%;
   height: 100%;
+  position: relative;
   overflow-y: auto;
   background: #002326;
   margin: 0;
   padding: 0;
+}
+
+.ellipse {
+  width: 600px;
+  height: 680px;
+  border-radius: 50%;
+  background-color: var(--color-ellipse);
+  filter: blur(100px);
+  mix-blend-mode: overlay;
+  position: absolute;
+  contain: paint;
+  z-index: 1;
+}
+
+.center{
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.content-outlet {
+  position: relative;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
 }

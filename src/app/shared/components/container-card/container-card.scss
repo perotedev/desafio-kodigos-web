@@ -1,16 +1,21 @@
 .container-card {
   width: 100%;
-  //background: #4AC29A;  /* fallback for old browsers */
-  //background: -webkit-linear-gradient(to right, #BDFFF3, #4AC29A);  /* Chrome 10-25, Safari 5.1-6 */
-  //background: linear-gradient(to right, #BDFFF3, #4AC29A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: var(--color-background-blur);
   transition: height 0.5s;
 }
 
-:host-context(.dark-mode) {
+.text-white {
+  color: white;
+}
+
+::ng-deep {
   .container-card {
-    background: #274e47;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #3e5350, #274e47);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #3e5350, #274e47); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    .p-password-input, .p-datepicker-input{
+      width: 100%;
+    }
+
+    .p-password-toggle-mask-icon {
+      cursor: pointer;
+    }
   }
 }
