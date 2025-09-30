@@ -1,0 +1,21 @@
+.background {
+  height: 100dvh;
+  background-color: var(--color-background);
+  overflow: hidden;
+  position: relative;
+  color: var(--color-light) !important;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ellipse {
+  width: 600px;
+  height: 680px;
+  border-radius: 50%;
+  background-color: var(--color-ellipse);
+  filter: blur(100px);
+  mix-blend-mode: overlay;
+  position: absolute;
+  contain: paint;
+}

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import {environment} from '../environments/environment';
 import {authGuard, homeAuthGuard, loginAuthGuard} from './core/auth/auth-guards';
+import {RoleEnum} from './shared/enums/RoleEnum';
 
 const PREFIX = `${environment.prefix} ${environment.appName}`;
 
@@ -47,7 +48,7 @@ export const routes: Routes = [
         loadComponent: () => import("./modules/dash-home/dash-home").then(m => m.DashHome),
         canActivate: [authGuard],
         data: {
-          roles: []
+          roles: [RoleEnum.ADMIN, RoleEnum.USER]
         }
       },
       {
@@ -60,7 +61,7 @@ export const routes: Routes = [
             loadComponent: () => import("./modules/service-order/service-order-home/service-order-home").then(m => m.ServiceOrderHome),
             canActivate: [authGuard],
             data: {
-              roles: []
+              roles: [RoleEnum.ADMIN, RoleEnum.USER]
             }
           },
           {
@@ -69,7 +70,7 @@ export const routes: Routes = [
             loadComponent: () => import("./modules/service-order/service-order-view/service-order-view").then(m => m.ServiceOrderView),
             canActivate: [authGuard],
             data: {
-              roles: []
+              roles: [RoleEnum.ADMIN, RoleEnum.USER]
             }
           },
           {
@@ -78,10 +79,19 @@ export const routes: Routes = [
             loadComponent: () => import("./modules/service-order/service-order-form/service-order-form").then(m => m.ServiceOrderForm),
             canActivate: [authGuard],
             data: {
-              roles: []
+              roles: [RoleEnum.ADMIN, RoleEnum.USER]
             }
           }
         ]
+      },
+      {
+        path: "user",
+        title: `${PREFIX} - Usuários`,
+        loadComponent: () => import("./modules/user/user-home/user-home").then(m => m.UserHome),
+        canActivate: [authGuard],
+        data: {
+          roles: [RoleEnum.ADMIN]
+        }
       }
     ]
   },
