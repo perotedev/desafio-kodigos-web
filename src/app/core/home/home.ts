@@ -6,7 +6,7 @@ import {IS_MOBILE} from '../../shared/services/is-mobile';
 import {MenuMobile} from '../menu/menu-mobile/menu-mobile';
 import {MenuDesktop} from '../menu/menu-desktop/menu-desktop';
 import {HeaderBarHome} from '../header-bar/header-bar-home/header-bar-home';
-import {Breadcrumb} from '../../shared/components/breadcrumb/breadcrumb';
+import {Breadcrumb} from '../breadcrumb/breadcrumb';
 
 @Component({
   selector: 'app-home',

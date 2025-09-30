@@ -12,7 +12,7 @@
   transition: width 0.5s;
 }
 
-.menu-reduced {
+.menu-hidden {
   width: 0;
 }
 
@@ -22,4 +22,5 @@
 
 .content-outlet {
   overflow-y: auto;
+  height: calc(100% - 105px);
 }

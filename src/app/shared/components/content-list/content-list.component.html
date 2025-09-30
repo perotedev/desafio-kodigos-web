@@ -1,0 +1,133 @@
+@if ( dataList().length > 0) {
+  @if (isMobile()) {
+    <div class="cl-content-list p-relative">
+      @if (isLoading()) {
+        <ng-container [ngTemplateOutlet]="loadingTemplate" />
+      }
+
+      @if (showMobileCheck()) {
+        <div class="border-round-xl mobile-selection">
+          <div class="flex align-items-center">
+            <span style="width: 30px;">
+              <p-check-box [(ngModel)]="selectAll" (onChange)="toggleSelectAll()" [binary]="true" />
+            </span>
+            <span class="not-select">
+              Selecionar todos
+            </span>
+          </div>
+
+          @if (needPress()){
+            <span>
+              <span (click)="mobilePressed.set(false)" class="cursor-pointer pi pi-times"></span>
+            </span>
+          }
+        </div>
+      }
+      @for(item of dataList(); track item) {
+        <div class="cl-card mb-2" [class.hasactions]="actionCell !== undefined" [class.loadingblur]="isLoading()" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+          @if (showMobileCheck()) {
+            <span style="width: 30px;">
+              <p-check-box [(ngModel)]="selectionItemList[$index].checked" (onChange)="selectItem($index, item)" [binary]="true" />
+            </span>
+          }
+          <div class="flex-1">
+            @for(mCell of viewList; track mCell;) {
+              @if (mCell.cellTemplate.mobileDisplay()) {
+                <div class="cl-card-content {{needPress()?'not-select':''}}">
+                  <div class="cl-card-title">
+                    <span [class]="mCell.headerRef.classList" [style]="mCell.headerRef.style()" [innerHTML]="mCell.headerRef.elementRef.nativeElement.innerHTML">:</span>
+                    <span>:</span>
+                  </div>
+
+                  <div class="cl-card-values">
+                    <ng-container [ngTemplateOutlet]="mCell.cellTemplate.template" [ngTemplateOutletContext]="{ $implicit: item }" />
+                  </div>
+                </div>
+              }
+            }
+          </div>
+
+          @if (actionCell) {
+            <div class="cl-mobile-actions">
+              <ng-container [ngTemplateOutlet]="actionCell.template" [ngTemplateOutletContext]="{ $implicit: item }" />
+            </div>
+          }
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="cl-content-list p-relative">
+      @if (isLoading()) {
+        <ng-container [ngTemplateOutlet]="loadingTemplate" />
+      }
+      <div class="cl-content-headers {{gridClass()}}">
+        @if (selectable()) {
+          <span style="width: 26px;">
+            <p-check-box [(ngModel)]="selectAll" size="small" (onChange)="toggleSelectAll()" [binary]="true" />
+          </span>
+        }
+        @for(hCell of viewList; track hCell;) {
+          @if (hCell.headerRef.hIcon()) {
+            <span [class]="hCell.headerRef.classList" [style]="hCell.headerRef.style()">
+              <span class="pi {{hCell.headerRef.hIcon()}}"></span>
+            </span>
+          } @else {
+            <span [class]="hCell.headerRef.classList" [style]="hCell.headerRef.style()" [innerHTML]="hCell.headerRef.elementRef.nativeElement.innerHTML"></span>
+          }
+        }
+      </div>
+
+      @for(item of dataSignal(); track item;) {
+        <div class="cl-row {{gridClass()}} {{disabled() ? 'disabled' : ''}}" [class.loadingblur]="isLoading()">
+          @if (selectable()) {
+            <span style="width: 26px;">
+              <p-check-box [(ngModel)]="selectionItemList[$index].checked" (onChange)="selectItem($index, item)" size="small" [binary]="true" [disabled]="!canSelect(item)" />
+            </span>
+          }
+
+          @for (cell of viewList; track cell) {
+            <ng-container [ngTemplateOutlet]="cell.cellTemplate.template" [ngTemplateOutletContext]="{ $implicit: item }" />
+          }
+        </div>
+      }
+    </div>
+  }
+
+  @if (paginator()) {
+    <p-paginator
+      class="mt-3 no-background"
+      (onPageChange)="pageChange($event)"
+      appendTo="body"
+      [first]="first()"
+      [rows]="rows()"
+      [totalRecords]="totalRecords()"
+      [rowsPerPageOptions]="rowsPerPageOptions()"
+    />
+  }
+} @else  {
+  <div class="w-full p-relative empty-bg">
+    @if (isLoading()) {
+      <ng-container [ngTemplateOutlet]="loadingTemplate" />
+    } @else {
+      @if (emptyTemplate) {
+        <ng-container [ngTemplateOutlet]="emptyTemplate.template" />
+      } @else {
+        <div class="w-full p-3 flex justify-content-center">
+          <div class="flex w-full align-items-center">
+            <span class="pi pi-info-circle"></span>
+            <span class="flex-1 text-sm">
+              Não há itens cadastrados no momento.
+            </span>
+          </div>
+        </div>
+      }
+    }
+
+  </div>
+}
+
+<ng-template #loadingTemplate>
+  <div class="loading-absolute flex justify-content-center align-items-center">
+    <p-progress-spinner strokeWidth="3" ariaLabel="loading" [style]="{ width: '70px', height: '70px' }" />
+  </div>
+</ng-template>

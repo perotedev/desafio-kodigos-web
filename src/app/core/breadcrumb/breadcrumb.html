@@ -1,0 +1,18 @@
+<div class="breadcrumb">
+  <div class="flex align-items-baseline gap-2'">
+    <div class="mr-4">
+      <h2 class="m-0 p-0 font-bold text-xl">{{currentTitle}}</h2>
+    </div>
+
+    @for (route of routeList; track route) {
+      <div>
+        <span class="route" (click)="navigateTo($index)" [class.active]="$last">{{route.title}}</span>
+        @if (!$last) {
+          <span class="px-2">
+          <span class="pi pi-chevron-right text-sm"></span>
+        </span>
+        }
+      </div>
+    }
+  </div>
+</div>

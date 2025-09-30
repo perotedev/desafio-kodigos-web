@@ -1,5 +1,5 @@
 <div class="home">
-  <div class="menu-container">
+  <div class="menu-container" [class.menu-hidden]="isMobile()">
     @if (isMobile()) {
       <app-menu-mobile/>
     } @else {
@@ -8,14 +8,14 @@
   </div>
 
   <div class="home-container">
-    <div>
+    <div [class.px-3]="isMobile()">
       <app-header-bar-home/>
     </div>
-    <div>
+    <div [class.px-3]="isMobile()">
       <app-breadcrumb/>
     </div>
 
-    <div class="content-outlet pr-4" [class.pl-4]="isMobile()">
+    <div class="content-outlet pr-4" [class.px-3]="isMobile()">
       <router-outlet/>
     </div>
   </div>

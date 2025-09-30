@@ -1,0 +1,18 @@
+.breadcrumb {
+  height: 35px;
+}
+
+.route {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--p-primary-color);
+  }
+}
+
+.active {
+  color: var(--p-primary-color);
+  font-weight: bold;
+  text-decoration: none !important;
+}

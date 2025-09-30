@@ -13,7 +13,7 @@ export class App {
 
   constructor() {
     afterNextRender(() => {
-      this._theme.setTheme('light');
+      this._theme.setTheme();
     })
   }
 }

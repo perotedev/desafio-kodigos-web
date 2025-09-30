@@ -61,16 +61,16 @@ export const routes: Routes = [
             loadComponent: () => import("./modules/service-order/service-order-home/service-order-home").then(m => m.ServiceOrderHome),
             canActivate: [authGuard],
             data: {
-              roles: [RoleEnum.ADMIN, RoleEnum.USER]
+              roles: []
             }
           },
           {
-            path: ":id",
+            path: "view/:id",
             title: `${PREFIX} - Ver Ordem de Serviço`,
             loadComponent: () => import("./modules/service-order/service-order-view/service-order-view").then(m => m.ServiceOrderView),
             canActivate: [authGuard],
             data: {
-              roles: [RoleEnum.ADMIN, RoleEnum.USER]
+              roles: []
             }
           },
           {
@@ -79,7 +79,7 @@ export const routes: Routes = [
             loadComponent: () => import("./modules/service-order/service-order-form/service-order-form").then(m => m.ServiceOrderForm),
             canActivate: [authGuard],
             data: {
-              roles: [RoleEnum.ADMIN, RoleEnum.USER]
+              roles: []
             }
           }
         ]

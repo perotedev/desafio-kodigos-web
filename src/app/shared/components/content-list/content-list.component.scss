@@ -1,0 +1,205 @@
+.cl-content-headers {
+  padding: 7px 15px 7px 15px;
+  //background: var(--p-primary-color);
+  background: var(--p-primary-800);
+  border-radius: 8px;
+  color: var(--p-primary-contrast-color);
+  margin-bottom: 2px;
+  max-height: 30.5px;
+}
+
+.cl-content-headers, .cl-row {
+  align-items: center;
+}
+
+.cl-card, .cl-card-content, .cl-card-title {
+  display: flex;
+}
+
+.mobile-selection {
+  background: var(--p-primary-800);
+  padding: 10px 15px 10px 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--p-primary-contrast-color);
+
+  .material-icons {
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.cl-card {
+  padding: 12px 15px 7px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--p-primary-color);
+  background: var(--p-menu-background);
+  align-items: center;
+
+  .cl-mobile-actions {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  &.hasactions {
+   padding-right: 15px;
+  }
+}
+
+.loadingblur {
+  filter: blur(2px);
+}
+
+.cl-row {
+  margin-top: 8px;
+  background: var(--p-primary-100);
+  border-radius: 8px;
+  padding: 0 15px 0 15px;
+  min-height: 34px;
+
+  .cl-cell {
+    padding-right: 10px;
+  }
+
+  &:hover {
+    background: var(--p-primary-200);
+  }
+
+}
+
+
+.grid {
+  align-items: center;
+}
+
+.col {
+  padding: 0;
+}
+
+::ng-deep {
+  .cl-content-headers{
+    span {
+      font-weight: bold;
+    }
+
+    .material-icons {
+      height: 20px;
+      width: 20px;
+      margin-top: -2px;
+    }
+
+    .col {
+      padding: 0;
+    }
+
+    [class^="col-"] {
+      padding: 0;
+    }
+
+    .p-button {
+      height: 34px;
+      width: 34px;
+    }
+  }
+
+  .cl-row {
+    .cell-ellipsis {
+      display: inline-block; /* ou block, dependendo do layout */
+      white-space: nowrap; /* Impede que o texto quebre para a próxima linha */
+      overflow: hidden; /* Oculta o texto que excede o espaço */
+      text-overflow: ellipsis; /* Adiciona "..." ao texto truncado */
+    }
+
+    .col {
+      padding: 0;
+    }
+
+    [class^="col-"] {
+      padding: 0;
+    }
+
+    .p-button {
+      height: 34px;
+      width: 34px;
+    }
+
+    .material-icons {
+      margin-left: -1px;
+    }
+  }
+
+  .cl-card-content {
+    margin-bottom: 5px;
+  }
+
+  .cl-card-title {
+    span {
+      width: max-content !important;
+      padding: 0 !important;
+    }
+  }
+
+  .cl-card-values {
+    padding-left: 4px;
+
+    span {
+      width: max-content !important;
+      padding: 0 !important;
+      font-weight: bold !important;
+    }
+  }
+
+  .cl-mobile-actions {
+    span, div, p {
+      width: max-content !important;
+      padding: 0 !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .no-background {
+    background: transparent !important;
+  }
+}
+
+.p-relative {
+  position: relative;
+}
+
+.loading-absolute {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  min-height: 140px ;
+  z-index: 40;
+  border-radius: 8px;
+}
+
+.empty-bg .loading-absolute {
+  background: rgba(black, 0.07);
+}
+
+:host-context(.dark-mode) {
+  .cl-row {
+    background: var(--p-surface-900);
+  }
+
+  .cl-row:hover {
+    background: var(--p-surface-800);
+  }
+
+ .empty-bg .loading-absolute {
+    background: rgba(black, 0.1);
+  }
+}

@@ -1,14 +1,15 @@
 import { Injectable, InjectionToken, signal, Signal, WritableSignal} from '@angular/core';
 import {IUser} from '../interfaces/IUser';
+import {RoleEnum} from '../enums/RoleEnum';
 
 export const CURRENT_USER = new InjectionToken<Signal<IUser>>('CURRENT_USER');
 const EMPTY_USER: IUser = {
-  email: "",
-  people: {
-    name: "",
-    birth: ""
+  email: "user@gmail.com",
+  person: {
+    name: "Usuário Teste",
+    birth: "10/05/2001"
   },
-  role: "",
+  role: RoleEnum.USER,
   userConfig: {
     theme: 'light',
     expanded: true
@@ -34,7 +35,7 @@ export class CurrentUser {
   }
 
   public getUserInitials(): string {
-    const userName = this._currentUser().people.name;
+    const userName = this._currentUser().person.name;
     if (userName === "") return "US";
 
     const names = userName.split(' ');
