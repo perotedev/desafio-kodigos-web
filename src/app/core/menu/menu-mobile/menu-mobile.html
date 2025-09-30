@@ -1,3 +1,7 @@
-<div class="menu-mobile">
-
+<div id="menuMobile">
+  <app-menu-desktop
+    [expanded]="true"
+  />
 </div>
+
+<div id="blurBack" (click)="closeMenu()"></div>

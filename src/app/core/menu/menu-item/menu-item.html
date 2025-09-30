@@ -1,6 +1,7 @@
 <div class="menu-item" [class.reduced]="!expanded()" [class.active]="active()">
   <p-button
     styleClass="border-round-3xl w-full button-menu"
+    (onClick)="onClick()"
     [routerLink]="item().route"
     [pTooltip]="expanded() ? '' : item().label"
   >

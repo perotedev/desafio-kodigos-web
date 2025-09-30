@@ -4,12 +4,12 @@
       <div
         class="app-logo-menu"
       >
-        <p-button (onClick)="toggleMenu()" styleClass="btn-expand" [rounded]="true" [text]="true">
+        <p-button (onClick)="toggleMenuClass()" styleClass="btn-expand" [rounded]="true" [text]="true">
           <img src="svg/menu.svg" alt="Menu"/>
         </p-button>
       </div>
 
-      <div class="app-name-div" [class.reduced]="!expanded() && !isMobile()" (click)="toggleMenu()">
+      <div class="app-name-div" [class.reduced]="!expanded() && !isMobile()" (click)="toggleMenuClass()">
         <div class="app-name" [class.reduced]="!isMobile() && !expanded()">{{appName}}</div>
         <div class="app-version" [class.reduced]="!isMobile() && !expanded()">V {{appVersion}}</div>
       </div>
@@ -22,6 +22,7 @@
             [item]="item"
             [active]="currentRoute === item.route"
             [expanded]="expanded()"
+            [isMobile]="isMobile()"
           />
         </div>
       }

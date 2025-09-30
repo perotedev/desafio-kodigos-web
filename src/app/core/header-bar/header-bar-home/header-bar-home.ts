@@ -6,6 +6,7 @@ import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import pkg from '../../../../../package.json';
 import {environment} from '../../../../environments/environment';
 import {HeaderBarService} from '../header-bar-service';
+import {toggleMenu} from '../../../shared/utils/menu-utils';
 
 const version = pkg.version;
 
@@ -28,5 +29,9 @@ export class HeaderBarHome {
 
   public toggleTheme(): void {
     this._themeService.setTheme(this.isDarkMode()?'light':'dark');
+  }
+
+  public expandMenu(): void {
+    toggleMenu();
   }
 }

@@ -6,6 +6,7 @@ import {IMenuItem, MenuItem} from '../menu-item/menu-item';
 import {CURRENT_USER} from '../../../shared/services/current-user';
 import {Button} from 'primeng/button';
 import {NavigationEnd, Router} from '@angular/router';
+import {toggleMenu} from '../../../shared/utils/menu-utils';
 
 const version = pkg.version;
 
@@ -43,6 +44,18 @@ export class MenuDesktop implements OnInit{
       roles: []
     },
     {
+      label: 'Contratos',
+      icon: 'pi pi-briefcase',
+      route: '/contract',
+      roles: []
+    },
+    {
+      label: 'Clientes',
+      icon: 'pi pi-building',
+      route: '/clients',
+      roles: []
+    },
+    {
       label: 'Usuários',
       icon: 'pi pi-user',
       route: '/user',
@@ -72,9 +85,13 @@ export class MenuDesktop implements OnInit{
     this.setCurrentRoute()
   }
 
-  public toggleMenu(): void {
-    if (!this.isMobile()) {
-      this.expanded.set(!this.expanded());
+  public toggleMenuClass(): void {
+    if (this.isMobile()) {
+      toggleMenu();
+      return;
     }
+
+    this.expanded.set(!this.expanded());
+
   }
 }
