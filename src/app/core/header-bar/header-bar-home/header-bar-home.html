@@ -1,5 +1,7 @@
 <nav class="header-bar-home">
-  <p>header-bar-home works!</p>
+  <div>
+    <span class="font-bold">{{(today | date: 'EEEE dd/MM/yyyy') | titlecase}}</span>
+  </div>
 
   <div class="flex align-items-center">
     <span (click)="toggleTheme()" class="cursor-pointer">{{isDarkMode()?'light':'dark'}}</span>
