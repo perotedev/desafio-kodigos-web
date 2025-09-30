@@ -1,12 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 $font-family: Roboto, serif;
+$mobile-button-height: 38px;
 
 :root{
   --color-background: #002326;
   --color-background-blur: rgba(56, 61, 73, 0.5);
   --color-ellipse: #1489a3;
   --color-light: #ffffff;
+  --btn-height-mobile: $mobile-button-height;
+  --form-height-mobile: $mobile-button-height;
 }
 
 *{
@@ -23,6 +26,15 @@ html, body {
   height: 100%;
   width: 100%;
   overflow-y: hidden;
+}
+
+html {
+  background: var(--p-primary-950);
+  transition: background-color 0.5s;
+}
+
+html.dark-mode {
+  background: var(--p-surface-950);
 }
 
 p {
@@ -76,11 +88,11 @@ p {
 // mobile styles
 .mobileversion {
   input {
-    min-height: 38px;
+    min-height: var(--form-height-mobile);
   }
 
   .p-select, .p-multiselect{
-    min-height: 38px;
+    min-height: var(--form-height-mobile);
 
     .p-select-label, .p-multiselect-label {
       margin-top: 3px;
@@ -88,6 +100,6 @@ p {
   }
 
   .p-button-mobile {
-    min-height: 38px;
+    min-height: var(--btn-height-mobile);
   }
 }

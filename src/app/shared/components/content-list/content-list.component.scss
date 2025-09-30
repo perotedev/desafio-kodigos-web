@@ -60,7 +60,7 @@
 
 .cl-row {
   margin-top: 8px;
-  background: var(--p-primary-100);
+  background: var(--color-light);
   border-radius: 8px;
   padding: 0 15px 0 15px;
   min-height: 34px;
@@ -70,7 +70,7 @@
   }
 
   &:hover {
-    background: var(--p-primary-200);
+    background: var(--p-primary-50);
   }
 
 }
@@ -192,11 +192,11 @@
 
 :host-context(.dark-mode) {
   .cl-row {
-    background: var(--p-surface-900);
+    background: var(--p-surface-700);
   }
 
   .cl-row:hover {
-    background: var(--p-surface-800);
+    background: var(--p-surface-600);
   }
 
  .empty-bg .loading-absolute {

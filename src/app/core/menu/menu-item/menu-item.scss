@@ -1,0 +1,64 @@
+.menu-item {
+  width: 180px;
+  transition: width 0.5s;
+}
+
+.reduced {
+  width: 32.4px;
+}
+
+.menu-item-content {
+  position: relative;
+}
+
+.menu-item-icon {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  transition: width 0.5s;
+}
+
+.menu-item-label {
+  position: absolute;
+  text-wrap: nowrap;
+  top: 6px;
+  bottom: 0;
+  left: 32px;
+  transition: opacity 0.5s;
+}
+
+:host-context(.mobileversion) {
+  .reduced {
+    width: var(--btn-height-mobile);
+  }
+}
+
+::ng-deep {
+  .menu-item {
+    .button-menu {
+      height: 32px;
+      transition: padding-left 0.5s;
+    }
+  }
+
+  .menu-item.active {
+    .button-menu {
+      background: var(--p-primary-800);
+      border-color: var(--p-primary-800);
+    }
+  }
+
+  .menu-item.reduced {
+    .button-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 8px;
+    }
+  }
+}

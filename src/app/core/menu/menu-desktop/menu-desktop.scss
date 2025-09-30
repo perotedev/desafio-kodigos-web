@@ -1,8 +1,57 @@
 .menu-desktop {
   height: 100%;
   color: var(--p-primary-color);
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  text-align: center;
 }
 
-.expanded {
-  width: 250px;
+.app-logo-menu {
+  width: 40px;
+  height: auto;
+
+  img {
+    width: 30px;
+    height: auto;
+    margin-left: 0;
+    transition: margin-left 0.5s;
+  }
+}
+
+.app-logo-menu.reduced {
+  img {
+    margin-left: 5px;
+  }
+}
+
+.app-name-div {
+  transition: opacity 0.5s;
+}
+
+.app-name-div.reduced {
+  opacity: 0;
+}
+
+.app-name {
+  font-size: 28px;
+  font-weight: bold;
+  margin-left: 11px;
+}
+
+.app-version {
+  font-size: 10px;
+  margin-left: 12px;
+  text-align: left;
+  color: var(--color-light);
+}
+
+.menuItems {
+  margin-top: 30px;
+  padding-left: 3px;
+  transition: padding-left 0.5s;
+}
+
+.menu-desktop.expanded .menuItems{
+  padding-left: 0;
 }

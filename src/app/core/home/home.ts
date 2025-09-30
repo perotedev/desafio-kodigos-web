@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, model, ModelSignal} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FileTransfer} from '../../shared/components/file-transfer/file-transfer';
 import {LoadingComponent} from '../../shared/components/loading-component/loading-component';
@@ -16,4 +16,5 @@ import {Breadcrumb} from '../breadcrumb/breadcrumb';
 })
 export class Home {
   public readonly isMobile = inject(IS_MOBILE);
+  public readonly menuExpanded: ModelSignal<boolean> = model(true);
 }

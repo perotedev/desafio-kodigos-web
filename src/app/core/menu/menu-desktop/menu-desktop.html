@@ -1,5 +1,30 @@
 <div class="menu-desktop" [class.expanded]="expanded()">
   <div class="pt-4">
-    <p>menu-desktop works!</p>
+    <div class="pt-2 flex cursor-pointer select-none align-items-center w-full">
+      <div
+        class="app-logo-menu cursor-pointer"
+        [class.reduced]="!expanded() && !isMobile()"
+        (click)="toggleMenu()"
+      >
+        <img src="svg/menu.svg" alt="App Logo"/>
+      </div>
+
+      <div class="app-name-div" [class.reduced]="!expanded() && !isMobile()" (click)="toggleMenu()">
+        <div class="app-name" [class.reduced]="!isMobile() && !expanded()">{{appName}}</div>
+        <div class="app-version" [class.reduced]="!isMobile() && !expanded()">V {{appVersion}}</div>
+      </div>
+    </div>
+
+    <div class="menuItems">
+      @for (item of menuItems(); track item) {
+        <div class="mb-3">
+          <app-menu-item
+            [item]="item"
+            [active]="$index === 0"
+            [expanded]="expanded()"
+          />
+        </div>
+      }
+    </div>
   </div>
 </div>

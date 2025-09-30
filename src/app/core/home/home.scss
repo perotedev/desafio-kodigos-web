@@ -6,18 +6,47 @@
 }
 
 .menu-container {
-  width: 250px;
+  width: 75px;
   height: 100%;
   overflow: hidden;
   transition: width 0.5s;
 }
 
+.menu-container.expanded {
+  width: 215px;
+}
+
 .menu-hidden {
-  width: 0;
+  width: 0 !important;
 }
 
 .home-container {
   flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.home-content-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-left:20px;
+  padding-top: 20px;
+  border-top-left-radius: 22px;
+  transition: border-radius 0.5s, background-color 0.5s;
+  background: var(--p-surface-200);
+}
+
+:host-context(.dark-mode) {
+  .home-content-container {
+    background: var(--color-background-blur);
+  }
+}
+
+:host-context(.mobileversion) {
+  .home-content-container {
+    border-top-left-radius: 0;
+  }
 }
 
 .content-outlet {

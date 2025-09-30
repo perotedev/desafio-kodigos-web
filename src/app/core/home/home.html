@@ -1,9 +1,9 @@
 <div class="home">
-  <div class="menu-container" [class.menu-hidden]="isMobile()">
+  <div class="menu-container" [class.menu-hidden]="isMobile()" [class.expanded]="menuExpanded()">
     @if (isMobile()) {
       <app-menu-mobile/>
     } @else {
-      <app-menu-desktop/>
+      <app-menu-desktop [(expanded)]="menuExpanded"/>
     }
   </div>
 
@@ -11,12 +11,15 @@
     <div class="pr-4" [class.px-3]="isMobile()">
       <app-header-bar-home/>
     </div>
-    <div class="pr-4" [class.px-3]="isMobile()">
-      <app-breadcrumb/>
-    </div>
 
-    <div class="content-outlet pr-4" [class.px-3]="isMobile()">
-      <router-outlet/>
+    <div class="home-content-container">
+      <div class="pr-4" [class.pr-3]="isMobile()">
+        <app-breadcrumb/>
+      </div>
+
+      <div class="content-outlet pr-4" [class.pr-3]="isMobile()">
+        <router-outlet/>
+      </div>
     </div>
   </div>
 </div>

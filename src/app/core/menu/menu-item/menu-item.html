@@ -1,1 +1,20 @@
-<p>menu-item works!</p>
+<div class="menu-item" [class.reduced]="!expanded()" [class.active]="active()">
+  <p-button styleClass="border-round-3xl w-full button-menu" [routerLink]="item().route">
+    <div class="flex align-items-center w-full">
+      <div class="manu-item-content">
+        <div class="manu-item-icon">
+          @if (item().isIconAsset) {
+            <img [src]="item().icon" alt="{{item().label}}">
+          } @else {
+            <span class="pi {{item().icon}}"></span>
+          }
+        </div>
+
+        <span
+          class="fadein ml-2 menu-item-label"
+          [class.opacity-0]="!expanded()"
+        >{{item().label}}</span>
+      </div>
+    </div>
+  </p-button>
+</div>
