@@ -44,8 +44,16 @@
   background: var(--p-primary-color) !important;
   color: var(--p-primary-contrast-color) !important;
 
+  .pi {
+    color: var(--p-primary-950);
+  }
+
   &:hover {
     background: var(--p-primary-600) !important;
+
+    .pi {
+      color: var(--p-primary-contrast-color);
+    }
   }
 }
 
