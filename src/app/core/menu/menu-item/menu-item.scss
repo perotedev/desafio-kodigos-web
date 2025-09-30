@@ -7,27 +7,23 @@
   width: 32.4px;
 }
 
-.menu-item-content {
-  position: relative;
-}
-
 .menu-item-icon {
   position: absolute;
   left: 0;
   bottom: 0;
-  top: 0;
+  top: calc(50% - 15px);
+  padding-left: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 32px;
-  transition: width 0.5s;
+  transition: width 0.5s, padding-left 0.5s;
 }
 
 .menu-item-label {
   position: absolute;
   text-wrap: nowrap;
-  top: 6px;
-  bottom: 0;
+  top: calc(50% - 8px);
   left: 32px;
   transition: opacity 0.5s;
 }
@@ -59,6 +55,10 @@
       align-items: center;
       justify-content: center;
       padding-left: 8px;
+    }
+
+    .menu-item-icon {
+      padding-left: 0;
     }
   }
 }

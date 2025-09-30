@@ -92,7 +92,7 @@ export const routes: Routes = [
         data: {
           roles: [RoleEnum.ADMIN]
         }
-      }
+      },
     ]
   },
   {
