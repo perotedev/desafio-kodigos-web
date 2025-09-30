@@ -39,7 +39,7 @@ export class MenuDesktop implements OnInit{
     },
     {
       label: 'Ordens de Serviço',
-      icon: 'pi pi-tags',
+      icon: 'pi pi-file-edit',
       route: '/service-order',
       roles: []
     },
@@ -53,6 +53,12 @@ export class MenuDesktop implements OnInit{
       label: 'Clientes',
       icon: 'pi pi-building',
       route: '/clients',
+      roles: []
+    },
+    {
+      label: 'Tipos de Serviços',
+      icon: 'pi pi-tags',
+      route: '/service-type',
       roles: []
     },
     {

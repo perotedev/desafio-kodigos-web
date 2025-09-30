@@ -1,20 +1,22 @@
 <div class="py-3">
   <p-stepper [value]="1">
     <p-step-item [value]="1">
-      <p-step>Dados da Ordem de Serviço</p-step>
+      <p-step>Dados Iniciais</p-step>
       <p-step-panel>
         <ng-template #content let-activateCallback="activateCallback">
-         <app-service-order-form/>
+          <div class="pt-2">
+            <app-service-order-form/>
+          </div>
 
-          <div class="py-6">
-            <p-button label="Next" (onClick)="activateCallback(2)" />
+          <div class="py-3">
+            <p-button label="Continuar" (onClick)="activateCallback(2)" />
           </div>
         </ng-template>
       </p-step-panel>
     </p-step-item>
 
     <p-step-item [value]="2">
-      <p-step>Imagens e Anexos</p-step>
+      <p-step>Adicionar Serviços</p-step>
       <p-step-panel>
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
@@ -27,6 +29,24 @@
           <div class="flex py-6 gap-2">
             <p-button label="Back" severity="secondary" (onClick)="activateCallback(1)" />
             <p-button label="Next" (onClick)="activateCallback(3)" />
+          </div>
+        </ng-template>
+      </p-step-panel>
+    </p-step-item>
+
+    <p-step-item [value]="3">
+      <p-step>Imagens e Anexos</p-step>
+      <p-step-panel>
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col h-48">
+            <div
+              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+            >
+              Content II
+            </div>
+          </div>
+          <div class="flex py-6 gap-2">
+            <p-button label="Back" severity="secondary" (onClick)="activateCallback(2)" />
           </div>
         </ng-template>
       </p-step-panel>

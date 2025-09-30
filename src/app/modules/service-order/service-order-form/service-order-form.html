@@ -1,5 +1,102 @@
 <div>
   <form [formGroup]="formSO" (submit)="onSubmit($event)">
+    <div class="grid px-0">
+      <div class="col-12 md:col-6 lg:col-5">
+        <p-float-label variant="on">
+          <p-select
+            id="soClient"
+            [options]="clients"
+            formControlName="client_id"
+            optionLabel="name"
+            optionValue="id"
+            showClear="true"
+            filterBy="name"
+            [filter]="true"
+            class="w-full"
+          />
+          <label for="soClient">Cliente </label>
+        </p-float-label>
+      </div>
 
+      <div class="col-12 md:col-6 lg:col-5">
+        <p-float-label variant="on">
+          <p-select
+            id="soContract"
+            [options]="contracts"
+            formControlName="contract_id"
+            optionLabel="name"
+            optionValue="id"
+            showClear="true"
+            filterBy="name"
+            [filter]="true"
+            class="w-full"
+          />
+          <label for="soContract">Contrato </label>
+        </p-float-label>
+      </div>
+
+      <div class="col-12 md:col-3 lg:col-2">
+        <p-float-label variant="on">
+          <p-date-picker
+            id="soStart"
+            formControlName="date_start"
+            aria-autocomplete="none"
+            name="soStart"
+            appendTo="body"
+            readonlyInput="true"
+            class="w-full"
+            dateFormat="dd/mm/yy"
+            [showClear]="true"
+          />
+          <label for="soStart">Data Início *</label>
+        </p-float-label>
+      </div>
+
+      <div class="col-12 md:col-9 lg:col-12">
+        <p-float-label variant="on">
+          <input
+            id="soAdress"
+            pInputText
+            name="soAdress"
+            formControlName="adress"
+            type="text"
+            class="w-full"
+          />
+          <label for="soAdress">Endereço *</label>
+        </p-float-label>
+      </div>
+
+<!--      <div class="col-6 md:col-6 lg:col-2">-->
+<!--        <p-float-label variant="on">-->
+<!--          <p-date-picker-->
+<!--            id="soEnd"-->
+<!--            formControlName="date_end"-->
+<!--            aria-autocomplete="none"-->
+<!--            name="soEnd"-->
+<!--            appendTo="body"-->
+<!--            readonlyInput="true"-->
+<!--            class="w-full"-->
+<!--            dateFormat="dd/mm/yy"-->
+<!--            [showClear]="true"-->
+<!--          />-->
+<!--          <label for="soEnd">Data Fim </label>-->
+<!--        </p-float-label>-->
+<!--      </div>-->
+
+      <div class="col-12">
+        <p-float-label variant="on">
+          <textarea
+            id="soDescription"
+            formControlName="description"
+            rows="5"
+            cols="30"
+            [autoResize]="true"
+            pTextarea
+            fluid
+          ></textarea>
+          <label for="soStart">Descrição</label>
+        </p-float-label>
+      </div>
+    </div>
   </form>
 </div>
