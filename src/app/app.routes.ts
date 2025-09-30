@@ -48,7 +48,7 @@ export const routes: Routes = [
         loadComponent: () => import("./modules/dash-home/dash-home").then(m => m.DashHome),
         canActivate: [authGuard],
         data: {
-          roles: [RoleEnum.ADMIN, RoleEnum.USER]
+          roles: []
         }
       },
       {

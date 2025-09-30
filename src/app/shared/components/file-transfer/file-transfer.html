@@ -1,1 +1,58 @@
-<p>file-transfer works!</p>
+@if (transfers().hasTransfers) {
+  <div class="file-transfer-popup fadein" [class.expanded]="expanded()">
+    <div class="file-transfer-popup-header">
+    <span class="title-header">
+      {{ transfers().finishTransfer ? (transfers().transfers.length + (transfers().transfers.length === 1 ? ' Arquivo transferido' : ' Arquivos transferidos')) : ('Transferindo ' + transfers().transfers.length + (transfers().transfers.length === 1 ? ' arquivo...' : ' arquivos...')) }}
+    </span>
+
+      <div class="buttons-header">
+      <span class="chevron-button mr-2" (click)="toggleExpanded()">
+        <i class="pi pi-chevron-circle-down"></i>
+      </span>
+        <span class="close-button" (click)="closeAll()">
+        <i class="pi pi-times"></i>
+      </span>
+      </div>
+    </div>
+
+    <div class="file-transfer-popup-content" [@contentSlide]="expanded() ? 'expanded' : 'collapsed'">
+      @for (transfer of transfers().transfers; track transfer) {
+        <div
+          class="file-transfer-item"
+          (click)="triggerAction(transfer)"
+          [class.error]="transfer.error !== undefined && !transfer.loading"
+        >
+          <div class="flex-item-name">
+          <span class="mr-2">
+            <i class="{{transfer.icon}}"></i>
+          </span>
+            <div class="item-name">
+              <span>{{transfer.fileName}}</span>
+            </div>
+          </div>
+
+          <div class="item-icons">
+            @if (transfer.error !== undefined) {
+              <span class="refresh" (click)="triggerAction(transfer)">
+                <i class="pi pi-refresh"></i>
+              </span>
+            }
+            <span class="status-icon">
+              @if(transfer.loading){
+                <i class="pi pi-spin pi-spinner"></i>
+              }@else if (transfer.error === undefined) {
+                <i class="pi pi-check-circle"></i>
+              }
+            </span>
+            <span [class.cancel-icon]="transfer.error === undefined" (click)="cancelOne(transfer)">
+              <i class="pi pi-times"></i>
+            </span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<p-confirmDialog [breakpoints]="{'1300px': '40vw', '770px': '90vw'}" [baseZIndex]="10000"
+                 rejectButtonStyleClass="p-button-text"></p-confirmDialog>
