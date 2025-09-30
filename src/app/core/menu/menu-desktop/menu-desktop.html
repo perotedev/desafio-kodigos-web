@@ -2,11 +2,11 @@
   <div class="pt-4">
     <div class="pt-2 flex cursor-pointer select-none align-items-center w-full">
       <div
-        class="app-logo-menu cursor-pointer"
-        [class.reduced]="!expanded() && !isMobile()"
-        (click)="toggleMenu()"
+        class="app-logo-menu"
       >
-        <img src="svg/menu.svg" alt="App Logo"/>
+        <p-button (onClick)="toggleMenu()" styleClass="btn-expand" [rounded]="true" [text]="true">
+          <img src="svg/menu.svg" alt="App Logo"/>
+        </p-button>
       </div>
 
       <div class="app-name-div" [class.reduced]="!expanded() && !isMobile()" (click)="toggleMenu()">

@@ -7,21 +7,21 @@
   text-align: center;
 }
 
-.app-logo-menu {
+::ng-deep.btn-expand {
   width: 40px;
   height: auto;
 
   img {
     width: 30px;
     height: auto;
-    margin-left: 0;
-    transition: margin-left 0.5s;
   }
-}
 
-.app-logo-menu.reduced {
-  img {
-    margin-left: 5px;
+  &:hover {
+    background: var(--color-light) !important;
+
+    img {
+      filter: brightness(0) saturate(100%) invert(27%) sepia(34%) saturate(1367%) hue-rotate(118deg) brightness(91%) contrast(95%);
+    }
   }
 }
 
