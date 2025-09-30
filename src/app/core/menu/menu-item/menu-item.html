@@ -1,5 +1,9 @@
 <div class="menu-item" [class.reduced]="!expanded()" [class.active]="active()">
-  <p-button styleClass="border-round-3xl w-full button-menu" [routerLink]="item().route">
+  <p-button
+    styleClass="border-round-3xl w-full button-menu"
+    [routerLink]="item().route"
+    [pTooltip]="expanded() ? '' : item().label"
+  >
     <div class="flex align-items-center w-full">
       <div class="manu-item-content">
         <div class="manu-item-icon">

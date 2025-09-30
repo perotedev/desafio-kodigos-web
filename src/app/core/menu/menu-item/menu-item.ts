@@ -1,7 +1,7 @@
 import {Component, input, InputSignal} from '@angular/core';
-import {RoleEnum} from '../../../shared/enums/RoleEnum';
 import {Button} from 'primeng/button';
 import {RouterLink} from '@angular/router';
+import {Tooltip} from 'primeng/tooltip';
 
 export interface IMenuItem {
   label: string;
@@ -15,7 +15,8 @@ export interface IMenuItem {
   selector: 'app-menu-item',
   imports: [
     Button,
-    RouterLink
+    RouterLink,
+    Tooltip
   ],
   templateUrl: './menu-item.html',
   styleUrl: './menu-item.scss'
