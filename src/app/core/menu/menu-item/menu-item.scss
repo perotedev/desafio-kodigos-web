@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
   width: 32px;
-  transition: width 0.5s, padding-left 0.5s;
+  transition: width 0.5s, padding-left 0.5s, padding-right 0.5s;
 
   .pi {
     color: var(--p-primary-950);
@@ -76,6 +76,7 @@
 
     .menu-item-icon {
       padding-left: 0;
+      padding-right: 1px;
     }
   }
 }
