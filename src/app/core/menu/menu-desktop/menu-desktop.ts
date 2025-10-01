@@ -44,15 +44,15 @@ export class MenuDesktop implements OnInit{
       roles: []
     },
     {
-      label: 'Contratos',
-      icon: 'pi pi-briefcase',
-      route: '/contract',
-      roles: []
-    },
-    {
       label: 'Clientes',
       icon: 'pi pi-building',
       route: '/client',
+      roles: []
+    },
+    {
+      label: 'Contratos',
+      icon: 'pi pi-briefcase',
+      route: '/contract',
       roles: []
     },
     {

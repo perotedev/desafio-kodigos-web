@@ -32,5 +32,4 @@ export class ServiceTypeService {
   public deleteServiceType(id: number): Promise<any> {
     return lastValueFrom(this._http.delete(`${environment.apiUrl}/service-type/${id}`));
   }
-
 }

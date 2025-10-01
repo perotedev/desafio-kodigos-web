@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, effect, inject, signal, WritableSignal} from '@angular/core';
+import {Loading} from '../../../shared/services/loading';
+import {IS_MOBILE} from '../../../shared/services/is-mobile';
+import {IClient} from '../../../shared/interfaces/IClient';
+import {IPaginationResponse} from '../../../shared/interfaces/IPaginationResponse';
+import {PaginatorState} from 'primeng/paginator';
+import {ToastService} from '../../../shared/services/toast';
+import {ClientService} from '../client-service';
 
 @Component({
   selector: 'app-cliente-home',
@@ -7,5 +14,63 @@ import { Component } from '@angular/core';
   styleUrl: './cliente-home.scss'
 })
 export class ClienteHome {
+  private readonly _clientService: ClientService = inject(ClientService);
+  private readonly _loading: Loading = inject(Loading);
+  private readonly _toast: ToastService = inject(ToastService);
+  public readonly isMobile = inject(IS_MOBILE);
+  public search: WritableSignal<string> = signal('');
+  public isLoadingClients: boolean = false;
+  public dialogVisible: boolean = false;
+  public selectedClient?: IClient;
+  public total: number = 10;
+  public page: number = 1;
+  public size: number = 10;
+  public clients: IClient[] = [];
 
+  constructor() {
+    effect(() => {
+      this.page = 1;
+      this.size = 10;
+      this.getClients(this.page, this.size, this.search());
+    });
+  }
+
+  private getClients(page: number, size: number, search = ""): void {
+    this.isLoadingClients = true;
+    this._clientService.getClients(page, size, search)
+      .then((res: IPaginationResponse<IClient>) => {
+        this.clients = res.items;
+        this.page = res.page;
+        this.size = res.size;
+        this.total = res.total;
+      }).finally(() => this.isLoadingClients = false);
+  }
+
+  private deleteClient(clientId: number): void {
+    this._loading.present();
+    this._clientService.deleteClient(clientId)
+      .then((res: any) => {
+        this.clients = [...this.clients.filter(client => client.id !== clientId)];
+        this._toast.showToastSuccess("Cliente excluído com sucesso!");
+      }).finally(() => this._loading.dismiss());
+  }
+
+  public removeClient(clientId: number): void {
+    this.deleteClient(clientId);
+  }
+
+  public ngOnInit(): void {
+    this.getClients(this.page, this.size);
+  }
+
+  public onPageChange(event: PaginatorState): void {
+    this.page = event.page!;
+    this.size = event.rows!;
+    this.getClients(this.page, this.size);
+  }
+
+  public toggleDialog(client?: IClient): void {
+    this.selectedClient = client;
+    this.dialogVisible = !this.dialogVisible;
+  }
 }
