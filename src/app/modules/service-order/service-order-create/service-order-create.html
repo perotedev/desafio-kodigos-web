@@ -1,5 +1,5 @@
 <div class="py-3">
-  <p-stepper [value]="1">
+  <p-stepper [linear]="true" [value]="1">
     <p-step-item [value]="1">
       <p-step>Dados Iniciais</p-step>
       <p-step-panel>
@@ -9,7 +9,11 @@
           </div>
 
           <div class="py-3">
-            <p-button label="Continuar" (onClick)="activateCallback(2)" />
+            <p-button
+              styleClass="{{isMobile()?'w-full':''}}"
+              label="Continuar"
+              (onClick)="activateCallback(2)"
+            />
           </div>
         </ng-template>
       </p-step-panel>
@@ -26,9 +30,21 @@
             />
           </div>
 
-          <div class="flex py-3 gap-2">
-            <p-button label="Voltar" severity="secondary" (onClick)="activateCallback(1)" />
-            <p-button label="Continuar" (onClick)="activateCallback(3)" />
+          <div class="flex py-3 gap-3">
+            <p-button
+              [class.w-full]="isMobile()"
+              styleClass="{{isMobile()?'w-full':''}}"
+              label="Voltar"
+              severity="secondary"
+              (onClick)="activateCallback(1)"
+            />
+
+            <p-button
+              [class.w-full]="isMobile()"
+              styleClass="{{isMobile()?'w-full':''}}"
+              label="Continuar"
+              (onClick)="activateCallback(3)"
+            />
           </div>
         </ng-template>
       </p-step-panel>
@@ -42,9 +58,21 @@
             <app-service-order-images/>
           </div>
 
-          <div class="flex py-6 gap-2">
-            <p-button label="Voltar" severity="secondary" (onClick)="activateCallback(2)" />
-            <p-button label="Finalizar" />
+          <div class="flex py-6 gap-3">
+            <p-button
+              [class.w-full]="isMobile()"
+              styleClass="{{isMobile()?'w-full':''}}"
+              label="Voltar"
+              severity="secondary"
+              (onClick)="activateCallback(2)"
+            />
+
+            <p-button
+              [class.w-full]="isMobile()"
+              styleClass="{{isMobile()?'w-full':''}}"
+              routerLink="/service-order/view/{{createdSo?.id}}"
+              label="Finalizar"
+            />
           </div>
         </ng-template>
       </p-step-panel>
