@@ -1,0 +1,27 @@
+.card-dash-resume {
+  color: var(--p-primary-contrast-color);
+  background: var(--p-primary-color);
+  border-radius: 12px;
+  padding: 10px 15px;
+  height: 101px;
+  width: 100%;
+}
+
+.div-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--p-primary-950);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.value-text {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.valuesmall {
+  font-size: 22px;
+}

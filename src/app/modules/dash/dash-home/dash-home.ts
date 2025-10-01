@@ -1,16 +1,14 @@
 import {Component, inject} from '@angular/core';
-import {ContentListModule} from '../../shared/components/content-list/content-list.module';
-import {IS_MOBILE} from '../../shared/services/is-mobile';
+import {ContentListModule} from '../../../shared/components/content-list/content-list.module';
+import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {PaginatorState} from 'primeng/paginator';
-import {Button} from 'primeng/button';
-import {RouterLink} from '@angular/router';
+import {DashCard} from '../dash-card/dash-card';
 
 @Component({
   selector: 'app-dash-home',
   imports: [
     ContentListModule,
-    Button,
-    RouterLink
+    DashCard
   ],
   templateUrl: './dash-home.html',
   styleUrl: './dash-home.scss'

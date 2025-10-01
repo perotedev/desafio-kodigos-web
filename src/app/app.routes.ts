@@ -45,7 +45,7 @@ export const routes: Routes = [
       {
         path: "home",
         title: `${PREFIX} - Início`,
-        loadComponent: () => import("./modules/dash-home/dash-home").then(m => m.DashHome),
+        loadComponent: () => import("./modules/dash/dash-home/dash-home").then(m => m.DashHome),
         canActivate: [authGuard],
       },
       {
