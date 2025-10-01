@@ -19,9 +19,10 @@
   </div>
 
   <app-content-list
-    [dataList]="test"
+    [dataList]="serviceOrders"
     [isMobile]="isMobile()"
     [paginator]="true"
+    [isLoading]="isLoadingOrders"
     [rows]="size"
     [first]="1"
     [totalRecords]="total"

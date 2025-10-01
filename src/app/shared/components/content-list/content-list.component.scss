@@ -86,10 +86,10 @@
 
 ::ng-deep {
   :root {
-    --p-progressspinner-color-two: var(--p-primary-color) ;
-    --p-progressspinner-color-one: var(--p-primary-600) ;
-    --p-progressspinner-color-three: var(--p-primary-700) ;
-    --p-progressspinner-color-four: var(--p-primary-800) ;
+    --p-progressspinner-color-two: var(--p-primary-color) !important;
+    --p-progressspinner-color-one: var(--p-primary-600) !important;
+    --p-progressspinner-color-three: var(--p-primary-700) !important;
+    --p-progressspinner-color-four: var(--p-primary-800) !important;
   }
 
   .empty-default {
