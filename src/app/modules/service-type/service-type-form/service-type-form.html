@@ -1,1 +1,77 @@
-<p>service-type-form works!</p>
+<div>
+  <form [formGroup]="formServiceType" (submit)="onSubmit($event)">
+    <div class="mt-2">
+      <p-float-label variant="on">
+        <input
+          id="sTypeName"
+          pInputText
+          name="sTypeName"
+          formControlName="name"
+          type="text"
+          class="w-full"
+        />
+        <label for="sTypeName">Nome *</label>
+      </p-float-label>
+    </div>
+
+    <div class="mt-3">
+      <p-float-label variant="on">
+        <p-select
+          id="sTypeIcon"
+          appendTo="body"
+          [options]="iconOptions"
+          formControlName="icon"
+          [filter]="true"
+          [showClear]="true"
+          filterBy="label"
+          optionValue="value"
+          class="w-full"
+          panelStyleClass="icon-select"
+        >
+          <ng-template #selectedItem let-selectedOption>
+            <div class="flex align-items-center">
+              <span class="pi {{selectedOption.value}}"></span>
+              <div class="text-overflow-ellipsis">
+                <span class="ml-3">{{selectedOption.label}}</span>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-optionItem #item>
+            <div class="flex align-items-center pl-1">
+              <span class="pi {{optionItem.value}}"></span>
+            </div>
+          </ng-template>
+
+        </p-select>
+        <label for="sTypeIcon">Ícone *</label>
+      </p-float-label>
+    </div>
+
+    <div class="mt-3">
+      <p-float-label variant="on">
+        <textarea
+          id="sTypeDescription"
+          formControlName="description"
+          rows="5"
+          cols="30"
+          [autoResize]="true"
+          pTextarea
+          fluid
+        ></textarea>
+        <label for="sTypeDescription">Descrição </label>
+      </p-float-label>
+    </div>
+
+    <div class="mt-3">
+      <p-button
+        icon="pi pi-save"
+        label="Salvar"
+        type="submit"
+        class="w-full"
+        styleClass="w-full px-3"
+      />
+    </div>
+  </form>
+</div>
+

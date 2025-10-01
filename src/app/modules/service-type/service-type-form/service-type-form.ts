@@ -1,14 +1,32 @@
 import {Component, inject, input, InputSignal, output, OutputEmitterRef} from '@angular/core';
 import {IServiceType} from '../../../shared/interfaces/IServiceType';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ToastService} from '../../../shared/services/toast';
 import {Loading} from '../../../shared/services/loading';
 import {ServiceTypeService} from '../service-type-service';
 import {markDirtyFields} from '../../../shared/utils/form-utils';
+import {Button} from 'primeng/button';
+import {DatePicker} from 'primeng/datepicker';
+import {FloatLabel} from 'primeng/floatlabel';
+import {InputMask} from 'primeng/inputmask';
+import {InputText} from 'primeng/inputtext';
+import {Select} from 'primeng/select';
+import {Textarea} from 'primeng/textarea';
+import {PrimeIcons} from 'primeng/api';
 
 @Component({
   selector: 'app-service-type-form',
-  imports: [],
+  imports: [
+    Button,
+    DatePicker,
+    FloatLabel,
+    FormsModule,
+    InputMask,
+    InputText,
+    ReactiveFormsModule,
+    Select,
+    Textarea
+  ],
   templateUrl: './service-type-form.html',
   styleUrl: './service-type-form.scss'
 })
@@ -21,13 +39,20 @@ export class ServiceTypeForm {
   private readonly _serviceTypeService: ServiceTypeService = inject(ServiceTypeService);
   private readonly _loading: Loading = inject(Loading);
   public formServiceType: FormGroup;
+  public iconOptions: { label: string; value: string }[] = [];
 
   constructor() {
     this.formServiceType = this._formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      description: ['', [Validators.required, Validators.minLength(3)]],
-      icon: ['', [Validators.required]]
+      description: [''],
+      icon: [null, [Validators.required]]
     });
+
+    this.iconOptions = Object.keys(PrimeIcons)
+      .map(key => ({
+        label: key,
+        value: (PrimeIcons as any)[key]
+      }));
   }
 
 
