@@ -84,7 +84,7 @@
   @if(dialogVisible) {
     <app-user-form
       [editUser]="selectedUser"
-      (onClose)="toggleDialog()"
+      (onSaveUser)="toggleDialog()"
     />
   }
 </p-dialog>

@@ -30,7 +30,7 @@ import {Select} from 'primeng/select';
 })
 export class UserForm implements OnInit {
   public editUser: InputSignal<IUser | undefined> = input<IUser | undefined>(undefined);
-  public onClose: OutputEmitterRef<void> = output();
+  public onSaveUser: OutputEmitterRef<IUser> = output();
 
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
   private readonly _toast: ToastService = inject(ToastService);
@@ -61,7 +61,7 @@ export class UserForm implements OnInit {
 
     req.then((res: IUser) => {
       this._toast.showToastSuccess("Usuário cadastrado com sucesso!");
-      this.closeDialog();
+      this.onSaveUser.emit(res);
     }).catch((err: any) => {
       this._toast.showToastError(`Erro ao ${this.editUser()?'atualizar':'cadastrar'} usuário!`);
     }).finally(() => this._loading.dismiss());
@@ -71,11 +71,6 @@ export class UserForm implements OnInit {
     if (!this.editUser()) {
       this.formUser.controls['active'].setValue(true);
     }
-  }
-
-  public closeDialog(): void {
-    this.formUser.reset();
-    this.onClose.emit();
   }
 
   public onSubmit(e: Event): void {
