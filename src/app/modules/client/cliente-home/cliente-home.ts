@@ -9,12 +9,12 @@ import {ClientService} from '../client-service';
 import {Button} from 'primeng/button';
 import {
   ClCellDirective,
-  ClCellTemplateDirective, ClHeaderDirective
+  ClCellTemplateDirective,
+  ClHeaderDirective
 } from '../../../shared/components/content-list/content-list-directives';
 import {ContentList} from '../../../shared/components/content-list/content-list.component';
 import {Dialog} from 'primeng/dialog';
 import {InputSearch} from '../../../shared/components/input-search/input-search';
-import {ServiceTypeForm} from '../../service-type/service-type-form/service-type-form';
 import {NgStyle} from '@angular/common';
 import {ClienteForm} from '../cliente-form/cliente-form';
 
@@ -28,7 +28,6 @@ import {ClienteForm} from '../cliente-form/cliente-form';
     ContentList,
     Dialog,
     InputSearch,
-    ServiceTypeForm,
     NgStyle,
     ClienteForm
   ],
