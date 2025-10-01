@@ -8,5 +8,6 @@ export interface IContract extends IMetaData {
   date_start: Date;
   date_end: Date;
   value: number;
+  description: string;
   document_list: IContractDocument[];
 }

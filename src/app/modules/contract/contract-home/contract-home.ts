@@ -6,10 +6,31 @@ import {IPaginationResponse} from '../../../shared/interfaces/IPaginationRespons
 import {PaginatorState} from 'primeng/paginator';
 import {ContractService} from '../contract-service';
 import {ToastService} from '../../../shared/services/toast';
+import {Button} from 'primeng/button';
+import {
+  ClCellDirective,
+  ClCellTemplateDirective,
+  ClHeaderDirective
+} from '../../../shared/components/content-list/content-list-directives';
+import {ContentList} from '../../../shared/components/content-list/content-list.component';
+import {Dialog} from 'primeng/dialog';
+import {InputSearch} from '../../../shared/components/input-search/input-search';
+import {NgStyle} from '@angular/common';
+import {ContractForm} from '../contract-form/contract-form';
 
 @Component({
   selector: 'app-contract-home',
-  imports: [],
+  imports: [
+    Button,
+    ClCellDirective,
+    ClCellTemplateDirective,
+    ClHeaderDirective,
+    ContentList,
+    Dialog,
+    InputSearch,
+    NgStyle,
+    ContractForm
+  ],
   templateUrl: './contract-home.html',
   styleUrl: './contract-home.scss'
 })

@@ -1,1 +1,96 @@
-<p>contract-form works!</p>
+<div>
+  <form [formGroup]="formContract" (submit)="onSubmit($event)">
+    <div class="mt-2">
+      <p-float-label variant="on">
+        <p-select
+          [loading]="isLoadingClients"
+          id="contClient"
+          [options]="clients"
+          formControlName="client_id"
+          optionValue="id"
+          optionLabel="name"
+          class="w-full"
+          appendTo="body"
+        />
+        <label for="contClient">Cliente *</label>
+      </p-float-label>
+    </div>
+
+    <div class="flex justify-content-between gap-3">
+      <div class="mt-3 w-full">
+        <p-float-label variant="on">
+          <p-date-picker
+            id="contStart"
+            formControlName="date_start"
+            aria-autocomplete="none"
+            name="contStart"
+            appendTo="body"
+            readonlyInput="true"
+            class="w-full"
+            dateFormat="dd/mm/yy"
+            [showClear]="true"
+          />
+          <label for="contStart">Data Início *</label>
+        </p-float-label>
+      </div>
+
+      <div class="mt-3 w-full">
+        <p-float-label variant="on">
+          <p-date-picker
+            id="contEnd"
+            formControlName="date_end"
+            aria-autocomplete="none"
+            name="contEnd"
+            appendTo="body"
+            readonlyInput="true"
+            class="w-full"
+            dateFormat="dd/mm/yy"
+            [showClear]="true"
+          />
+          <label for="contEnd">Data Fim *</label>
+        </p-float-label>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <p-float-label variant="on">
+        <p-input-number
+          formControlName="value"
+          inputId="contValue"
+          mode="currency"
+          currency="BRL"
+          class="w-full"
+          locale="pt-BR"
+        />
+        <label for="contValue">Valor do Contrato *</label>
+      </p-float-label>
+
+    </div>
+
+    <div class="mt-3">
+      <p-float-label variant="on">
+        <textarea
+          id="contDescription"
+          formControlName="description"
+          rows="5"
+          cols="30"
+          [autoResize]="true"
+          pTextarea
+          fluid
+        ></textarea>
+        <label for="contDescription">Descrição </label>
+      </p-float-label>
+    </div>
+
+    <div class="mt-3">
+      <p-button
+        icon="pi pi-save"
+        label="Salvar"
+        type="submit"
+        class="w-full"
+        styleClass="w-full px-3"
+      />
+    </div>
+  </form>
+</div>
+

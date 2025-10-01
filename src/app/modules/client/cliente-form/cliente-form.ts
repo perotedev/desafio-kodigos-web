@@ -12,8 +12,6 @@ import {IAdress} from '../../../shared/interfaces/IAdress';
 import {Button} from 'primeng/button';
 import {FloatLabel} from 'primeng/floatlabel';
 import {InputText} from 'primeng/inputtext';
-import {Select} from 'primeng/select';
-import {Textarea} from 'primeng/textarea';
 import {markDirtyFields} from '../../../shared/utils/form-utils';
 import {InputMask} from 'primeng/inputmask';
 
@@ -25,8 +23,6 @@ import {InputMask} from 'primeng/inputmask';
     FormsModule,
     InputText,
     ReactiveFormsModule,
-    Select,
-    Textarea,
     InputMask
   ],
   templateUrl: './cliente-form.html',
