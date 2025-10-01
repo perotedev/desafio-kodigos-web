@@ -6,9 +6,7 @@ import {Loading} from '../../../shared/services/loading';
 import {ServiceTypeService} from '../service-type-service';
 import {markDirtyFields} from '../../../shared/utils/form-utils';
 import {Button} from 'primeng/button';
-import {DatePicker} from 'primeng/datepicker';
 import {FloatLabel} from 'primeng/floatlabel';
-import {InputMask} from 'primeng/inputmask';
 import {InputText} from 'primeng/inputtext';
 import {Select} from 'primeng/select';
 import {Textarea} from 'primeng/textarea';
@@ -18,10 +16,8 @@ import {PrimeIcons} from 'primeng/api';
   selector: 'app-service-type-form',
   imports: [
     Button,
-    DatePicker,
     FloatLabel,
     FormsModule,
-    InputMask,
     InputText,
     ReactiveFormsModule,
     Select,
