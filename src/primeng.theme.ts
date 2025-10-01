@@ -18,7 +18,8 @@ export const AppOsTranslation = {
   strong: 'Forte',
   medium: 'Médio',
   passwordPrompt: 'Digite sua senha',
-
+  pending: 'Pendente',
+  sending: 'Enviando',
 }
 
 export const AppOsTheme = definePreset(Lara, {

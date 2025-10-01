@@ -1,0 +1,43 @@
+::ng-deep {
+  :root {
+    --p-fileupload-header-padding: 0 !important;
+  }
+
+  .upload-step {
+    .p-fileupload, .p-fialeupload-header, .p-fileupload-header{
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      background: transparent !important;
+      border: none !important;
+    }
+
+    .p-message {
+      margin-top: 15px !important;
+    }
+
+    .p-fileupload-file {
+      border-color: var(--p-primary-color) !important;
+    }
+
+    .p-fileupload-content {
+      padding: 0 !important;
+      margin-top: 0 !important;
+
+      .p-progressbar {
+        display: none !important;
+      }
+    }
+  }
+
+}
+
+.drag-area {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+  border: 2px dashed var(--p-primary-color);
+  border-radius: 10px;
+}

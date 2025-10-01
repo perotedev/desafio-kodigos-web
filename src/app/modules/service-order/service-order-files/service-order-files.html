@@ -1,0 +1,24 @@
+<div class="upload-step">
+  <p-fileupload
+    name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+    (onUpload)="onUpload($event)"
+    [multiple]="true"
+    [fileLimit]="5"
+    chooseLabel="Selecionar"
+    cancelLabel="Cancelar"
+    uploadLabel="Enviar"
+    accept="image/*,.pdf,.doc,.docx,.xls,.xlsx"
+    maxFileSize="1000000"
+    mode="advanced"
+    invalidFileLimitMessageSummary="Limite de arquivos excedido."
+    invalidFileLimitMessageDetail="Você pode anexar apenas 5 arquivos."
+    invalidFileSizeMessageSummary="Tamanho limite excedido."
+    invalidFileSizeMessageDetail="Este arquivo é maior que o tamanho limite de 1MB."
+    invalidFileTypeMessageSummary="Formato inválido."
+    invalidFileTypeMessageDetail="Este tipo de arquivo não é permitido."
+  >
+    <ng-template #empty>
+      <div class="drag-area opacity-80">Arraste e solte arquivos aqui...</div>
+    </ng-template>
+  </p-fileupload>
+</div>
