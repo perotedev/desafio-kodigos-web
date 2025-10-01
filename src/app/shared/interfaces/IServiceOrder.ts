@@ -1,6 +1,7 @@
 import {ServiceOrderStatusEnum} from '../enums/ServiceOrderStatusEnum';
 import {IMetaData} from './IMetaData';
 import {IServiceOrderDocument} from './IServiceOrderDocument';
+import {IClient} from './IClient';
 
 export interface IServiceOrder extends IMetaData {
   id?: number;
@@ -14,5 +15,6 @@ export interface IServiceOrder extends IMetaData {
   status: ServiceOrderStatusEnum;
   adress: string,
   description: string;
+  client: IClient,
   document_list: IServiceOrderDocument[];
 }

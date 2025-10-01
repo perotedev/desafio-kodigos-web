@@ -13,6 +13,10 @@ $mobile-button-height: 38px;
   --p-button-border-radius: 15px !important;
   --p-stepper-steppanel-background: transparent !important;
   --p-stepper-separator-background: var(--p-surface-300) !important;
+  --p-tabs-tabpanel-background: transparent !important;
+  --p-tabs-tablist-background: transparent !important;
+  --p-tabs-tab-background: transparent !important;
+  --p-tabs-tab-active-background: transparent !important;
 }
 
 *{
@@ -143,6 +147,18 @@ input, textarea, .p-select {
   border-radius: 12px !important;
 }
 
+.p-tab, .p-tab-active{
+  border-top: none !important;
+}
+
+.p-tab-active {
+  border-bottom: 2px solid var(--p-primary-color) !important;
+}
+
+.p-tablist-tab-list {
+  border-bottom: 1px solid var(--p-surface-300) !important;
+}
+
 .p-breadcrumb {
   background: transparent !important;
   padding-left: 0 !important;
@@ -169,6 +185,10 @@ input, textarea, .p-select {
       }
     }
   }
+
+  .p-tablist-tab-list {
+    border-bottom: 1px solid var(--p-surface-700) !important;
+  }
 }
 
 
@@ -189,4 +209,10 @@ input, textarea, .p-select {
   .p-button-mobile {
     min-height: var(--btn-height-mobile);
   }
+}
+
+.p-tabpanels {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
 }

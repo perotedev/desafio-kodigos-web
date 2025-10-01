@@ -1,0 +1,81 @@
+<div>
+  <div class="grid p-0">
+    <div class="col-12 md:col-6 lg:col-4 md:pb-0 flex flex-column" [class.column-left]="!isMobile()">
+      <div class="os-resume p-3 border-round-3xl">
+        <div class="grid px-0">
+          <div class="col-6 flex align-items-center">
+            <span class="pi pi-qrcode mr-3"></span>
+            <div class="flex flex-column">
+              <span>Código</span>
+              <span class="font-bold">{{ serviceOrder?.code || 'Não informado' }}</span>
+            </div>
+          </div>
+
+          <div class="col-6 flex align-items-center">
+            <div >
+              <div class="status-icon" >
+                <span class="pi pi-bolt mr-3"></span>
+              </div>
+            </div>
+            <div class="flex flex-column">
+              <span>Status</span>
+              <span class="font-bold">{{ serviceOrder?.status || 'Não informado' }}</span>
+            </div>
+          </div>
+
+          <div class="col-6 flex align-items-center">
+            <span class="pi pi-calendar mr-3"></span>
+            <div class="flex flex-column">
+              <span>Data Emissão</span>
+              @if(serviceOrder?.createdAt) {
+                <span class="font-bold">{{serviceOrder?.createdAt | date: 'dd/MM/yyyy' }}</span>
+              } @else {
+                <span class="font-bold">Não informado</span>
+              }
+            </div>
+          </div>
+
+          <div class="col-6 flex align-items-center">
+            <span class="pi pi-calendar-clock mr-3"></span>
+            <div class="flex flex-column">
+              <span>Data Execução</span>
+              @if (serviceOrder?.date_start) {
+                <span class="font-bold">{{serviceOrder?.date_start | date:'dd/MM/yyyy' }}</span>
+              } @else {
+                <span class="font-bold"> Não informado </span>
+              }
+            </div>
+          </div>
+
+          <div class="col-12 flex align-items-center">
+            <span class="pi pi-building mr-3"></span>
+            <div class="flex flex-column">
+              <span class="font">Cliente</span>
+              <span class="font-bold">{{serviceOrder?.client?.name}}</span>
+            </div>
+          </div>
+
+          <div class="col-12 flex align-items-center">
+            <span class="pi pi-map-marker mr-3"></span>
+            <div class="flex flex-column">
+              <span class="font">Local</span>
+              <span class="font-bold">{{serviceOrder?.adress}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3 flex-1">
+        <div class="os-resume service-list h-full p-3 pr-0 border-round-3xl">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-6 lg:col-8 md:pb-0">
+      <div class="os-resume p-3 pr-0 border-round-3xl" [class.column-right]="!isMobile()">
+
+      </div>
+    </div>
+  </div>
+</div>

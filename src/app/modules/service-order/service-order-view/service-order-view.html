@@ -1,4 +1,24 @@
-<div class="py-3">
+<div>
+  <p-tabs [(value)]="tabIndex">
+    <p-tablist>
+      <p-tab value="0">
+        <span class="pi pi-bars mr-3"></span>
+        <span>Detalhes</span>
+      </p-tab>
+      <p-tab value="1">
+        <span class="pi pi-paperclip mr-2"></span>
+        <span>Arquivos</span>
+      </p-tab>
+    </p-tablist>
 
+    <p-tabpanels>
+      <p-tabpanel value="0">
+        <app-service-order-details/>
+      </p-tabpanel>
+
+      <p-tabpanel value="1">
+        <app-service-order-files/>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
 </div>
-<p>service-order-view works!</p>

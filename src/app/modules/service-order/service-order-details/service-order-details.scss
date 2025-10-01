@@ -1,0 +1,29 @@
+.os-resume {
+  background: var(--p-surface-50);
+}
+
+.column-right {
+  height: calc(100vh - 187px);
+  overflow-y: auto;
+}
+
+.column-left {
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.service-list {
+  overflow-y: auto;
+}
+
+:host-context(.mobileversion) {
+  .service-list {
+    max-height: 300px;
+  }
+}
+
+:host-context(.dark-mode) {
+  .os-resume {
+    background: var(--p-surface-800);
+  }
+}
