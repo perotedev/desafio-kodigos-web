@@ -1,35 +1,14 @@
 <div class="breadcrumb flex align-items-center">
   <div class="flex align-items-baseline gap-2'">
-    <div class="mr-4">
-      <h2 class="m-0 p-0 font-bold text-xl">{{currentTitle}}</h2>
-    </div>
-
-    @if (!isMobile()) {
-      <ng-container [ngTemplateOutlet]="routesTemplate" />
+    @if (currentRoute === "/home") {
+      <div class="mr-2">
+        <h2 class="m-0 p-0 font-bold title-breadcrumb text-xl">{{currentTitle}}</h2>
+      </div>
+    } @else {
+      <p-breadcrumb [home]="home" [model]="itens" />
     }
   </div>
 </div>
-
-@if (isMobile()) {
-  <div class="pt-2 pb-3">
-    <ng-container [ngTemplateOutlet]="routesTemplate" />
-  </div>
-}
-
-<ng-template #routesTemplate>
-  <div class="flex">
-    @for (route of routeList; track route.path) {
-      <div>
-        <span class="route" (click)="navigateTo($index)" [class.active]="$last">{{route.title}}</span>
-        @if (!$last) {
-          <span class="px-2">
-            <span class="pi pi-chevron-right text-sm opacity-60"></span>
-          </span>
-        }
-      </div>
-    }
-  </div>
-</ng-template>
 
 <ng-template #backButton>
   <div>

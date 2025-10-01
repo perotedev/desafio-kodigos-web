@@ -1,12 +1,14 @@
-import {Component, inject, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, computed, inject, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {routes} from '../../app.routes';
 import {NavigationEnd, Router} from '@angular/router';
-import {Location, NgTemplateOutlet} from '@angular/common';
+import {Location} from '@angular/common';
 import {environment} from '../../../environments/environment';
 import {CURRENT_USER} from '../../shared/services/current-user';
 import {Button} from 'primeng/button';
 import {IS_MOBILE} from '../../shared/services/is-mobile';
 import {HeaderBarService} from '../header-bar/header-bar-service';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {MenuItem} from 'primeng/api';
 
 interface IRoute {
   path: string;
@@ -19,7 +21,7 @@ interface IRoute {
   templateUrl: './breadcrumb.html',
   imports: [
     Button,
-    NgTemplateOutlet
+    BreadcrumbModule
   ],
   styleUrl: './breadcrumb.scss'
 })
@@ -33,7 +35,10 @@ export class Breadcrumb implements OnInit {
   private readonly _prefix: string = `${environment.prefix} ${environment.appName} - `;
   public readonly isMobile = inject(IS_MOBILE);
   public currentTitle: string = '';
+  public currentRoute: string = '';
   public routeList: IRoute[] = [];
+  home: MenuItem = { icon: 'pi pi-home', routerLink: '/' };
+  itens: MenuItem[] = [];
 
   constructor() {
     this._router.events.subscribe((res) => {
@@ -67,6 +72,14 @@ export class Breadcrumb implements OnInit {
             this.routeList.push(...breadcrumbs);
             this.currentTitle = route.title?.toString().replace(this._prefix, '') || '';
           }
+          this.currentRoute = currentUrl;
+          this.itens = breadcrumbs.map((breadcrumb: IRoute, index: number): MenuItem => {
+            return {
+              label: breadcrumb.title,
+              routerLink: this.getFullPath(index)
+            }
+          });
+          // this.itens[this.itens.length - 1].routerLink = undefined;
           return true;
         }
 
@@ -126,12 +139,11 @@ export class Breadcrumb implements OnInit {
     }, 200)
   }
 
-  public navigateTo(index: number): void {
-    const path = this.routeList
-      .slice(1, index + 1)
+  public getFullPath(index: number): string {
+    return this.routeList
+      .slice(1, index-1)
       .map(route => route.path)
       .join('/');
-    this._router.navigate([path]);
   }
 
   public goBack(): void {

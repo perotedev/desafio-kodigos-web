@@ -108,6 +108,34 @@ input, textarea, .p-select {
   border-radius: 12px !important;
 }
 
+.p-breadcrumb {
+  background: transparent !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  ol {
+    li:last-child {
+      span {
+        color: var(--p-primary-700);
+        font-weight: bold;
+        font-size: 17.5px;
+      }
+    }
+  }
+}
+
+.dark-mode  {
+  .p-breadcrumb {
+    ol {
+      li:last-child {
+        span {
+          color: var(--color-light);
+        }
+      }
+    }
+  }
+}
+
 
 // mobile styles
 .mobileversion {

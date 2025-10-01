@@ -1,18 +1,17 @@
 .breadcrumb {
-  height: 35px;
+  height: 25px;
 }
 
-.route {
-  cursor: pointer;
+.title-breadcrumb {
+  color: var(--p-primary-700);
+}
 
-  &:hover {
-    text-decoration: underline;
-    color: var(--p-primary-color);
+:host-context(.dark-mode) {
+  .title-breadcrumb {
+    color: var(--color-light);
   }
 }
 
-.active {
-  color: var(--p-primary-color);
-  font-weight: bold;
-  text-decoration: none !important;
+::ng-deep .route-select {
+  width: 220px;
 }
