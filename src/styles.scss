@@ -66,6 +66,35 @@ p {
   transition: width 0.5s;
 }
 
+
+.ellipsis-1, .ellipsis-2, .ellipsis-3, .ellipsis-4, .ellipsis-5 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ellipsis-1 {
+  -webkit-line-clamp: 1;
+}
+
+.ellipsis-2 {
+  -webkit-line-clamp: 2;
+}
+
+.ellipsis-3 {
+  -webkit-line-clamp: 3;
+}
+
+.ellipsis-4 {
+  -webkit-line-clamp: 4;
+}
+
+.ellipsis-5 {
+  -webkit-line-clamp: 5;
+}
+
 .p-datepicker-select-month, .p-datepicker-select-year, .p-datepicker-day {
   font-size: 14px;
 }

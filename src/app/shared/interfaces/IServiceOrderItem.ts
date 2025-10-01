@@ -1,5 +1,6 @@
 import {ServiceOrderStatusEnum} from '../enums/ServiceOrderStatusEnum';
 import {IServiceOrderItemDocument} from './IServiceOrderItemDocument';
+import {IServiceType} from './IServiceType';
 
 export interface IServiceOrderItem {
   id?: number;
@@ -9,4 +10,5 @@ export interface IServiceOrderItem {
   notes: string;
   status: ServiceOrderStatusEnum;
   document_list: IServiceOrderItemDocument[];
+  service_type: IServiceType;
 }

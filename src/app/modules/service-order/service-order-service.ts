@@ -4,6 +4,8 @@ import {IPaginationResponse} from '../../shared/interfaces/IPaginationResponse';
 import {lastValueFrom} from 'rxjs';
 import {IServiceOrder} from '../../shared/interfaces/IServiceOrder';
 import {environment} from '../../../environments/environment';
+import {IServiceOrderDocument} from '../../shared/interfaces/IServiceOrderDocument';
+import {IServiceOrderItem} from '../../shared/interfaces/IServiceOrderItem';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +33,13 @@ export class ServiceOrderService {
 
   public deleteServiceOrder(id: number): Promise<any> {
     return lastValueFrom(this._http.delete(`${environment.apiUrl}/service-order/${id}`));
+  }
+
+  public getServiceOrderItems(id: number): Promise<IServiceOrderItem[]> {
+    return lastValueFrom(this._http.get<IServiceOrderItem[]>(`${environment.apiUrl}/service-order/${id}/items`));
+  }
+
+  public getServiceDocuments(id: number): Promise<IServiceOrderDocument[]> {
+    return lastValueFrom(this._http.get<IServiceOrderDocument[]>(`${environment.apiUrl}/service-order/${id}/documents`));
   }
 }
