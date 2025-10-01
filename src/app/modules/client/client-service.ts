@@ -4,6 +4,7 @@ import {lastValueFrom} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {IPaginationResponse} from '../../shared/interfaces/IPaginationResponse';
 import {IClient} from '../../shared/interfaces/IClient';
+import {IViaCep} from '../../shared/interfaces/IViaCep';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,11 @@ export class ClientService {
 
   public deleteClient(id: number): Promise<any> {
     return lastValueFrom(this._http.delete(`${environment.apiUrl}/client/${id}`));
+  }
+
+  public async getCep(cep: string): Promise<IViaCep> {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    if (!response.ok) throw new Error('Failed to fetch CEP data');
+    return response.json();
   }
 }

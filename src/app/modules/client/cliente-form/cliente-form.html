@@ -1,1 +1,169 @@
-<p>cliente-form works!</p>
+<div class="pt-2">
+  <form class="grid p-0" [formGroup]="formClient" (submit)="onSubmit($event)">
+    <div class="col-12 md:col-6">
+      <p-float-label variant="on">
+        <input
+          id="clientName"
+          pInputText
+          name="clientName"
+          formControlName="name"
+          type="text"
+          class="w-full"
+        />
+        <label for="clientName">Nome *</label>
+      </p-float-label>
+    </div>
+
+    <div class="col-12 md:col-6">
+      <p-float-label variant="on">
+        <input
+          id="clientEmail"
+          pInputText
+          name="clientEmail"
+          formControlName="email"
+          type="email"
+          class="w-full"
+        />
+        <label for="clientEmail">Email </label>
+      </p-float-label>
+    </div>
+
+    <div class="col-12 md:col-6">
+      <p-float-label variant="on">
+        <p-input-mask
+          inputId="clientPhone"
+          name="clientPhone"
+          formControlName="phone"
+          styleClass="w-full"
+          [unmask]="true"
+          mask="(99) 99999-9999"
+        />
+        <label for="clientPhone">Telefone</label>
+      </p-float-label>
+    </div>
+
+    <div class="col-12 md:col-6">
+      <p-float-label variant="on">
+        <p-input-mask
+          inputId="clientCnpj"
+          name="clientCnpj"
+          formControlName="cnpj"
+          styleClass="w-full"
+          [unmask]="true"
+          mask="99.999.999/9999-99"
+        />
+        <label for="clientCnpj">CNPJ</label>
+      </p-float-label>
+    </div>
+
+    <div formGroupName="adress" class="col-6 md:col-3">
+      <p-floatlabel variant="on" class="w-full">
+        <p-inputmask
+          (keyup)="onWriteCep()"
+          mask="99999-999"
+          styleClass="w-full"
+          inputId="clientCep"
+          formControlName="cep"
+          autocomplete="off"
+          unmask
+        />
+        <label for="clientCep">CEP</label>
+      </p-floatlabel>
+    </div>
+
+    <div formGroupName="adress" class="col-6 md:col-3">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          id="clientState"
+          class="w-full"
+          formControlName="state"
+          maxlength="20"
+          autocomplete="off"
+        />
+        <label for="clientState">Estado</label>
+      </p-floatlabel>
+    </div>
+
+    <div formGroupName="adress" class="col-12 md:col-6">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          id="clientCity"
+          class="w-full"
+          formControlName="city"
+          autocomplete="off"
+        />
+        <label for="clientCity">Cidade</label>
+      </p-floatlabel>
+    </div>
+
+    <div formGroupName="adress" class="col-12 md:col-9">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          id="clientStreet"
+          class="w-full"
+          formControlName="street"
+          autocomplete="off"
+        />
+        <label for="clientStreet">Logradouro</label>
+      </p-floatlabel>
+    </div>
+
+    <div formGroupName="adress" class="col-6 md:col-3">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          [min]="0"
+          [max]="99999"
+          id="clientNumber"
+          class="w-full"
+          formControlName="number"
+          autocomplete="off"
+        />
+        <label for="clientNumber">Número</label>
+      </p-floatlabel>
+    </div>
+
+    <div formGroupName="adress" class="col-6 md:col-4">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          id="clientNeighborhood"
+          class="w-full"
+          formControlName="neighborhood"
+          autocomplete="off"
+        />
+        <label for="clientNeighborhood">Bairro</label>
+      </p-floatlabel>
+    </div>
+
+    <div formGroupName="adress" class="col-12 lg:col-8">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          id="clientComplement"
+          class="w-full"
+          formControlName="complement"
+          autocomplete="off"
+        />
+        <label for="clientComplement">Complemento</label>
+      </p-floatlabel>
+    </div>
+
+    <div class="col-12">
+      <div class="flex w-full justify-content-end">
+        <p-button
+          icon="pi pi-save"
+          label="Salvar"
+          type="submit"
+          [class.w-full]="isMobile()"
+          styleClass="w-full px-3"
+        />
+      </div>
+    </div>
+
+  </form>
+</div>
+

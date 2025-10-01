@@ -6,10 +6,32 @@ import {IPaginationResponse} from '../../../shared/interfaces/IPaginationRespons
 import {PaginatorState} from 'primeng/paginator';
 import {ToastService} from '../../../shared/services/toast';
 import {ClientService} from '../client-service';
+import {Button} from 'primeng/button';
+import {
+  ClCellDirective,
+  ClCellTemplateDirective, ClHeaderDirective
+} from '../../../shared/components/content-list/content-list-directives';
+import {ContentList} from '../../../shared/components/content-list/content-list.component';
+import {Dialog} from 'primeng/dialog';
+import {InputSearch} from '../../../shared/components/input-search/input-search';
+import {ServiceTypeForm} from '../../service-type/service-type-form/service-type-form';
+import {NgStyle} from '@angular/common';
+import {ClienteForm} from '../cliente-form/cliente-form';
 
 @Component({
   selector: 'app-cliente-home',
-  imports: [],
+  imports: [
+    Button,
+    ClCellDirective,
+    ClCellTemplateDirective,
+    ClHeaderDirective,
+    ContentList,
+    Dialog,
+    InputSearch,
+    ServiceTypeForm,
+    NgStyle,
+    ClienteForm
+  ],
   templateUrl: './cliente-home.html',
   styleUrl: './cliente-home.scss'
 })
