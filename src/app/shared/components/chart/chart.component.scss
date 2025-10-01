@@ -1,0 +1,19 @@
+.graph-comparisions {
+  background: var(--color-light);
+    border-radius: 12px;
+    padding: 10px 30px;
+}
+
+.canceled {
+    background: var(--p-red-400);
+}
+
+.finished {
+    background: var(--p-primary-color);
+}
+
+:host-context(.dark-mode) {
+  .graph-comparisions {
+    background: var(--p-surface-800);
+  }
+}

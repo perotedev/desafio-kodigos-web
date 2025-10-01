@@ -1,0 +1,23 @@
+<div class="grid mx-0 flex-column graph-comparisions pb-0">
+    <p-chart
+    type="line"
+    [data]="data"
+    [options]="options"
+    height="240px"/>
+
+    <div class="grid mt-2 mb-0 pb-0">
+      <div class="col">
+        <div class="flex align-items-center justify-content-center">
+          <div class="finished" style="width: 10px; height: 10px; margin-right: 5px;"></div>
+          <span class="">OS Executadas</span>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="flex align-items-center justify-content-center">
+          <div class="canceled" style="width: 10px; height: 10px; margin-right: 5px;"></div>
+          <span class="">OS Canceladas</span>
+        </div>
+      </div>
+    </div>
+</div>

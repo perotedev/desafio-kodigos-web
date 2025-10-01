@@ -3,12 +3,14 @@ import {ContentListModule} from '../../../shared/components/content-list/content
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {PaginatorState} from 'primeng/paginator';
 import {DashCard} from '../dash-card/dash-card';
+import {ChartComponent} from '../../../shared/components/chart/chart.component';
 
 @Component({
   selector: 'app-dash-home',
   imports: [
     ContentListModule,
-    DashCard
+    DashCard,
+    ChartComponent
   ],
   templateUrl: './dash-home.html',
   styleUrl: './dash-home.scss'
