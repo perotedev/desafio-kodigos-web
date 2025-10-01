@@ -73,6 +73,24 @@ export const routes: Routes = [
         ]
       },
       {
+        path: "client",
+        title:  `${PREFIX} - Clientes`,
+        loadComponent: () => import("./modules/client/cliente-home/cliente-home").then(m => m.ClienteHome),
+        canActivate: [authGuard],
+      },
+      {
+        path: "contract",
+        title: `${PREFIX} - Contratos`,
+        loadComponent: () => import("./modules/contract/contract-home/contract-home").then(m => m.ContractHome),
+        canActivate: [authGuard],
+      },
+      {
+        path: "service-type",
+        title: `${PREFIX} - Tipos de Serviço`,
+        loadComponent: () => import("./modules/service-type/service-type-home/service-type-home").then(m => m.ServiceTypeHome),
+        canActivate: [authGuard],
+      },
+      {
         path: "user",
         title: `${PREFIX} - Usuários`,
         loadComponent: () => import("./modules/user/user-home/user-home").then(m => m.UserHome),

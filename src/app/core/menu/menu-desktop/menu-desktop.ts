@@ -52,7 +52,7 @@ export class MenuDesktop implements OnInit{
     {
       label: 'Clientes',
       icon: 'pi pi-building',
-      route: '/clients',
+      route: '/client',
       roles: []
     },
     {
