@@ -20,7 +20,10 @@
       <p-step-panel>
         <ng-template #content let-activateCallback="activateCallback">
           <div class="pt-2">
-            <app-service-order-items/>
+            <app-service-order-items
+              [soId]="createdSo?createdSo.id!:0"
+              [serviceTypes]="serviceTypes"
+            />
           </div>
 
           <div class="flex py-3 gap-2">

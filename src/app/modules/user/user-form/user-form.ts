@@ -30,7 +30,6 @@ import {Select} from 'primeng/select';
 })
 export class UserForm implements OnInit {
   public editUser: InputSignal<IUser | undefined> = input<IUser | undefined>(undefined);
-  public isMobile: InputSignal<boolean> = input(false);
   public onClose: OutputEmitterRef<void> = output();
 
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
@@ -87,5 +86,7 @@ export class UserForm implements OnInit {
       markDirtyFields(this.formUser, this._toast);
       return;
     }
+
+    this.saveUser();
   }
 }

@@ -6,6 +6,7 @@ export interface IServiceOrderItem {
   service_order_id: number;
   service_type_id: number;
   description: string;
+  notes: string;
   status: ServiceOrderStatusEnum;
   document_list: IServiceOrderItemDocument[];
 }

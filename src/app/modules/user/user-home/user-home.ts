@@ -1,4 +1,4 @@
-import {Component, effect, inject, OutputEmitterRef, signal, WritableSignal} from '@angular/core';
+import {Component, effect, inject, signal, WritableSignal} from '@angular/core';
 import {Button} from "primeng/button";
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {PaginatorState} from 'primeng/paginator';
