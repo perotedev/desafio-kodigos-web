@@ -36,7 +36,7 @@
 
     <span cl-header>Descrição</span>
     <ng-template clTCell let-item>
-      <span cl-cell>{{item.description}}</span>
+      <span cl-cell>{{item.description || "Não Informado"}}</span>
     </ng-template>
 
     <span cl-header [autoCol]="false" class="col-3">Cliente</span>

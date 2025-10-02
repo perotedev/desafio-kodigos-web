@@ -45,7 +45,7 @@ export class ServiceOrderView implements OnInit {
       }).finally(() => this._loading.dismiss());
   }
 
-  public getServiceTypes(): void {
+  private getServiceTypes(): void {
     this._serviceOrderService.getServiceTypes(1, 100, "")
       .then((res: IPaginationResponse<IServiceType>) => {
         this.serviceTypes.set(res.items);

@@ -7,6 +7,8 @@ import {environment} from '../../../environments/environment';
 import {IServiceOrderDocument} from '../../shared/interfaces/IServiceOrderDocument';
 import {IServiceOrderItem} from '../../shared/interfaces/IServiceOrderItem';
 import {IServiceType} from '../../shared/interfaces/IServiceType';
+import {IClient} from '../../shared/interfaces/IClient';
+import {IContract} from '../../shared/interfaces/IContract';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +26,8 @@ export class ServiceOrderService {
     return lastValueFrom(this._http.get<IServiceOrder>(`${environment.apiUrl}/api/v${version}/service-orders/${id}`));
   }
 
-  public createServiceOrder(serviceOrder: any): Promise<IServiceOrder> {
-    return lastValueFrom(this._http.post<IServiceOrder>(`${environment.apiUrl}/service-order`, serviceOrder));
+  public createServiceOrder(serviceOrder: any, version = 1): Promise<IServiceOrder> {
+    return lastValueFrom(this._http.post<IServiceOrder>(`${environment.apiUrl}/api/v${version}/service-orders`, serviceOrder));
   }
 
   public updateServiceOrder(id: number, serviceOrder: any): Promise<IServiceOrder> {
@@ -47,6 +49,18 @@ export class ServiceOrderService {
   public getServiceTypes(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IServiceType>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IServiceType>>(
       `${environment.apiUrl}/api/v${version}/service-types?page=${page}&size=${size}&search=${search}`
+    ));
+  }
+
+  public getClients(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IClient>> {
+    return lastValueFrom(this._http.get<IPaginationResponse<IClient>>(
+      `${environment.apiUrl}/api/v${version}/clients?page=${page}&size=${size}&search=${search}`
+    ));
+  }
+
+  public getContracts(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IContract>> {
+    return lastValueFrom(this._http.get<IPaginationResponse<IContract>>(
+      `${environment.apiUrl}/api/v${version}/contracts?page=${page}&size=${size}&search=${search}`
     ));
   }
 }

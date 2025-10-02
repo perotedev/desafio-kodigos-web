@@ -5,7 +5,11 @@
       <p-step-panel>
         <ng-template #content let-activateCallback="activateCallback">
           <div class="pt-2">
-            <app-service-order-form/>
+            <app-service-order-form
+              (onSave)="onCreate($event)"
+              [clients]="clients()"
+              [contracts]="contracts()"
+            />
           </div>
         </ng-template>
       </p-step-panel>
@@ -17,8 +21,8 @@
         <ng-template #content let-activateCallback="activateCallback">
           <div class="pt-2">
             <app-service-order-items
-              [soId]="createdSo?createdSo.id!:0"
-              [serviceTypes]="serviceTypes"
+              [soId]="createdSo()?createdSo()!.id!:0"
+              [serviceTypes]="serviceTypes()"
               [canAddItems]="true"
             />
           </div>
@@ -63,7 +67,7 @@
             <p-button
               [class.w-full]="isMobile()"
               styleClass="{{isMobile()?'w-full':''}}"
-              routerLink="/service-order/view/{{createdSo?.id}}"
+              routerLink="/service-order/view/{{createdSo()?.id}}"
               label="Finalizar"
             />
           </div>

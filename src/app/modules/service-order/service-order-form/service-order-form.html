@@ -5,7 +5,7 @@
         <p-float-label variant="on">
           <p-select
             id="soClient"
-            [options]="clients"
+            [options]="clients()"
             formControlName="client_id"
             optionLabel="name"
             optionValue="id"
@@ -22,9 +22,9 @@
         <p-float-label variant="on">
           <p-select
             id="soContract"
-            [options]="contracts"
+            [options]="contracts()"
             formControlName="contract_id"
-            optionLabel="name"
+            optionLabel="number"
             optionValue="id"
             showClear="true"
             filterBy="name"
@@ -39,7 +39,7 @@
         <p-float-label variant="on">
           <p-date-picker
             id="soStart"
-            formControlName="date_start"
+            formControlName="start_date"
             aria-autocomplete="none"
             name="soStart"
             appendTo="body"
