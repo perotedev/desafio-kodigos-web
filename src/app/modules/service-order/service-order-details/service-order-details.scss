@@ -3,27 +3,21 @@
 }
 
 .column-right {
-  height: calc(100vh - 187px);
+  height: calc(100vh - 192px);
   overflow-y: auto;
 }
 
 .column-left {
-  height: calc(100vh - 180px);
+  height: calc(100vh - 192px);
   overflow-y: auto;
 }
 
-.service-list {
-  overflow-y: auto;
-}
-
-:host-context(.mobileversion) {
-  .service-list {
-    max-height: 300px;
-  }
+.not-item-selected {
+  border: 2px dashed var(--p-primary-color);
 }
 
 :host-context(.dark-mode) {
   .os-resume {
-    background: var(--p-surface-800);
+    background: var(--p-surface-900);
   }
 }

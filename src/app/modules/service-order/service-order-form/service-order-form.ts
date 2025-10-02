@@ -1,10 +1,13 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, input, InputSignal} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FloatLabel} from 'primeng/floatlabel';
 import {Select} from 'primeng/select';
 import {DatePicker} from 'primeng/datepicker';
 import {Textarea} from 'primeng/textarea';
 import {InputText} from 'primeng/inputtext';
+import {IServiceOrder} from '../../../shared/interfaces/IServiceOrder';
+import {Button} from 'primeng/button';
+import {IS_MOBILE} from '../../../shared/services/is-mobile';
 
 @Component({
   selector: 'app-service-order-form',
@@ -15,13 +18,18 @@ import {InputText} from 'primeng/inputtext';
     Select,
     DatePicker,
     Textarea,
-    InputText
+    InputText,
+    Button
   ],
   templateUrl: './service-order-form.html',
   styleUrl: './service-order-form.scss'
 })
 export class ServiceOrderForm {
+  public editSO: InputSignal<IServiceOrder | undefined> = input<IServiceOrder | undefined>(undefined);
+  public isDetails: InputSignal<boolean> = input(false);
+
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
+  public readonly isMobile = inject(IS_MOBILE);
   public formSO: FormGroup;
   public clients: any[] = [
     {

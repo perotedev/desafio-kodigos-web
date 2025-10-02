@@ -14,8 +14,11 @@ import {IServiceOrderItem} from '../../../shared/interfaces/IServiceOrderItem';
 export class ServiceOrderItemCard {
   public index: InputSignal<number> = input(1);
   public soItem: InputSignal<IServiceOrderItem> = input.required();
+  public onlyView: InputSignal<boolean> = input(false);
+  public active: InputSignal<boolean> = input(false);
   public onEditItem: OutputEmitterRef<void> = output();
   public onDeleteItem: OutputEmitterRef<void> = output();
+  public onClickItem: OutputEmitterRef<void> = output();
 
   public readonly isMobile = inject(IS_MOBILE);
 }

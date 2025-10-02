@@ -1,36 +1,70 @@
 <div>
-  <p-button
-    icon="pi pi-plus"
-    label="Adicionar Serviço"
-    (onClick)="toggleDialog()"
-  />
-  <div class="my-3">
-    <span>Você pode adicionar serviços agora ou pular para próxima estapa, a OS estará disponível para alterações.</span>
-  </div>
+  @if (canAddItems()) {
+    <p-button
+      icon="pi pi-plus"
+      label="Adicionar Serviço"
+      (onClick)="toggleDialog()"
+    />
 
-  <div class="grid p-0">
-    @for (item of items; track item) {
-      <div class="col-12 md:col-6 lg:col-4">
-        <app-service-order-item-card
-          [soItem]="item"
-          [index]="$index + 1"
-          (onEditItem)="onEditItem($index)"
-          (onDeleteItem)="removeItem($index)"
-        />
-      </div>
-    } @empty {
-      <div class="col-12">
-        <p-message class="w-full" styleClass="w-full border-round-3xl empty-default" severity="secondary">
-          <div class="flex w-full align-items-center">
-            <span class="pi pi-info-circle"></span>
-            <span class="ml-3 flex-1">
-              Não há serviços cadastrados no momento.
-            </span>
-          </div>
-        </p-message>
+    @if (!isDetails()) {
+      <div class="my-3">
+        <span>Você pode adicionar serviços agora ou pular para próxima estapa, a OS estará disponível para alterações.</span>
       </div>
     }
-  </div>
+  }
+
+  @if (isDetails()) {
+    <div class="grid p-0" [class.mt-2]="isDetails()">
+      @for (item of items(); track item) {
+        <div class="col-12">
+          <app-service-order-item-card
+            [soItem]="item"
+            [index]="$index + 1"
+            [onlyView]="isDetails()"
+            [active]="indexSelected === $index"
+            (onEditItem)="onEditItem($index)"
+            (onDeleteItem)="removeItem($index)"
+            (onClickItem)="onSelectItem($index)"
+          />
+        </div>
+      } @empty {
+        <div class="col-12">
+          <p-message class="w-full" styleClass="w-full border-round-3xl empty-default" severity="secondary">
+            <div class="flex w-full align-items-center">
+              <span class="pi pi-info-circle"></span>
+              <span class="ml-3 flex-1">
+              Não há serviços cadastrados no momento.
+            </span>
+            </div>
+          </p-message>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="grid p-0" [class.mt-2]="isDetails()">
+      @for (item of items(); track item) {
+        <div class="col-12 md:col-6 lg:col-4">
+          <app-service-order-item-card
+            [soItem]="item"
+            [index]="$index + 1"
+            (onEditItem)="onEditItem($index)"
+            (onDeleteItem)="removeItem($index)"
+          />
+        </div>
+      } @empty {
+        <div class="col-12">
+          <p-message class="w-full" styleClass="w-full border-round-3xl empty-default" severity="secondary">
+            <div class="flex w-full align-items-center">
+              <span class="pi pi-info-circle"></span>
+              <span class="ml-3 flex-1">
+              Não há serviços cadastrados no momento.
+            </span>
+            </div>
+          </p-message>
+        </div>
+      }
+    </div>
+  }
 </div>
 
 <p-dialog

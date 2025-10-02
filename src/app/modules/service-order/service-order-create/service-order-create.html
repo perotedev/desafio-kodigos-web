@@ -1,4 +1,4 @@
-<div class="py-3">
+<div class="pb-3">
   <p-stepper [linear]="true" [(value)]="stepperValue">
     <p-step-item [value]="1">
       <p-step>Dados Iniciais</p-step>
@@ -6,14 +6,6 @@
         <ng-template #content let-activateCallback="activateCallback">
           <div class="pt-2">
             <app-service-order-form/>
-          </div>
-
-          <div class="py-3">
-            <p-button
-              styleClass="{{isMobile()?'w-full':''}}"
-              label="Continuar"
-              (onClick)="goToStep(2)"
-            />
           </div>
         </ng-template>
       </p-step-panel>
@@ -27,6 +19,7 @@
             <app-service-order-items
               [soId]="createdSo?createdSo.id!:0"
               [serviceTypes]="serviceTypes"
+              [canAddItems]="true"
             />
           </div>
 

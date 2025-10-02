@@ -1,5 +1,5 @@
 .breadcrumb {
-  height: 25px;
+  height: 35px;
 }
 
 .title-breadcrumb {
@@ -14,4 +14,8 @@
 
 ::ng-deep .route-select {
   width: 220px;
+}
+
+::ng-deep .p-breadcrumb {
+  padding-top: 0 !important;
 }

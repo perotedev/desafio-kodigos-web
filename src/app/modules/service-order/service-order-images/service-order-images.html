@@ -1,1 +1,60 @@
-<p>service-order-images works!</p>
+<div class="flex flex-wrap w-full">
+  <input #inputFileImage type="file" id="inputFileImage" title=" " [max]="5" [multiple]="true" accept="image/*" (change)="onChangeInputFile($event)" />
+  <div class="img-size border-round-xl shadow-1 add-image flex align-items-center justify-content-center mr-3 mb-3">
+    <div (click)="inputFileImage.click()" class="inner-add-image flex flex-column align-items-center justify-content-center cursor-pointer">
+      <div class="text-center m-0">
+        <span class="pi pi-images text-xl mb-2"></span>
+      </div>
+
+      <div class="m-0">
+        <span>Adicionar</span>
+      </div>
+    </div>
+  </div>
+
+  @for(item of photoList(); track $index) {
+    <img
+      (click)="toggleGallery($index)"
+      class="img-size fadein mr-3 mb-3 cursor-pointer"
+      [src]="item.document.path"
+      [alt]="item.document.name"
+    />
+  }
+
+  @if (photoList().length < 6) {
+    @for (item of getFakeList(); track item) {
+      <div class=" img-size border-round-xl shadow-1 add-image flex align-items-center justify-content-center mr-3 mb-3">
+        <div (click)="inputFileImage.click()" class="inner-add-image flex flex-column align-items-center justify-content-center cursor-pointer">
+          <div class="text-center m-0">
+            <span class="pi pi-image text-xl mb-2"></span>
+          </div>
+
+          <div class="m-0">
+            <span>Adicionar</span>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>
+
+
+<!--<p-galleria-->
+<!--  [value]="imgsUrls"-->
+<!--  [(visible)]="showGalery"-->
+<!--  [(activeIndex)]="indexGalery"-->
+<!--  [containerStyle]="{ 'max-width': '850px' }"-->
+<!--  [circular]="true"-->
+<!--  [fullScreen]="true"-->
+<!--  [showItemNavigators]="true"-->
+<!--  [showThumbnails]="false"-->
+<!--  class="galery-border"-->
+<!--&gt;-->
+<!--  <ng-template pTemplate="item" let-item>-->
+<!--    <img-->
+<!--      [src]="item"-->
+<!--      style="width: 100%;-->
+<!--        display: block;"-->
+<!--    />-->
+<!--  </ng-template>-->
+<!--</p-galleria>-->
