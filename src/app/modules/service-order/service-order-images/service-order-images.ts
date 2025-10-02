@@ -1,8 +1,9 @@
 import {Component, effect, inject, input, InputSignal, model, ModelSignal} from '@angular/core';
 import {Loading} from '../../../shared/services/loading';
-import {FileTransferService} from '../../../shared/services/file-transfer';
+import {FileTransferService, ROUTE_FILE_SEND} from '../../../shared/services/file-transfer';
 import {IServiceOrderItemDocument} from '../../../shared/interfaces/IServiceOrderItemDocument';
 import {takeUntil} from 'rxjs';
+import {ToastService} from '../../../shared/services/toast';
 
 @Component({
   selector: 'app-service-order-images',
@@ -15,6 +16,7 @@ export class ServiceOrderImages {
   public photoList: ModelSignal<IServiceOrderItemDocument[]> = model<IServiceOrderItemDocument[]>([]);
 
   private readonly _fileTransfer: FileTransferService = inject(FileTransferService);
+  private readonly _toast: ToastService = inject(ToastService);
   private _filesToSend: File[] = [];
   public imgsUrls: string[] = [];
   public showGalery: boolean = false;
@@ -29,24 +31,26 @@ export class ServiceOrderImages {
   private processResponse(req: Promise<IServiceOrderItemDocument>): void {
     req.then((res: IServiceOrderItemDocument) => {
       this.photoList().push(res);
+    }).catch(() => {
+      this._toast.showToastError("Erro ao adicionar imagem!");
     });
   }
 
   private saveImage(): void {
-    for (let file of this._filesToSend) {
-
-      const transfer = this._fileTransfer.uploadFile(this.getFormData(file), "");
+    const auxFiles = [...this._filesToSend];
+    this._filesToSend = [];
+    for (let file of auxFiles) {
+      const transfer = this._fileTransfer.uploadFile(this.getFormData(file), ROUTE_FILE_SEND);
       this.processResponse(transfer.request);
 
       transfer.retryEvent.pipe(takeUntil(transfer.destroy$)).subscribe({
-        next: (req: Promise<any>) => {
+        next: (req: Promise<IServiceOrderItemDocument>) => {
           this.processResponse(req);
         }
       });
     }
 
     this.setImageUrlList(this.photoList());
-    this._filesToSend = [];
   }
 
   private getFormData(file: File): FormData {
@@ -79,6 +83,6 @@ export class ServiceOrderImages {
 
   public getFakeList(): number[] {
     const missingItems = 5 - this.photoList().length;
-    return missingItems > 0 ? Array(missingItems).fill(0) : [];
+    return missingItems > 0 ? Array.from({length: missingItems}, (_, i) => i + 1) : [];
   }
 }

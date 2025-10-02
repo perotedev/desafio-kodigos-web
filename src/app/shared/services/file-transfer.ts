@@ -178,6 +178,8 @@ export class FileTransferService {
       transfer.loading = true;
       transfer.progress = 0;
       transfer.error = undefined;
+      transfer.destroy$.next();
+      transfer.destroy$.complete();
       transfer.destroy$ = new Subject();
       const req = this.retryRequest(transfer, transfer.body);
       transfer.request = req;
