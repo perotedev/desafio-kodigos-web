@@ -8,6 +8,7 @@ import {MenuDesktop} from '../menu/menu-desktop/menu-desktop';
 import {HeaderBarHome} from '../header-bar/header-bar-home/header-bar-home';
 import {Breadcrumb} from '../breadcrumb/breadcrumb';
 import {CURRENT_USER, CurrentUser} from '../../shared/services/current-user';
+import {AppTheme} from '../../shared/services/app-theme';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,12 @@ import {CURRENT_USER, CurrentUser} from '../../shared/services/current-user';
 })
 export class Home implements OnInit {
   private readonly _currentUser: CurrentUser = inject(CurrentUser);
+  private readonly _appTheme: AppTheme = inject(AppTheme);
   public readonly isMobile = inject(IS_MOBILE);
   public readonly menuExpanded: ModelSignal<boolean> = model(true);
 
   public ngOnInit(): void {
     this._currentUser.initUserInHome();
+    this._appTheme.setTheme(this._currentUser.currentUser().userConfig.theme);
   }
 }

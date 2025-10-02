@@ -8,6 +8,8 @@ import {Button} from 'primeng/button';
 import {NavigationEnd, Router} from '@angular/router';
 import {toggleMenu} from '../../../shared/utils/menu-utils';
 import {RoleEnum} from '../../../shared/enums/RoleEnum';
+import {UserConfig} from '../../../shared/services/user-config';
+import {AppTheme} from '../../../shared/services/app-theme';
 
 const version = pkg.version;
 
@@ -25,8 +27,9 @@ export class MenuDesktop implements OnInit{
 
   private readonly _router = inject(Router);
   private readonly _currentUser = inject(CURRENT_USER);
+  private readonly _userConfig: UserConfig = inject(UserConfig);
+  private readonly _appTheme: AppTheme = inject(AppTheme);
   public readonly isMobile = inject(IS_MOBILE);
-
   public readonly appVersion: string = version;
   public readonly appName: string = environment.appName;
   public currentRoute: string = '';
@@ -89,7 +92,8 @@ export class MenuDesktop implements OnInit{
   }
 
   public ngOnInit(): void {
-    this.setCurrentRoute()
+    this.setCurrentRoute();
+    this.expanded.set(this._currentUser().userConfig.expanded)
   }
 
   public toggleMenuClass(): void {
@@ -99,6 +103,6 @@ export class MenuDesktop implements OnInit{
     }
 
     this.expanded.set(!this.expanded());
-
+    this._userConfig.updateUpdateMenu(this.expanded());
   }
 }

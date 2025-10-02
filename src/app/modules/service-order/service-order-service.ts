@@ -19,8 +19,8 @@ export class ServiceOrderService {
     ));
   }
 
-  public getServiceOrder(id: number): Promise<IServiceOrder> {
-    return lastValueFrom(this._http.get<IServiceOrder>(`${environment.apiUrl}/service-order/${id}`));
+  public getServiceOrder(id: number, version = 1): Promise<IServiceOrder> {
+    return lastValueFrom(this._http.get<IServiceOrder>(`${environment.apiUrl}/api/v${version}/service-orders/${id}`));
   }
 
   public createServiceOrder(serviceOrder: any): Promise<IServiceOrder> {

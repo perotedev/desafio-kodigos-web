@@ -11,7 +11,7 @@ export interface IServiceOrder extends IMetaData {
   end_date?: Date;
   code: string;
   status: ServiceOrderStatusEnum;
-  adress: string,
+  address: string,
   description: string;
   client: IClient,
   document_list: IServiceOrderDocument[];

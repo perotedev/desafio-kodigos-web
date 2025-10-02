@@ -13,7 +13,9 @@
 
     <p-tabpanels>
       <p-tabpanel value="0">
-        <app-service-order-details/>
+        <app-service-order-details
+          [serviceOrder]="serviceOrder()"
+        />
       </p-tabpanel>
 
       <p-tabpanel value="1">

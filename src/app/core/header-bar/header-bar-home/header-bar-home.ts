@@ -1,5 +1,5 @@
 import {Component, inject, Signal, TemplateRef} from '@angular/core';
-import {AppTheme, IS_DARK_MODE} from '../../../shared/services/app-theme';
+import {AppTheme, IS_DARK_MODE, ThemeType} from '../../../shared/services/app-theme';
 import {CommonModule} from '@angular/common';
 import {Button} from 'primeng/button';
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
@@ -8,6 +8,7 @@ import {environment} from '../../../../environments/environment';
 import {HeaderBarService} from '../header-bar-service';
 import {toggleMenu} from '../../../shared/utils/menu-utils';
 import {AuthService} from '../../auth/auth-service';
+import {UserConfig} from '../../../shared/services/user-config';
 
 const version = pkg.version;
 
@@ -21,6 +22,7 @@ export class HeaderBarHome {
   private readonly _headerBarService: HeaderBarService = inject(HeaderBarService);
   private readonly _themeService: AppTheme = inject(AppTheme);
   private readonly _authService: AuthService = inject(AuthService);
+  private readonly _userConfig: UserConfig = inject(UserConfig);
   public readonly isDarkMode = inject(IS_DARK_MODE);
   public readonly isMobile = inject(IS_MOBILE);
   public readonly today: Date = new Date();
@@ -30,7 +32,9 @@ export class HeaderBarHome {
   public readonly templateAfter: Signal<TemplateRef<any>|null> = this._headerBarService.templateAfter;
 
   public toggleTheme(): void {
-    this._themeService.setTheme(this.isDarkMode()?'light':'dark');
+    const mode: ThemeType = this.isDarkMode()?'light':'dark';
+    this._themeService.setTheme(mode);
+    this._userConfig.updateUpdateTheme(mode)
   }
 
   public expandMenu(): void {

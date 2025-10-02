@@ -9,6 +9,7 @@ import {IS_MOBILE} from '../../shared/services/is-mobile';
 import {HeaderBarService} from '../header-bar/header-bar-service';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {MenuItem} from 'primeng/api';
+import {UserConfig} from '../../shared/services/user-config';
 
 interface IRoute {
   path: string;

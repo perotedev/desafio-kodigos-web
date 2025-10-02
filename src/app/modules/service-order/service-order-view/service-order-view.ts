@@ -1,7 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {TabsModule} from 'primeng/tabs';
 import {ServiceOrderDetails} from '../service-order-details/service-order-details';
 import {ServiceOrderFiles} from '../service-order-files/service-order-files';
+import {ActivatedRoute} from '@angular/router';
+import {ServiceOrderService} from '../service-order-service';
+import {Loading} from '../../../shared/services/loading';
+import {ToastService} from '../../../shared/services/toast';
+import {IServiceOrder} from '../../../shared/interfaces/IServiceOrder';
 
 @Component({
   selector: 'app-service-order-view',
@@ -13,6 +18,31 @@ import {ServiceOrderFiles} from '../service-order-files/service-order-files';
   templateUrl: './service-order-view.html',
   styleUrl: './service-order-view.scss'
 })
-export class ServiceOrderView {
+export class ServiceOrderView implements OnInit {
+  private readonly _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  private readonly _serviceOrderService: ServiceOrderService = inject(ServiceOrderService);
+  private readonly _loading: Loading = inject(Loading);
+  private readonly _toast: ToastService = inject(ToastService);
+
   public tabIndex: string = "0";
+  public soId: number = 0;
+  public serviceOrder: WritableSignal<IServiceOrder | undefined> = signal(undefined);
+
+  constructor() {
+    this.soId = this._activatedRoute.snapshot.params['id'];
+  }
+
+  private getServiceOrder(): void {
+    this._loading.present();
+    this._serviceOrderService.getServiceOrder(this.soId)
+      .then((res: IServiceOrder) => {
+        this.serviceOrder.set(res);
+      }).catch(err => {
+        this._toast.showToastError("Erro ao buscar dados da orderm de serviço");
+      }).finally(() => this._loading.dismiss());
+  }
+
+  public ngOnInit(): void {
+    this.getServiceOrder();
+  }
 }

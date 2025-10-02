@@ -7,7 +7,7 @@
             <span class="pi pi-qrcode mr-3"></span>
             <div class="flex flex-column">
               <span>Código</span>
-              <span class="font-bold">{{ serviceOrder?.code || 'Não informado' }}</span>
+              <span class="font-bold">{{ serviceOrder()?.code || 'Não informado' }}</span>
             </div>
           </div>
 
@@ -19,7 +19,7 @@
             </div>
             <div class="flex flex-column">
               <span>Status</span>
-              <span class="font-bold">{{ serviceOrder?.status || 'Não informado' }}</span>
+              <span class="font-bold">{{ serviceOrder()?.status || 'Não informado' }}</span>
             </div>
           </div>
 
@@ -27,8 +27,8 @@
             <span class="pi pi-calendar mr-3"></span>
             <div class="flex flex-column">
               <span>Data Emissão</span>
-              @if(serviceOrder?.createdAt) {
-                <span class="font-bold">{{serviceOrder?.createdAt | date: 'dd/MM/yyyy' }}</span>
+              @if(serviceOrder()?.created_at) {
+                <span class="font-bold">{{serviceOrder()?.created_at | date: 'dd/MM/yyyy' }}</span>
               } @else {
                 <span class="font-bold">Não informado</span>
               }
@@ -39,8 +39,8 @@
             <span class="pi pi-calendar-clock mr-3"></span>
             <div class="flex flex-column">
               <span>Data Execução</span>
-              @if (serviceOrder?.start_date) {
-                <span class="font-bold">{{serviceOrder?.start_date | date:'dd/MM/yyyy' }}</span>
+              @if (serviceOrder()?.start_date) {
+                <span class="font-bold">{{serviceOrder()?.start_date | date:'dd/MM/yyyy' }}</span>
               } @else {
                 <span class="font-bold"> Não informado </span>
               }
@@ -51,7 +51,7 @@
             <span class="pi pi-building mr-3"></span>
             <div class="flex flex-column">
               <span class="font">Cliente</span>
-              <span class="font-bold">{{serviceOrder?.client?.name}}</span>
+              <span class="font-bold">{{serviceOrder()?.client?.name}}</span>
             </div>
           </div>
 
@@ -59,7 +59,7 @@
             <span class="pi pi-map-marker mr-3"></span>
             <div class="flex flex-column">
               <span class="font">Local</span>
-              <span class="font-bold">{{serviceOrder?.adress}}</span>
+              <span class="font-bold">{{serviceOrder()?.address || "Não informado"}}</span>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
         <div class="os-resume h-full p-3 pr-0 border-round-3xl">
           <div class="mr-3">
             <app-service-order-items
-              [soId]="serviceOrder!.id!"
+              [soId]="serviceOrder()!.id!"
               [serviceTypes]="serviceTypes"
               [canAddItems]="true"
               [isDetails]="true"
@@ -110,7 +110,7 @@
   @if(showDialog) {
     <div class="pt-2">
       <app-service-order-form
-        [editSO]="serviceOrder"
+        [editSO]="serviceOrder()"
         [isDetails]="true"
       />
     </div>
@@ -126,7 +126,7 @@
   @if(showDialogItem) {
     <div class="pt-2">
       <app-service-order-item-form
-        [soId]="serviceOrder!.id!"
+        [soId]="serviceOrder()!.id!"
         [editItem]="currentSoItem"
         [serviceTypes]="serviceTypes"
         (onSaveItem)="onSaveItem($event)"
