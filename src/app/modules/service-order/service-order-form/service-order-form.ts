@@ -48,7 +48,6 @@ export class ServiceOrderForm {
   constructor() {
     this.formSO = this._formBuilder.group({
       client_id: [null, [Validators.required]],
-      responsavel: [null],
       contract_id: [null],
       start_date: [null, [Validators.required]],
       end_date: [null],
@@ -56,7 +55,7 @@ export class ServiceOrderForm {
       hour_end: [null],
       code: [''],
       status: [''],
-      adress: ['', [Validators.required]],
+      location: ['', [Validators.required]],
       description: ['']
     })
   }

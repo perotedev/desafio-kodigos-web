@@ -12,6 +12,7 @@ import {UserService} from '../user-service';
 import {Loading} from '../../../shared/services/loading';
 import {ToastService} from '../../../shared/services/toast';
 import {IPaginationResponse} from '../../../shared/interfaces/IPaginationResponse';
+import {CpfMaskPipe} from '../../../shared/pipes/cpf-mask-pipe';
 
 @Component({
   selector: 'app-user-home',
@@ -21,7 +22,8 @@ import {IPaginationResponse} from '../../../shared/interfaces/IPaginationRespons
     InputSearch,
     NgStyle,
     Dialog,
-    UserForm
+    UserForm,
+    CpfMaskPipe
   ],
   templateUrl: './user-home.html',
   styleUrl: './user-home.scss',

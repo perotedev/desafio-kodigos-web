@@ -19,7 +19,7 @@
             </div>
             <div class="flex flex-column">
               <span>Status</span>
-              <span class="font-bold">{{ serviceOrder()?.status || 'Não informado' }}</span>
+              <span class="font-bold">{{ (serviceOrder()?.status || "")  | statusPipe }}</span>
             </div>
           </div>
 
@@ -59,7 +59,7 @@
             <span class="pi pi-map-marker mr-3"></span>
             <div class="flex flex-column">
               <span class="font">Local</span>
-              <span class="font-bold">{{serviceOrder()?.address || "Não informado"}}</span>
+              <span class="font-bold pr-1">{{serviceOrder()?.location || "Não informado"}}</span>
             </div>
           </div>
         </div>

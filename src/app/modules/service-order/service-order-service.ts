@@ -67,4 +67,8 @@ export class ServiceOrderService {
   public createSoItem(soItem: any, version = 1): Promise<IServiceOrderItem> {
     return lastValueFrom(this._http.post<IServiceOrderItem>(`${environment.apiUrl}/api/v${version}/service-orders/item`, soItem));
   }
+
+  public updateSoItem(id: number, soItem: any, version = 1): Promise<IServiceOrderItem> {
+    return lastValueFrom(this._http.put<IServiceOrderItem>(`${environment.apiUrl}/api/v${version}/service-orders/item/${id}`, soItem));
+  }
 }

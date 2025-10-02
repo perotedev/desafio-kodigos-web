@@ -1,12 +1,12 @@
 <div class="flex flex-wrap w-full">
-  <input #inputFileImage type="file" id="inputFileImage" title=" " [max]="5" [multiple]="true" accept="image/*" (change)="onChangeInputFile($event)" />
+  <input #inputFileImage type="file" class="input-file-imgs" [id]="inputFileId()" title=" " [max]="5" [multiple]="true" accept="image/*" (change)="onChangeInputFile($event)" />
   <div class="img-size border-round-xl shadow-1 add-image flex align-items-center justify-content-center mr-3 mb-3">
     <div (click)="inputFileImage.click()" class="inner-add-image flex flex-column align-items-center justify-content-center cursor-pointer">
       <div class="text-center m-0">
-        <span class="pi pi-images text-xl mb-2"></span>
+        <span class="pi pi-images text-xl mb-2 opacity-80"></span>
       </div>
 
-      <div class="m-0">
+      <div class="m-0 opacity-80">
         <span>Adicionar</span>
       </div>
     </div>
@@ -26,10 +26,10 @@
       <div class=" img-size border-round-xl shadow-1 add-image flex align-items-center justify-content-center mr-3 mb-3">
         <div (click)="inputFileImage.click()" class="inner-add-image flex flex-column align-items-center justify-content-center cursor-pointer">
           <div class="text-center m-0">
-            <span class="pi pi-image text-xl mb-2"></span>
+            <span class="pi pi-image text-xl mb-2 opacity-80"></span>
           </div>
 
-          <div class="m-0">
+          <div class="m-0 opacity-80">
             <span>Adicionar</span>
           </div>
         </div>

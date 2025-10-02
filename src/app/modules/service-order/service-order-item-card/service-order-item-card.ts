@@ -16,6 +16,7 @@ export class ServiceOrderItemCard {
   public soItem: InputSignal<IServiceOrderItem> = input.required();
   public onlyView: InputSignal<boolean> = input(false);
   public active: InputSignal<boolean> = input(false);
+  public reduced: InputSignal<boolean> = input(false);
   public onEditItem: OutputEmitterRef<void> = output();
   public onDeleteItem: OutputEmitterRef<void> = output();
   public onClickItem: OutputEmitterRef<void> = output();

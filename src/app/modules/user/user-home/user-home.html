@@ -46,7 +46,7 @@
 
     <span cl-header [autoCol]="false" style="width: 140px">CPF</span>
     <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" style="width: 140px">{{item.person.cpf || "Não Informado"}}</span>
+      <span cl-cell [autoCol]="false" style="width: 140px">{{(item.person.cpf | cpfMaskPipe) || "Não Informado"}}</span>
     </ng-template>
 
     <span cl-header [autoCol]="false" style="width: 100px">Role</span>

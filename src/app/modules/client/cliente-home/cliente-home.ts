@@ -17,6 +17,8 @@ import {Dialog} from 'primeng/dialog';
 import {InputSearch} from '../../../shared/components/input-search/input-search';
 import {NgStyle} from '@angular/common';
 import {ClienteForm} from '../cliente-form/cliente-form';
+import {PhoneMaskPipe} from '../../../shared/pipes/phone-mask-pipe';
+import {CnpjMaskPipe} from '../../../shared/pipes/cnpj-mask-pipe';
 
 @Component({
   selector: 'app-cliente-home',
@@ -29,7 +31,9 @@ import {ClienteForm} from '../cliente-form/cliente-form';
     Dialog,
     InputSearch,
     NgStyle,
-    ClienteForm
+    ClienteForm,
+    PhoneMaskPipe,
+    CnpjMaskPipe,
   ],
   templateUrl: './cliente-home.html',
   styleUrl: './cliente-home.scss'

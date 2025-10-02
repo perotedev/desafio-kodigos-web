@@ -1,6 +1,7 @@
 <div
   class="flex-1 so-item-card w-full border-round-3xl py-3 shadow-1"
-  [class.reduced]="onlyView()"
+  [class.reduced]="reduced()"
+  [class.only-view]="onlyView()"
   [class.active]="active()"
   (click)="onClickItem.emit()"
 >
@@ -39,8 +40,8 @@
 
   <div
     class="mt-2 opacity-80 text-justify px-1 px-3"
-    [class.ellipsis-5]="!onlyView()"
-    [class.ellipsis-1]="onlyView()"
+    [class.ellipsis-5]="!reduced()"
+    [class.ellipsis-1]="reduced()"
   >
     <span>
       {{soItem().notes?soItem().notes:"Descrição não registrada para este serviço."}}

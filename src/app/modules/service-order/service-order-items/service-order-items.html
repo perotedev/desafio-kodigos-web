@@ -21,6 +21,7 @@
             [soItem]="item"
             [index]="$index + 1"
             [onlyView]="isDetails()"
+            [reduced]="true"
             [active]="indexSelected === $index"
             (onEditItem)="onEditItem($index)"
             (onDeleteItem)="removeItem($index)"
@@ -47,6 +48,7 @@
           <app-service-order-item-card
             [soItem]="item"
             [index]="$index + 1"
+            [reduced]="true"
             (onEditItem)="onEditItem($index)"
             (onDeleteItem)="removeItem($index)"
           />
@@ -67,17 +69,21 @@
   }
 </div>
 
-<p-dialog
-  header="{{currentItem?'Editar':'Adicionar'}} Serviço"
-  [(visible)]="showDialog"
-  [modal]="true"
-  [style]="{width: isMobile()?'90%':'380px'}"
->
-  @if (showDialog) {
-    <app-service-order-item-form
-      [soId]="soId() || 0"
-      [serviceTypes]="serviceTypes()"
-      (onSaveItem)="onSaveItem($event)"
-    />
-  }
-</p-dialog>
+@if (!isDetails()) {
+  <p-dialog
+    header="{{currentItem()?'Editar':'Adicionar'}} Serviço"
+    [(visible)]="showDialog"
+    [modal]="true"
+    [style]="{width: isMobile()?'90%':'380px'}"
+  >
+    @if (showDialog) {
+      <app-service-order-item-form
+        [soId]="soId() || 0"
+        [editItem]="currentItem()"
+        [serviceTypes]="serviceTypes()"
+        (onSaveItem)="onSaveItem($event)"
+      />
+    }
+  </p-dialog>
+}
+

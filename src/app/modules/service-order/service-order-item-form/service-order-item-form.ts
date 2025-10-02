@@ -43,7 +43,7 @@ export class ServiceOrderItemForm implements OnInit {
 
   constructor() {
     this.formItem = this._formBuilder.group({
-      service_type_id: ['', [Validators.required]],
+      service_type_id: [null, [Validators.required]],
       description: ['', [Validators.required, Validators.minLength(3)]],
       notes: ['']
     });
@@ -53,14 +53,17 @@ export class ServiceOrderItemForm implements OnInit {
     this._loading.present();
     const value = this.formItem.value as IServiceOrderItem;
     value.service_order_id = this.soId();
-    value.status = ServiceOrderStatusEnum.PENDING;
+    value.status = this.editItem()?this.editItem()!.status:ServiceOrderStatusEnum.PENDING;
 
-    this._soService.createSoItem(value)
-      .then((res: IServiceOrderItem) => {
-        this._toast.showToastSuccess("Item cadastrado com sucesso!");
+    const req = this.editItem()
+      ?this._soService.updateSoItem(this.soId(), value)
+      :this._soService.createSoItem(value);
+
+    req.then((res: IServiceOrderItem) => {
+        this._toast.showToastSuccess(`Item ${this.editItem()?'atualizado':'cadastrado'} com sucesso!`);
         this.onSaveItem.emit(res);
       }).catch((err: any) => {
-        this._toast.showToastError("Erro ao cadastrar item!");
+        this._toast.showToastError(`Erro ao ${this.editItem()?'atualizar':'cadastrar'} item!`);
       }).finally(() => this._loading.dismiss());
   }
 
@@ -69,7 +72,7 @@ export class ServiceOrderItemForm implements OnInit {
       this.formItem.patchValue({
         service_type_id: this.editItem()!.service_type_id,
         description: this.editItem()!.description,
-        notes: this.editItem()!.notes
+        notes: this.editItem()!.notes,
       });
     }
   }

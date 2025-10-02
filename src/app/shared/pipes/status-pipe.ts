@@ -6,7 +6,7 @@ import {ServiceOrderStatusEnum} from '../enums/ServiceOrderStatusEnum';
   standalone: true
 })
 export class StatusPipe implements PipeTransform {
-  transform(value: ServiceOrderStatusEnum): string {
+  transform(value: string): string {
     const statusMap: Record<ServiceOrderStatusEnum, string> = {
       [ServiceOrderStatusEnum.PENDING]: 'PENDENTE',
       [ServiceOrderStatusEnum.IN_PROGRESS]: 'EM EXECUÇÃO',
@@ -14,6 +14,6 @@ export class StatusPipe implements PipeTransform {
       [ServiceOrderStatusEnum.CANCELED]: 'CANCELADA'
     };
 
-    return statusMap[value] || value;
+    return statusMap[value as ServiceOrderStatusEnum] || value;
   }
 }

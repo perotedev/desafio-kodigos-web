@@ -7,7 +7,7 @@ import {
   ModelSignal,
   OnInit,
   output,
-  OutputEmitterRef
+  OutputEmitterRef, signal, WritableSignal
 } from '@angular/core';
 import {Button} from 'primeng/button';
 import {Dialog} from 'primeng/dialog';
@@ -45,7 +45,7 @@ export class ServiceOrderItems implements OnInit {
   private readonly _toast: ToastService = inject(ToastService);
   public readonly isMobile = inject(IS_MOBILE);
   public showDialog: boolean = false;
-  public currentItem?: IServiceOrderItem;
+  public currentItem: WritableSignal<IServiceOrderItem | undefined> = signal(undefined);
   public indexSelected: number = -1;
   public isLoadingItems: boolean = false;
 
@@ -90,7 +90,7 @@ export class ServiceOrderItems implements OnInit {
   }
 
   public toggleDialog(item?: IServiceOrderItem): void {
-    this.currentItem = item;
+    this.currentItem.set(item);
     this.showDialog = !this.showDialog;
   }
 }

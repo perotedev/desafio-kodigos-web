@@ -9,6 +9,7 @@ import {ServiceOrderItemDetails} from '../service-order-item-details/service-ord
 import {Dialog} from 'primeng/dialog';
 import {ServiceOrderForm} from '../service-order-form/service-order-form';
 import {ServiceOrderItemForm} from '../service-order-item-form/service-order-item-form';
+import {StatusPipe} from '../../../shared/pipes/status-pipe';
 
 @Component({
   selector: 'app-service-order-details',
@@ -18,7 +19,8 @@ import {ServiceOrderItemForm} from '../service-order-item-form/service-order-ite
     ServiceOrderItemDetails,
     Dialog,
     ServiceOrderForm,
-    ServiceOrderItemForm
+    ServiceOrderItemForm,
+    StatusPipe
   ],
   templateUrl: './service-order-details.html',
   styleUrl: './service-order-details.scss'

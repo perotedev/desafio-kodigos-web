@@ -1,5 +1,4 @@
 import {Component, effect, inject, input, InputSignal, model, ModelSignal} from '@angular/core';
-import {Loading} from '../../../shared/services/loading';
 import {FileTransferService, ROUTE_FILE_SEND} from '../../../shared/services/file-transfer';
 import {IServiceOrderItemDocument} from '../../../shared/interfaces/IServiceOrderItemDocument';
 import {takeUntil} from 'rxjs';
@@ -14,6 +13,7 @@ import {ToastService} from '../../../shared/services/toast';
 export class ServiceOrderImages {
   public soItemId: InputSignal<number> = input.required();
   public photoList: ModelSignal<IServiceOrderItemDocument[]> = model<IServiceOrderItemDocument[]>([]);
+  public inputFileId: InputSignal<string> = input('inputFileImages');
 
   private readonly _fileTransfer: FileTransferService = inject(FileTransferService);
   private readonly _toast: ToastService = inject(ToastService);
@@ -82,7 +82,7 @@ export class ServiceOrderImages {
   }
 
   public getFakeList(): number[] {
-    const missingItems = 5 - this.photoList().length;
+    const missingItems = 2 - this.photoList().length;
     return missingItems > 0 ? Array.from({length: missingItems}, (_, i) => i + 1) : [];
   }
 }
