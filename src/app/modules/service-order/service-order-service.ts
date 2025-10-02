@@ -63,4 +63,8 @@ export class ServiceOrderService {
       `${environment.apiUrl}/api/v${version}/contracts?page=${page}&size=${size}&search=${search}`
     ));
   }
+
+  public createSoItem(soItem: any, version = 1): Promise<IServiceOrderItem> {
+    return lastValueFrom(this._http.post<IServiceOrderItem>(`${environment.apiUrl}/api/v${version}/service-orders/item`, soItem));
+  }
 }

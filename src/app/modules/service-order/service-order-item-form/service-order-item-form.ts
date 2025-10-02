@@ -12,6 +12,7 @@ import {InputText} from 'primeng/inputtext';
 import {Select} from 'primeng/select';
 import {markDirtyFields} from '../../../shared/utils/form-utils';
 import {Textarea} from 'primeng/textarea';
+import {ServiceOrderStatusEnum} from '../../../shared/enums/ServiceOrderStatusEnum';
 
 @Component({
   selector: 'app-service-order-item-form',
@@ -50,7 +51,17 @@ export class ServiceOrderItemForm implements OnInit {
 
   private saveItem(): void {
     this._loading.present();
+    const value = this.formItem.value as IServiceOrderItem;
+    value.service_order_id = this.soId();
+    value.status = ServiceOrderStatusEnum.PENDING;
 
+    this._soService.createSoItem(value)
+      .then((res: IServiceOrderItem) => {
+        this._toast.showToastSuccess("Item cadastrado com sucesso!");
+        this.onSaveItem.emit(res);
+      }).catch((err: any) => {
+        this._toast.showToastError("Erro ao cadastrar item!");
+      }).finally(() => this._loading.dismiss());
   }
 
   public ngOnInit(): void {
