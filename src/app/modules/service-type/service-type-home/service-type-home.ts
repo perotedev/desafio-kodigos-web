@@ -40,7 +40,7 @@ export class ServiceTypeHome implements OnInit{
   private readonly _toast: ToastService = inject(ToastService);
   public readonly isMobile = inject(IS_MOBILE);
   public search: WritableSignal<string> = signal('');
-  public isLoadingTypes: boolean = false;
+  public isLoadingTypes: WritableSignal<boolean> = signal(false);
   public dialogVisible: boolean = false;
   public selectedType?: IServiceType;
   public total: number = 10;
@@ -57,14 +57,14 @@ export class ServiceTypeHome implements OnInit{
   }
 
   private getSeriveTypes(page: number, size: number, search = ""): void {
-    this.isLoadingTypes = true;
+    this.isLoadingTypes.set(true);
     this._serviceTypeService.getServiceTypes(page, size, search)
       .then((res: IPaginationResponse<IServiceType>) => {
         this.serviceTypes = res.items;
         this.page = res.page;
         this.size = res.size;
         this.total = res.total;
-      }).finally(() => this.isLoadingTypes = false);
+      }).finally(() => this.isLoadingTypes.set(false));
   }
 
   private deleteServiceType(typeId: number): void {

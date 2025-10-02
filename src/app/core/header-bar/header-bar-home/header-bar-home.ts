@@ -7,6 +7,7 @@ import pkg from '../../../../../package.json';
 import {environment} from '../../../../environments/environment';
 import {HeaderBarService} from '../header-bar-service';
 import {toggleMenu} from '../../../shared/utils/menu-utils';
+import {AuthService} from '../../auth/auth-service';
 
 const version = pkg.version;
 
@@ -19,6 +20,7 @@ const version = pkg.version;
 export class HeaderBarHome {
   private readonly _headerBarService: HeaderBarService = inject(HeaderBarService);
   private readonly _themeService: AppTheme = inject(AppTheme);
+  private readonly _authService: AuthService = inject(AuthService);
   public readonly isDarkMode = inject(IS_DARK_MODE);
   public readonly isMobile = inject(IS_MOBILE);
   public readonly today: Date = new Date();
@@ -33,5 +35,9 @@ export class HeaderBarHome {
 
   public expandMenu(): void {
     toggleMenu();
+  }
+
+  public logout(): void {
+    this._authService.logout();
   }
 }

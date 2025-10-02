@@ -96,7 +96,7 @@ export const routes: Routes = [
         loadComponent: () => import("./modules/user/user-home/user-home").then(m => m.UserHome),
         canActivate: [authGuard],
         data: {
-          // roles: [RoleEnum.ADMIN]
+          roles: [RoleEnum.ADMIN]
         }
       },
     ]

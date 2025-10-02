@@ -67,7 +67,8 @@ export class Breadcrumb implements OnInit {
 
         if (this.isCurrentRoute(fullPath, currentUrl)) {
           if (currentUrl === '/home') {
-            this.currentTitle = `Bem vindo, ${this._currentUser().person.name.split(' ')[0]}!`
+            const userName = this._currentUser().person?this._currentUser().person.name.split(' ')[0]:"Usuário"
+            this.currentTitle = `Bem vindo, ${userName}!`
           } else {
             this.routeList.push(...breadcrumbs);
             this.currentTitle = route.title?.toString().replace(this._prefix, '') || '';

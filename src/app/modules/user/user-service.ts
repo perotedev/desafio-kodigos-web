@@ -11,9 +11,9 @@ import {IPaginationResponse} from '../../shared/interfaces/IPaginationResponse';
 export class UserService {
   private readonly _http: HttpClient = inject(HttpClient);
 
-  public getUsers(page: number, size: number, search: string): Promise<IPaginationResponse<IUser>> {
+  public getUsers(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IUser>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IUser>>(
-      `${environment.apiUrl}/users?page=${page}&size=${size}&search=${search}`
+      `${environment.apiUrl}/api/v${version}/users?page=${page}&size=${size}&search=${search}`
     ));
   }
 

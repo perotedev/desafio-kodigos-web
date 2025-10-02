@@ -1,22 +1,10 @@
 import { Injectable, InjectionToken, signal, Signal, WritableSignal} from '@angular/core';
 import {IUser} from '../interfaces/IUser';
-import {RoleEnum} from '../enums/RoleEnum';
 
 export const CURRENT_USER = new InjectionToken<Signal<IUser>>('CURRENT_USER');
-const EMPTY_USER: IUser = {
-  email: "user@gmail.com",
-  active: true,
-  person_id: 1,
-  person: {
-    name: "Usuário Teste",
-    birth: "10/05/2001"
-  },
-  role: RoleEnum.USER,
-  userConfig: {
-    theme: 'light',
-    expanded: true
-  }
-}
+
+const USER_KEY: string = 'appUser';
+const EMPTY_USER: IUser = {} as IUser;
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +16,24 @@ export class CurrentUser {
     return this._currentUser;
   }
 
+  private setUserToLocalStorage(user: IUser): void {
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  public getUserFromLocalStorage(): IUser {
+    const user = localStorage.getItem(USER_KEY);
+    return JSON.parse(user!) || EMPTY_USER;
+  }
+
+  public initUserInHome(): void {
+    if (this._currentUser().person === undefined) {
+      this._currentUser.set(this.getUserFromLocalStorage())
+    }
+  }
+
   public setUser(user: IUser): void {
     this._currentUser.set(user);
+    this.setUserToLocalStorage(user);
   }
 
   public resetUser(): void {

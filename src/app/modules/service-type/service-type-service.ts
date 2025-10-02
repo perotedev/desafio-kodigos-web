@@ -11,9 +11,9 @@ import {IServiceType} from '../../shared/interfaces/IServiceType';
 export class ServiceTypeService {
   private readonly _http: HttpClient = inject(HttpClient);
 
-  public getServiceTypes(page: number, size: number, search: string): Promise<IPaginationResponse<IServiceType>> {
+  public getServiceTypes(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IServiceType>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IServiceType>>(
-      `${environment.apiUrl}/service-type?page=${page}&size=${size}&search=${search}`
+      `${environment.apiUrl}/api/v${version}/service-types?page=${page}&size=${size}&search=${search}`
     ));
   }
 

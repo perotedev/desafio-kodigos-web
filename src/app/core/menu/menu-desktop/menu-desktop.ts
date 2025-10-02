@@ -7,6 +7,7 @@ import {CURRENT_USER} from '../../../shared/services/current-user';
 import {Button} from 'primeng/button';
 import {NavigationEnd, Router} from '@angular/router';
 import {toggleMenu} from '../../../shared/utils/menu-utils';
+import {RoleEnum} from '../../../shared/enums/RoleEnum';
 
 const version = pkg.version;
 
@@ -65,8 +66,8 @@ export class MenuDesktop implements OnInit{
       label: 'Usuários',
       icon: 'pi pi-user',
       route: '/user',
-      // roles: [RoleEnum.ADMIN]
-      roles: []
+      roles: [RoleEnum.ADMIN]
+      // roles: []
     }
   ]
   public menuItems: Signal<IMenuItem[]> = computed(() => {

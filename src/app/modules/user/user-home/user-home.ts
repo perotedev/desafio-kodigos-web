@@ -32,7 +32,7 @@ export class UserHome {
   private readonly _toast: ToastService = inject(ToastService);
   public readonly isMobile = inject(IS_MOBILE);
   public search: WritableSignal<string> = signal('');
-  public isLoadingUsers: boolean = false;
+  public isLoadingUsers: WritableSignal<boolean> = signal(false);
   public dialogVisible: boolean = false;
   public selectedUser?: IUser;
   public total: number = 10;
@@ -49,14 +49,14 @@ export class UserHome {
   }
 
   private getUsers(page: number, size: number, search = ""): void {
-    this.isLoadingUsers = true;
+    this.isLoadingUsers.set(true);
     this._userService.getUsers(page, size, search)
       .then((res: IPaginationResponse<IUser>) => {
         this.users = res.items;
         this.page = res.page;
         this.size = res.size;
         this.total = res.total;
-      }).finally(() => this.isLoadingUsers = false);
+      }).finally(() => this.isLoadingUsers.set(false));
   }
 
   private deleteUser(userId: number): void {

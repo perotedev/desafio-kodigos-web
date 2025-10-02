@@ -1,4 +1,4 @@
-import {Component, inject, model, ModelSignal} from '@angular/core';
+import {Component, inject, model, ModelSignal, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FileTransfer} from '../../shared/components/file-transfer/file-transfer';
 import {LoadingComponent} from '../../shared/components/loading-component/loading-component';
@@ -7,6 +7,7 @@ import {MenuMobile} from '../menu/menu-mobile/menu-mobile';
 import {MenuDesktop} from '../menu/menu-desktop/menu-desktop';
 import {HeaderBarHome} from '../header-bar/header-bar-home/header-bar-home';
 import {Breadcrumb} from '../breadcrumb/breadcrumb';
+import {CURRENT_USER, CurrentUser} from '../../shared/services/current-user';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,12 @@ import {Breadcrumb} from '../breadcrumb/breadcrumb';
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
-export class Home {
+export class Home implements OnInit {
+  private readonly _currentUser: CurrentUser = inject(CurrentUser);
   public readonly isMobile = inject(IS_MOBILE);
   public readonly menuExpanded: ModelSignal<boolean> = model(true);
+
+  public ngOnInit(): void {
+    this._currentUser.initUserInHome();
+  }
 }

@@ -21,7 +21,7 @@
   <app-content-list
     [dataList]="serviceTypes"
     [isMobile]="isMobile()"
-    [isLoading]="isLoadingTypes"
+    [isLoading]="isLoadingTypes()"
     [paginator]="true"
     [rows]="size"
     [first]="1"
@@ -29,40 +29,24 @@
     [rowsPerPageOptions]="[10, 20, 30]"
     (onPageChange)="onPageChange($event)"
   >
-    <span cl-header [autoCol]="false" style="width: 70px;">ID</span>
+    <span cl-header [autoCol]="false" style="width: 50px;">ID</span>
     <ng-template clTCell [mobileHiden]="true" let-item>
-      <span cl-cell [autoCol]="false" style="width: 70px">{{item.id}}</span>
+      <span cl-cell [autoCol]="false" style="width: 50px">{{item.id}}</span>
     </ng-template>
 
     <span cl-header>Nome</span>
     <ng-template clTCell let-item>
-      <span cl-cell>{{item.name}}</span>
+      <span cl-cell>
+        <span class="pi {{item.icon}} text-sm mr-3"></span>
+        <span>{{item.name}}</span>
+      </span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" style="width: 100px">Email</span>
+    <span cl-header>Descrição</span>
     <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" style="width: 100px">{{item.code}}</span>
+      <span cl-cell>{{item.description}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" style="width: 100px" class="text-center">CPF</span>
-    <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" style="width: 100px" class="text-center">{{item.quantity}}</span>
-    </ng-template>
-
-    <span cl-header [autoCol]="false" class="text-center" style="width: 100px">Telefone</span>
-    <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" class="text-center" style="width: 100px">{{item.price}}</span>
-    </ng-template>
-
-    <span cl-header [autoCol]="false" class="col-2">Role</span>
-    <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" class="col-2">{{item.category}}</span>
-    </ng-template>
-
-    <span cl-header [autoCol]="false" class="col-2">Status</span>
-    <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" class="col-2">{{item.inventoryStatus}}</span>
-    </ng-template>
 
     <span cl-header [autoCol]="false" style="width: 72px;" class="text-right"></span>
     <ng-template clTCell [isAction]="true" let-item>
