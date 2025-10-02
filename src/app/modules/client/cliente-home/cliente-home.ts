@@ -40,7 +40,7 @@ export class ClienteHome {
   private readonly _toast: ToastService = inject(ToastService);
   public readonly isMobile = inject(IS_MOBILE);
   public search: WritableSignal<string> = signal('');
-  public isLoadingClients: boolean = false;
+  public isLoadingClients: WritableSignal<boolean> = signal(false);
   public dialogVisible: boolean = false;
   public selectedClient?: IClient;
   public total: number = 10;
@@ -57,14 +57,14 @@ export class ClienteHome {
   }
 
   private getClients(page: number, size: number, search = ""): void {
-    this.isLoadingClients = true;
+    this.isLoadingClients.set(true);
     this._clientService.getClients(page, size, search)
       .then((res: IPaginationResponse<IClient>) => {
         this.clients = res.items;
         this.page = res.page;
         this.size = res.size;
         this.total = res.total;
-      }).finally(() => this.isLoadingClients = false);
+      }).finally(() => this.isLoadingClients.set(false));
   }
 
   private deleteClient(clientId: number): void {
@@ -80,12 +80,8 @@ export class ClienteHome {
     this.deleteClient(clientId);
   }
 
-  public ngOnInit(): void {
-    this.getClients(this.page, this.size);
-  }
-
   public onPageChange(event: PaginatorState): void {
-    this.page = event.page!;
+    this.page = event.page! + 1;
     this.size = event.rows!;
     this.getClients(this.page, this.size);
   }

@@ -31,8 +31,8 @@ export class ServiceOrderDetails {
     code: "323-YDF/00",
     client_id: 1,
     description: "Manutenção preventiva em equipamentos de climatização",
-    date_start: new Date('2024-01-15'),
-    date_end: new Date('2024-01-20'),
+    start_date: new Date('2024-01-15'),
+    end_date: new Date('2024-01-20'),
     document_list: [],
     contract_id: 1,
     client: {

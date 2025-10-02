@@ -21,7 +21,7 @@
   <app-content-list
     [dataList]="contracts"
     [isMobile]="isMobile()"
-    [isLoading]="isLoadingContracts"
+    [isLoading]="isLoadingContracts()"
     [paginator]="true"
     [rows]="size"
     [first]="1"
@@ -34,34 +34,29 @@
       <span cl-cell [autoCol]="false" style="width: 70px">{{item.id}}</span>
     </ng-template>
 
-    <span cl-header>Nome</span>
+    <span cl-header [autoCol]="false" style="width: 150px;">Número</span>
     <ng-template clTCell let-item>
-      <span cl-cell>{{item.name}}</span>
+      <span cl-cell [autoCol]="false" style="width: 150px;">{{item.number}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" style="width: 100px">Email</span>
+    <span cl-header>Cliente</span>
     <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" style="width: 100px">{{item.code}}</span>
+      <span cl-cell>{{item.client.name}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" style="width: 100px" class="text-center">CPF</span>
+    <span cl-header [autoCol]="false" style="width: 120px;">Data Início</span>
     <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" style="width: 100px" class="text-center">{{item.quantity}}</span>
+      <span cl-cell [autoCol]="false" style="width: 120px;">{{item.date_start | date: "dd/MM/yy"}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" class="text-center" style="width: 100px">Telefone</span>
+    <span cl-header [autoCol]="false" style="width: 120px;">Data Fim</span>
     <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" class="text-center" style="width: 100px">{{item.price}}</span>
+      <span cl-cell [autoCol]="false" style="width: 120px;">{{item.date_end | date: "dd/MM/yy"}}</span>
     </ng-template>
 
-    <span cl-header [autoCol]="false" class="col-2">Role</span>
+    <span cl-header [autoCol]="false" class="col-2 xl:col-1">Valor</span>
     <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" class="col-2">{{item.category}}</span>
-    </ng-template>
-
-    <span cl-header [autoCol]="false" class="col-2">Status</span>
-    <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" class="col-2">{{item.inventoryStatus}}</span>
+      <span cl-cell [autoCol]="false" class="col-2 xl:col-1">{{item.value | currency: "BRL"}}</span>
     </ng-template>
 
     <span cl-header [autoCol]="false" style="width: 72px;" class="text-right"></span>

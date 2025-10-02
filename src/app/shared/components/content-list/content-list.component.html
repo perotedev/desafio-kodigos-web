@@ -77,25 +77,25 @@
 
     @if (isLoading()) {
       <ng-container [ngTemplateOutlet]="loadingTemplate" />
-    }
-
-    <div [@listAnimation]>
-      @for(item of dataSignal(); track item;) {
-        <div class="cl-row {{gridClass()}} {{disabled() ? 'disabled' : ''}}" [class.loadingblur]="isLoading()">
-          @if (selectable()) {
-            <span style="width: 26px;">
+    } @else {
+      <div [@listAnimation]>
+        @for(item of dataSignal(); track item;) {
+          <div class="cl-row {{gridClass()}} {{disabled() ? 'disabled' : ''}}" [class.loadingblur]="isLoading()">
+            @if (selectable()) {
+              <span style="width: 26px;">
             <p-check-box [(ngModel)]="selectionItemList[$index].checked" (onChange)="selectItem($index, item)" size="small" [binary]="true" [disabled]="!canSelect(item)" />
           </span>
-          }
+            }
 
-          @for (cell of viewList; track cell) {
-            <ng-container [ngTemplateOutlet]="cell.cellTemplate.template" [ngTemplateOutletContext]="{ $implicit: item }" />
-          }
-        </div>
-      } @empty {
-        <ng-container [ngTemplateOutlet]="emptyDefaultTemplate"/>
-      }
-    </div>
+            @for (cell of viewList; track cell) {
+              <ng-container [ngTemplateOutlet]="cell.cellTemplate.template" [ngTemplateOutletContext]="{ $implicit: item }" />
+            }
+          </div>
+        } @empty {
+          <ng-container [ngTemplateOutlet]="emptyDefaultTemplate"/>
+        }
+      </div>
+    }
   </div>
 }
 

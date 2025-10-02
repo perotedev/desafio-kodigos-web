@@ -11,9 +11,9 @@ import {IContract} from '../../shared/interfaces/IContract';
 export class ContractService {
   private readonly _http: HttpClient = inject(HttpClient);
 
-  public getContracts(page: number, size: number, search: string): Promise<IPaginationResponse<IContract>> {
+  public getContracts(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IContract>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IContract>>(
-      `${environment.apiUrl}/contract?page=${page}&size=${size}&search=${search}`
+      `${environment.apiUrl}/api/v${version}/contracts?page=${page}&size=${size}&search=${search}`
     ));
   }
 

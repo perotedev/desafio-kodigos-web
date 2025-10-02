@@ -12,9 +12,9 @@ import {IViaCep} from '../../shared/interfaces/IViaCep';
 export class ClientService {
   private readonly _http: HttpClient = inject(HttpClient);
 
-  public getClients(page: number, size: number, search: string): Promise<IPaginationResponse<IClient>> {
+  public getClients(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IClient>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IClient>>(
-      `${environment.apiUrl}/client?page=${page}&size=${size}&search=${search}`
+      `${environment.apiUrl}/api/v${version}/clients?page=${page}&size=${size}&search=${search}`
     ));
   }
 

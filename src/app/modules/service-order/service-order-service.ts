@@ -13,9 +13,9 @@ import {IServiceOrderItem} from '../../shared/interfaces/IServiceOrderItem';
 export class ServiceOrderService {
   private readonly _http: HttpClient = inject(HttpClient);
 
-  public getServiceOrders(page: number, size: number, search: string): Promise<IPaginationResponse<IServiceOrder>> {
+  public getServiceOrders(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IServiceOrder>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IServiceOrder>>(
-      `${environment.apiUrl}/service-order?page=${page}&size=${size}&search=${search}`
+      `${environment.apiUrl}/api/v${version}/service-orders?page=${page}&size=${size}&search=${search}`
     ));
   }
 

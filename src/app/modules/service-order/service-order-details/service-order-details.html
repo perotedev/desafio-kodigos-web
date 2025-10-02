@@ -39,8 +39,8 @@
             <span class="pi pi-calendar-clock mr-3"></span>
             <div class="flex flex-column">
               <span>Data Execução</span>
-              @if (serviceOrder?.date_start) {
-                <span class="font-bold">{{serviceOrder?.date_start | date:'dd/MM/yyyy' }}</span>
+              @if (serviceOrder?.start_date) {
+                <span class="font-bold">{{serviceOrder?.start_date | date:'dd/MM/yyyy' }}</span>
               } @else {
                 <span class="font-bold"> Não informado </span>
               }

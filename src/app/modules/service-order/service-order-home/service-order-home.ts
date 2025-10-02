@@ -5,12 +5,13 @@ import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {PaginatorState} from 'primeng/paginator';
 import {ContentListModule} from '../../../shared/components/content-list/content-list.module';
 import {InputSearch} from '../../../shared/components/input-search/input-search';
-import {NgStyle} from '@angular/common';
+import {DatePipe, NgStyle} from '@angular/common';
 import {ServiceOrderService} from '../service-order-service';
 import {IPaginationResponse} from '../../../shared/interfaces/IPaginationResponse';
 import {IServiceOrder} from '../../../shared/interfaces/IServiceOrder';
 import {ToastService} from '../../../shared/services/toast';
 import {Loading} from '../../../shared/services/loading';
+import {StatusPipe} from '../../../shared/pipes/status-pipe';
 
 @Component({
   selector: 'app-service-order-home',
@@ -19,7 +20,9 @@ import {Loading} from '../../../shared/services/loading';
     ContentListModule,
     RouterLink,
     InputSearch,
-    NgStyle
+    NgStyle,
+    DatePipe,
+    StatusPipe
   ],
   templateUrl: './service-order-home.html',
   styleUrl: './service-order-home.scss'
@@ -30,7 +33,7 @@ export class ServiceOrderHome {
   private readonly _toast: ToastService = inject(ToastService);
   public readonly isMobile = inject(IS_MOBILE);
   public search: WritableSignal<string> = signal('');
-  public isLoadingOrders: boolean = false;
+  public isLoadingOrders: WritableSignal<boolean> = signal(false);
   public total: number = 10;
   public page: number = 1;
   public size: number = 10;
@@ -45,14 +48,14 @@ export class ServiceOrderHome {
   }
 
   private getServiceOrders(page: number, size: number, search = ""): void {
-    this.isLoadingOrders = true;
+    this.isLoadingOrders.set(true);
     this._serviceOrderService.getServiceOrders(page, size, search)
       .then((res: IPaginationResponse<IServiceOrder>) => {
         this.serviceOrders = res.items;
         this.page = res.page;
         this.size = res.size;
         this.total = res.total;
-      }).finally(() => this.isLoadingOrders = false);
+      }).finally(() => this.isLoadingOrders.set(false));
   }
 
   private deleteServiceOrder(orderId: number): void {
@@ -73,7 +76,7 @@ export class ServiceOrderHome {
   }
 
   public onPageChange(event: PaginatorState): void {
-    this.page = event.page!;
+    this.page = event.page! + 1;
     this.size = event.rows!;
     this.getServiceOrders(this.page, this.size);
   }

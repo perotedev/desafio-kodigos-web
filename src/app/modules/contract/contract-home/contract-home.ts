@@ -15,7 +15,7 @@ import {
 import {ContentList} from '../../../shared/components/content-list/content-list.component';
 import {Dialog} from 'primeng/dialog';
 import {InputSearch} from '../../../shared/components/input-search/input-search';
-import {NgStyle} from '@angular/common';
+import {CurrencyPipe, DatePipe, NgStyle} from '@angular/common';
 import {ContractForm} from '../contract-form/contract-form';
 
 @Component({
@@ -29,7 +29,9 @@ import {ContractForm} from '../contract-form/contract-form';
     Dialog,
     InputSearch,
     NgStyle,
-    ContractForm
+    ContractForm,
+    DatePipe,
+    CurrencyPipe
   ],
   templateUrl: './contract-home.html',
   styleUrl: './contract-home.scss'
@@ -40,7 +42,7 @@ export class ContractHome {
   private readonly _toast: ToastService = inject(ToastService);
   public readonly isMobile = inject(IS_MOBILE);
   public search: WritableSignal<string> = signal('');
-  public isLoadingContracts: boolean = false;
+  public isLoadingContracts: WritableSignal<boolean> = signal(false);
   public dialogVisible: boolean = false;
   public selectedContract?: IContract;
   public total: number = 10;
@@ -57,14 +59,14 @@ export class ContractHome {
   }
 
   private getContracts(page: number, size: number, search = ""): void {
-    this.isLoadingContracts = true;
+    this.isLoadingContracts.set(true);
     this._contractService.getContracts(page, size, search)
       .then((res: IPaginationResponse<IContract>) => {
         this.contracts = res.items;
         this.page = res.page;
         this.size = res.size;
         this.total = res.total;
-      }).finally(() => this.isLoadingContracts = false);
+      }).finally(() => this.isLoadingContracts.set(false));
   }
 
   private deleteContract(contractId: number): void {

@@ -35,9 +35,8 @@
 
 .cl-card {
   padding: 12px 15px 7px 15px;
-  border-radius: 8px;
-  border: 1px solid var(--p-primary-color);
-  background: var(--p-menu-background);
+  border-radius: 12px;
+  background: var(--p-surface-50);
   align-items: center;
 
   .cl-mobile-actions {
@@ -197,7 +196,7 @@
 }
 
 :host-context(.dark-mode) {
-  .cl-row {
+  .cl-row, .cl-card {
     background: var(--p-surface-800);
   }
 

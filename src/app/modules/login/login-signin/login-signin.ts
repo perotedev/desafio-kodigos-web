@@ -5,13 +5,14 @@ import {NgStyle} from '@angular/common';
 import {LogoHeader} from '../../../shared/components/logo-header/logo-header';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Loading} from '../../../shared/services/loading';
-import {FloatLabel} from 'primeng/floatlabel';
 import {InputText} from 'primeng/inputtext';
 import {Password} from 'primeng/password';
 import {Button} from 'primeng/button';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {markDirtyFields} from '../../../shared/utils/form-utils';
 import {ToastService} from '../../../shared/services/toast';
+import {IAuthReponse} from '../../../shared/interfaces/IAuth';
+import {AuthService} from '../../../core/auth/auth-service';
 
 @Component({
   selector: 'app-login-signin',
@@ -34,6 +35,8 @@ export class LoginSignin {
   private readonly _loading: Loading = inject(Loading);
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
   private readonly _toast: ToastService = inject(ToastService);
+  private readonly _authService: AuthService = inject(AuthService);
+  private readonly _router: Router = inject(Router);
 
   public formLogin: FormGroup;
 
@@ -44,6 +47,19 @@ export class LoginSignin {
     });
   }
 
+  private login(): void {
+    this._loading.present();
+    const formData = new FormData();
+    formData.append('username', this.formLogin.value.email);
+    formData.append('password', this.formLogin.value.password);
+
+    this._authService.signUp(formData)
+      .then((res: IAuthReponse) => {
+        this._authService.setUser(res);
+        this._router.navigate(['/home']);
+      }).finally(() => this._loading.dismiss());
+  }
+
   public onSubmit(e: Event): void {
     e.preventDefault();
     e.stopPropagation();
@@ -52,5 +68,7 @@ export class LoginSignin {
       markDirtyFields(this.formLogin, this._toast)
       return;
     }
+
+    this.login();
   }
 }
