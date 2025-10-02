@@ -16,17 +16,17 @@ import {IContract} from '../../shared/interfaces/IContract';
 export class ServiceOrderService {
   private readonly _http: HttpClient = inject(HttpClient);
 
-  public getServiceOrders(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IServiceOrder>> {
+  public getServiceOrders(page: number, size: number, search: string, version: number = 1): Promise<IPaginationResponse<IServiceOrder>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IServiceOrder>>(
       `${environment.apiUrl}/api/v${version}/service-orders?page=${page}&size=${size}&search=${search}`
     ));
   }
 
-  public getServiceOrder(id: number, version = 1): Promise<IServiceOrder> {
+  public getServiceOrder(id: number, version: number = 1): Promise<IServiceOrder> {
     return lastValueFrom(this._http.get<IServiceOrder>(`${environment.apiUrl}/api/v${version}/service-orders/${id}`));
   }
 
-  public createServiceOrder(serviceOrder: any, version = 1): Promise<IServiceOrder> {
+  public createServiceOrder(serviceOrder: any, version: number = 1): Promise<IServiceOrder> {
     return lastValueFrom(this._http.post<IServiceOrder>(`${environment.apiUrl}/api/v${version}/service-orders`, serviceOrder));
   }
 
@@ -46,29 +46,29 @@ export class ServiceOrderService {
     return lastValueFrom(this._http.get<IServiceOrderDocument[]>(`${environment.apiUrl}/service-order/${id}/documents`));
   }
 
-  public getServiceTypes(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IServiceType>> {
+  public getServiceTypes(page: number, size: number, search: string, version: number = 1): Promise<IPaginationResponse<IServiceType>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IServiceType>>(
       `${environment.apiUrl}/api/v${version}/service-types?page=${page}&size=${size}&search=${search}`
     ));
   }
 
-  public getClients(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IClient>> {
+  public getClients(page: number, size: number, search: string, version: number = 1): Promise<IPaginationResponse<IClient>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IClient>>(
       `${environment.apiUrl}/api/v${version}/clients?page=${page}&size=${size}&search=${search}`
     ));
   }
 
-  public getContracts(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IContract>> {
+  public getContracts(page: number, size: number, search: string, version: number = 1): Promise<IPaginationResponse<IContract>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IContract>>(
       `${environment.apiUrl}/api/v${version}/contracts?page=${page}&size=${size}&search=${search}`
     ));
   }
 
-  public createSoItem(soItem: any, version = 1): Promise<IServiceOrderItem> {
+  public createSoItem(soItem: any, version: number = 1): Promise<IServiceOrderItem> {
     return lastValueFrom(this._http.post<IServiceOrderItem>(`${environment.apiUrl}/api/v${version}/service-orders/item`, soItem));
   }
 
-  public updateSoItem(id: number, soItem: any, version = 1): Promise<IServiceOrderItem> {
+  public updateSoItem(id: number, soItem: any, version: number = 1): Promise<IServiceOrderItem> {
     return lastValueFrom(this._http.put<IServiceOrderItem>(`${environment.apiUrl}/api/v${version}/service-orders/item/${id}`, soItem));
   }
 }

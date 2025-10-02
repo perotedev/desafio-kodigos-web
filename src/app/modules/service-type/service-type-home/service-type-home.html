@@ -69,7 +69,7 @@
   @if(dialogVisible) {
     <app-service-type-form
       [editServiceType]="selectedType"
-      (onSaveServiceType)="toggleDialog()"
+      (onSaveServiceType)="onSaveServiceType($event)"
     />
   }
 </p-dialog>

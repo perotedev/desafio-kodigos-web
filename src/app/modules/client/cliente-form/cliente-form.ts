@@ -1,4 +1,4 @@
-import {Component, inject, input, InputSignal, output, OutputEmitterRef} from '@angular/core';
+import {Component, inject, input, InputSignal, OnInit, output, OutputEmitterRef} from '@angular/core';
 import {IClient} from '../../../shared/interfaces/IClient';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Loading} from '../../../shared/services/loading';
@@ -28,7 +28,7 @@ import {InputMask} from 'primeng/inputmask';
   templateUrl: './cliente-form.html',
   styleUrl: './cliente-form.scss'
 })
-export class ClienteForm {
+export class ClienteForm implements OnInit {
   public editClient: InputSignal<IClient | undefined> = input<IClient | undefined>(undefined);
   public onSaveClient: OutputEmitterRef<IClient> = output();
 
@@ -46,7 +46,7 @@ export class ClienteForm {
       email: ['', [Validators.email]],
       phone: ['', [phoneValidator()]],
       cnpj: [''],
-      adress: this._formBuilder.group({
+      address: this._formBuilder.group({
         street: [''],
         number: [''],
         complement: [''],
@@ -68,14 +68,17 @@ export class ClienteForm {
 
   private saveClient(): void {
     this._loading.present();
+    const value = this.formClient.value as IClient;
+    if (value.email === "") value.email = null;
+    if (value.cnpj === "") value.cnpj = null;
 
     const req: Promise<IClient> =
       this.editClient()
-        ? this._clientService.updateClient(this.editClient()!.id!, this.formClient.value)
-        : this._clientService.createClient(this.formClient.value);
+        ? this._clientService.updateClient(this.editClient()!.id!, value)
+        : this._clientService.createClient(value);
 
     req.then((res: IClient) => {
-      this._toast.showToastSuccess("Cliente cadastrado com sucesso!");
+      this._toast.showToastSuccess(`Cliente ${this.editClient() ? 'atualizado' : 'cadastrado'} com sucesso!`);
       this.onSaveClient.emit(res);
     }).catch((err: any) => {
       this._toast.showToastError(`Erro ao ${this.editClient() ? 'atualizar' : 'cadastrar'} cliente!`);
@@ -86,7 +89,7 @@ export class ClienteForm {
     this._clientService.getCep(cep)
       .then((value: IViaCep) => {
         this.formClient.patchValue({
-          adress: {
+          address: {
             state: value.uf,
             city: value.localidade,
             neighborhood: value.bairro,
@@ -98,8 +101,43 @@ export class ClienteForm {
       });
   }
 
+  private patchForm(client: IClient): void {
+    this.formClient.patchValue({
+      name: client.name,
+      email: client.email??"",
+      phone: client.phone??"",
+      cnpj: client.cnpj??"",
+      address: this._formBuilder.group({
+        street: client.address.street??"",
+        number: client.address.number??"",
+        complement: client.address.complement??"",
+        neighborhood: client.address.neighborhood??"",
+        city: client.address.city??"",
+        state: client.address.state??"",
+        cep: client.address.cep??""
+      })
+    });
+
+    this.formClient.disable();
+  }
+
+  public ngOnInit(): void {
+    if (this.editClient()) {
+      this.patchForm(this.editClient()!);
+    }
+  }
+
+  public toggleForm(): void {
+    if (this.formClient.disabled) {
+      this.formClient.enable();
+      return;
+    }
+
+    this.patchForm(this.editClient()!);
+  }
+
   public onWriteCep(): void {
-    const value: IAdress = this.formClient.controls['adress'].value as IAdress;
+    const value: IAdress = this.formClient.controls['address'].value as IAdress;
     if (value.cep !== "") {
       this._cepSubject.next(value.cep.replace("-", ""));
     }

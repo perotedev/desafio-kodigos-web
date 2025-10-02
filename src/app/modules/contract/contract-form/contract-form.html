@@ -5,7 +5,7 @@
         <p-select
           [loading]="isLoadingClients"
           id="contClient"
-          [options]="clients"
+          [options]="clients()"
           formControlName="client_id"
           optionValue="id"
           optionLabel="name"

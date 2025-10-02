@@ -12,22 +12,18 @@ import {IViaCep} from '../../shared/interfaces/IViaCep';
 export class ClientService {
   private readonly _http: HttpClient = inject(HttpClient);
 
-  public getClients(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IClient>> {
+  public getClients(page: number, size: number, search: string, version: number = 1): Promise<IPaginationResponse<IClient>> {
     return lastValueFrom(this._http.get<IPaginationResponse<IClient>>(
       `${environment.apiUrl}/api/v${version}/clients?page=${page}&size=${size}&search=${search}`
     ));
   }
 
-  public getClient(id: number): Promise<IClient> {
-    return lastValueFrom(this._http.get<IClient>(`${environment.apiUrl}/client/${id}`));
+  public createClient(client: any, version: number = 1): Promise<IClient> {
+    return lastValueFrom(this._http.post<IClient>(`${environment.apiUrl}/api/v${version}/clients`, client));
   }
 
-  public createClient(client: any): Promise<IClient> {
-    return lastValueFrom(this._http.post<IClient>(`${environment.apiUrl}/client`, client));
-  }
-
-  public updateClient(id: number, client: any): Promise<IClient> {
-    return lastValueFrom(this._http.put<IClient>(`${environment.apiUrl}/client/${id}`, client));
+  public updateClient(id: number, client: any, version: number = 1): Promise<IClient> {
+    return lastValueFrom(this._http.put<IClient>(`${environment.apiUrl}/api/v${version}/clients/${id}`, client));
   }
 
   public deleteClient(id: number): Promise<any> {

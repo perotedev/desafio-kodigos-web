@@ -46,7 +46,7 @@ export class ClienteHome {
   public search: WritableSignal<string> = signal('');
   public isLoadingClients: WritableSignal<boolean> = signal(false);
   public dialogVisible: boolean = false;
-  public selectedClient?: IClient;
+  public selectedClient: WritableSignal<IClient | undefined> = signal(undefined);
   public total: number = 10;
   public page: number = 1;
   public size: number = 10;
@@ -91,7 +91,17 @@ export class ClienteHome {
   }
 
   public toggleDialog(client?: IClient): void {
-    this.selectedClient = client;
+    this.selectedClient.set(client);
     this.dialogVisible = !this.dialogVisible;
+  }
+
+  public onSaveClient(client: IClient): void {
+    const existingClientIndex: number = this.clients.findIndex((c: IClient) => c.id === client.id);
+    if (existingClientIndex >= 0) {
+      this.clients[existingClientIndex] = client;
+    } else {
+      this.clients = [...this.clients, client];
+    }
+    this.toggleDialog();
   }
 }

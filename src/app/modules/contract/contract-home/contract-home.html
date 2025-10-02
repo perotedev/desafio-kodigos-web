@@ -19,7 +19,7 @@
   </div>
 
   <app-content-list
-    [dataList]="contracts"
+    [dataList]="contracts()"
     [isMobile]="isMobile()"
     [isLoading]="isLoadingContracts()"
     [paginator]="true"
@@ -41,7 +41,7 @@
 
     <span cl-header>Cliente</span>
     <ng-template clTCell let-item>
-      <span cl-cell>{{item.client.name}}</span>
+      <span cl-cell>{{item.client.name || "Não identificado"}}</span>
     </ng-template>
 
     <span cl-header [autoCol]="false" style="width: 120px;">Data Início</span>
@@ -72,15 +72,16 @@
 
 
 <p-dialog
-  header="{{selectedContract?'Editar':'Adicionar'}} Contrato"
+  header="{{selectedContract()?'Editar':'Adicionar'}} Contrato"
   [(visible)]="dialogVisible"
   [modal]="true"
   [style]="{width: isMobile()?'90%':'380px'}"
 >
   @if(dialogVisible) {
     <app-contract-form
-      [editContract]="selectedContract"
-      (onSaveContract)="toggleDialog()"
+      [editContract]="selectedContract()"
+      [clients]="clients()"
+      (onSaveContract)="onSaveCotract($event)"
     />
   }
 </p-dialog>

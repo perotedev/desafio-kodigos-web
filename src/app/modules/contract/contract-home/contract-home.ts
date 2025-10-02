@@ -1,4 +1,4 @@
-import {Component, effect, inject, signal, WritableSignal} from '@angular/core';
+import {Component, effect, inject, OnInit, output, OutputEmitterRef, signal, WritableSignal} from '@angular/core';
 import {Loading} from '../../../shared/services/loading';
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {IContract} from '../../../shared/interfaces/IContract';
@@ -17,6 +17,7 @@ import {Dialog} from 'primeng/dialog';
 import {InputSearch} from '../../../shared/components/input-search/input-search';
 import {CurrencyPipe, DatePipe, NgStyle} from '@angular/common';
 import {ContractForm} from '../contract-form/contract-form';
+import {IClient} from '../../../shared/interfaces/IClient';
 
 @Component({
   selector: 'app-contract-home',
@@ -36,7 +37,7 @@ import {ContractForm} from '../contract-form/contract-form';
   templateUrl: './contract-home.html',
   styleUrl: './contract-home.scss'
 })
-export class ContractHome {
+export class ContractHome implements OnInit {
   private readonly _contractService: ContractService = inject(ContractService);
   private readonly _loading: Loading = inject(Loading);
   private readonly _toast: ToastService = inject(ToastService);
@@ -44,11 +45,12 @@ export class ContractHome {
   public search: WritableSignal<string> = signal('');
   public isLoadingContracts: WritableSignal<boolean> = signal(false);
   public dialogVisible: boolean = false;
-  public selectedContract?: IContract;
+  public selectedContract: WritableSignal<IContract | undefined> = signal(undefined);
   public total: number = 10;
   public page: number = 1;
   public size: number = 10;
-  public contracts: IContract[] = [];
+  public contracts: WritableSignal<IContract[]> = signal([]);
+  public clients: WritableSignal<IClient[]> = signal([]);
 
   constructor() {
     effect(() => {
@@ -62,18 +64,27 @@ export class ContractHome {
     this.isLoadingContracts.set(true);
     this._contractService.getContracts(page, size, search)
       .then((res: IPaginationResponse<IContract>) => {
-        this.contracts = res.items;
+        this.contracts.set(res.items);
         this.page = res.page;
         this.size = res.size;
         this.total = res.total;
       }).finally(() => this.isLoadingContracts.set(false));
   }
 
+  private getClients(): void {
+    this._contractService.getClients(1, 100, "")
+      .then((res: IPaginationResponse<IClient>) => {
+        this.clients.set(res.items);
+      }).catch((err: any) => {
+        this._toast.showToastError("Erro ao listar clientes!");
+      });
+  }
+
   private deleteContract(contractId: number): void {
     this._loading.present();
     this._contractService.deleteContract(contractId)
       .then((res: any) => {
-        this.contracts = [...this.contracts.filter(contract => contract.id !== contractId)];
+        this.contracts.set([...this.contracts().filter(contract => contract.id !== contractId)]);
         this._toast.showToastSuccess("Contrato excluído com sucesso!");
       }).finally(() => this._loading.dismiss());
   }
@@ -83,7 +94,18 @@ export class ContractHome {
   }
 
   public ngOnInit(): void {
-    this.getContracts(this.page, this.size);
+    this.getClients();
+  }
+
+  public onSaveCotract(contract: IContract): void {
+    const existingContract = this.contracts().find(c => c.id === contract.id);
+    if (existingContract) {
+      this.contracts.set(this.contracts().map(c => c.id === contract.id ? contract : c));
+    } else {
+      this.contracts.set([...this.contracts(), contract]);
+    }
+
+    this.toggleDialog();
   }
 
   public onPageChange(event: PaginatorState): void {
@@ -93,7 +115,7 @@ export class ContractHome {
   }
 
   public toggleDialog(contract?: IContract): void {
-    this.selectedContract = contract;
+    this.selectedContract.set(contract);
     this.dialogVisible = !this.dialogVisible;
   }
 }

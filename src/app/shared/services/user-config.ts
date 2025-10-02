@@ -13,7 +13,7 @@ export class UserConfig {
   private _currentUser: CurrentUser = inject(CurrentUser);
   private _http: HttpClient = inject(HttpClient);
 
-  public updateUpdateTheme(theme: ThemeType, version = 1): void {
+  public updateUpdateTheme(theme: ThemeType, version: number = 1): void {
     const auxUser = {...this._currentUser.currentUser()};
     auxUser.userConfig.theme = theme;
     this._currentUser.setUser(auxUser);
@@ -23,7 +23,7 @@ export class UserConfig {
     )).then(res => {});
   }
 
-  public updateUpdateMenu(expanded: boolean, version = 1): void {
+  public updateUpdateMenu(expanded: boolean, version: number = 1): void {
     const auxUser = {...this._currentUser.currentUser()};
     auxUser.userConfig.expanded = expanded;
     this._currentUser.setUser(auxUser);

@@ -21,7 +21,7 @@ export class AuthService {
   private readonly _router: Router = inject(Router);
   private readonly _currentUser: CurrentUser = inject(CurrentUser);
 
-  public signUp(authForm: FormData, version = 1): Promise<IAuthReponse> {
+  public signUp(authForm: FormData, version: number = 1): Promise<IAuthReponse> {
     return lastValueFrom(this._http.post<IAuthReponse>(`${environment.apiUrl}/api/v${version}/login/access-token`, authForm));
   }
 

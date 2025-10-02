@@ -90,6 +90,16 @@ export class ServiceTypeHome implements OnInit{
     this.getSeriveTypes(this.page, this.size);
   }
 
+  public onSaveServiceType(type: IServiceType): void {
+    const existingTypeIndex: number = this.serviceTypes.findIndex((t: IServiceType) => t.id === type.id);
+    if (existingTypeIndex >= 0) {
+      this.serviceTypes[existingTypeIndex] = type;
+    } else {
+      this.serviceTypes = [...this.serviceTypes, type];
+    }
+    this.toggleDialog();
+  }
+
   public toggleDialog(type?: IServiceType): void {
     this.selectedType = type;
     this.dialogVisible = !this.dialogVisible;

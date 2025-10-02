@@ -37,11 +37,9 @@ export const authInterceptorFn: HttpInterceptorFn = (req, next) => {
           break;
 
         default:
-          if (err.error.message) {
-            toast.showToastError(err.error.message);
-          } else if (err.error.detail) {
-            toast.showToastError(err.error.detail);
-          }
+          // if (err.error.detail) {
+          //   toast.showToastError(err.error.detail);
+          // }
           break;
 
       }

@@ -11,8 +11,6 @@ import {Select} from 'primeng/select';
 import {DatePicker} from 'primeng/datepicker';
 import {Button} from 'primeng/button';
 import {IClient} from '../../../shared/interfaces/IClient';
-import {ClientService} from '../../client/client-service';
-import {IPaginationResponse} from '../../../shared/interfaces/IPaginationResponse';
 import {Textarea} from 'primeng/textarea';
 import {InputNumber} from 'primeng/inputnumber';
 
@@ -31,19 +29,18 @@ import {InputNumber} from 'primeng/inputnumber';
   templateUrl: './contract-form.html',
   styleUrl: './contract-form.scss'
 })
-export class ContractForm implements OnInit{
+export class ContractForm implements OnInit {
+  public clients: InputSignal<IClient[]> = input<IClient[]>([]);
   public editContract: InputSignal<IContract | undefined> = input<IContract | undefined>(undefined);
-  public onSaveContract: OutputEmitterRef<IContract> = output();
 
+  public onSaveContract: OutputEmitterRef<IContract> = output();
   private readonly _contractService: ContractService = inject(ContractService);
-  private readonly _clientService: ClientService = inject(ClientService);
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
   private readonly _loading: Loading = inject(Loading);
   private readonly _toast: ToastService = inject(ToastService);
   public readonly isMobile = inject(IS_MOBILE);
   public formContract: FormGroup;
   public isLoadingClients: boolean = false;
-  public clients: IClient[] = [];
 
   constructor() {
     this.formContract = this._formBuilder.group({
@@ -55,23 +52,16 @@ export class ContractForm implements OnInit{
     });
   }
 
-  private getClients(): void {
-    this.isLoadingClients = true;
-    this._clientService.getClients(1, 1000, "")
-      .then((res: IPaginationResponse<IClient>) => {
-        this.clients = res.items;
-      }).catch((err: any) => {
-        this._toast.showToastError("Erro ao listar clientes!");
-      }).finally(() => this.isLoadingClients = false);
-  }
-
   private saveContract(): void {
     this._loading.present();
+    const value = this.formContract.value;
+    value.date_start = new Date(value.date_start).toISOString().split('T')[0];
+    value.date_end = new Date(value.date_end).toISOString().split('T')[0];
 
     const req: Promise<IContract> =
       this.editContract()
-        ? this._contractService.updateContract(this.editContract()!.id!, this.formContract.value)
-        : this._contractService.createContract(this.formContract.value);
+        ? this._contractService.updateContract(this.editContract()!.id!, value)
+        : this._contractService.createContract(value);
 
     req.then((res: IContract) => {
       this._toast.showToastSuccess("Contrato cadastrado com sucesso!");
@@ -82,7 +72,15 @@ export class ContractForm implements OnInit{
   }
 
   public ngOnInit(): void {
-    this.getClients();
+    if (this.editContract()) {
+      this.formContract.patchValue({
+        client_id: this.editContract()!.client_id,
+        date_start: new Date(this.editContract()!.date_start),
+        date_end: new Date(this.editContract()!.date_end),
+        value: this.editContract()!.value,
+        description: this.editContract()!.description
+      });
+    }
   }
 
   public onSubmit(e: Event): void {

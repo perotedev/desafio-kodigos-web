@@ -5,10 +5,10 @@ import {IContract} from './IContract';
 export interface IClient extends IMetaData {
   id?: number;
   name: string;
-  email?: string;
+  email: string | null;
   phone?: string;
-  cnpj?: string;
-  adress_id: number;
-  adress: IAdress;
+  cnpj: string | null;
+  address_id: number;
+  address: IAdress;
   contracts: IContract[]
 }

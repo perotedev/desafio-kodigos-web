@@ -41,7 +41,7 @@
 
     <span cl-header [autoCol]="false" class="col-3">Email</span>
     <ng-template clTCell let-item>
-      <span cl-cell [autoCol]="false" class="col-3">{{item.email}}</span>
+      <span cl-cell [autoCol]="false" class="col-3">{{item.email || "Não Informado"}}</span>
     </ng-template>
 
     <span cl-header [autoCol]="false" class="col-2">CNPJ</span>
@@ -68,15 +68,15 @@
 
 
 <p-dialog
-  header="{{selectedClient?'Editar':'Adicionar'}} Cliente"
+  header="{{selectedClient()?'Editar':'Adicionar'}} Cliente"
   [(visible)]="dialogVisible"
   [modal]="true"
   [style]="{width: isMobile()?'90%':'50%'}"
 >
   @if(dialogVisible) {
     <app-cliente-form
-      [editClient]="selectedClient"
-      (onSaveClient)="toggleDialog()"
+      [editClient]="selectedClient()"
+      (onSaveClient)="onSaveClient($event)"
     />
   }
 </p-dialog>
