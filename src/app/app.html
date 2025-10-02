@@ -1,2 +1,6 @@
 <router-outlet />
 <p-toast position="top-center" key="tc"></p-toast>
+
+@if (isLoading()) {
+  <ngx-ui-loader></ngx-ui-loader>
+}

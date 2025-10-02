@@ -18,8 +18,18 @@ import {MessageService} from 'primeng/api';
 import {FILE_TRANSFER, FileTransferService} from './shared/services/file-transfer';
 import localePt from '@angular/common/locales/pt'
 import {registerLocaleData} from '@angular/common';
+import {NgxUiLoaderConfig, NgxUiLoaderModule} from 'ngx-ui-loader';
 
 registerLocaleData(localePt)
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  masterLoaderId: "appOsLoader",
+  overlayColor: "rgba(0, 0, 0, 0.4)",
+  pbThickness: 2,
+  pbColor: "#ffffff",
+  fgsType: "three-strings",
+  fgsColor: "#ffffff"
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,7 +37,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideHttpClient(withInterceptors([authInterceptorFn]), withFetch()),
-    importProvidersFrom(ToastModule),
+    importProvidersFrom(ToastModule, NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)),
     provideRouter(routes),
     provideAnimationsAsync(),
     MessageService,

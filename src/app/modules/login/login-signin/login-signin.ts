@@ -10,6 +10,8 @@ import {InputText} from 'primeng/inputtext';
 import {Password} from 'primeng/password';
 import {Button} from 'primeng/button';
 import {RouterLink} from '@angular/router';
+import {markDirtyFields} from '../../../shared/utils/form-utils';
+import {ToastService} from '../../../shared/services/toast';
 
 @Component({
   selector: 'app-login-signin',
@@ -29,8 +31,9 @@ import {RouterLink} from '@angular/router';
 })
 export class LoginSignin {
   public readonly isMobile: Signal<boolean> = inject(IS_MOBILE);
-  private readonly _loadingService: Loading = inject(Loading);
+  private readonly _loading: Loading = inject(Loading);
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly _toast: ToastService = inject(ToastService);
 
   public formLogin: FormGroup;
 
@@ -44,5 +47,10 @@ export class LoginSignin {
   public onSubmit(e: Event): void {
     e.preventDefault();
     e.stopPropagation();
+
+    if (this.formLogin.invalid) {
+      markDirtyFields(this.formLogin, this._toast)
+      return;
+    }
   }
 }
