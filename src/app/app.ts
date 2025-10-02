@@ -21,7 +21,5 @@ export class App {
     afterNextRender(() => {
       this._theme.setTheme();
     })
-
-    this._loading.present();
   }
 }
