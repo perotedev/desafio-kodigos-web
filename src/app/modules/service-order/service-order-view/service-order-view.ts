@@ -7,6 +7,8 @@ import {ServiceOrderService} from '../service-order-service';
 import {Loading} from '../../../shared/services/loading';
 import {ToastService} from '../../../shared/services/toast';
 import {IServiceOrder} from '../../../shared/interfaces/IServiceOrder';
+import {IServiceType} from '../../../shared/interfaces/IServiceType';
+import {IPaginationResponse} from '../../../shared/interfaces/IPaginationResponse';
 
 @Component({
   selector: 'app-service-order-view',
@@ -24,6 +26,7 @@ export class ServiceOrderView implements OnInit {
   private readonly _loading: Loading = inject(Loading);
   private readonly _toast: ToastService = inject(ToastService);
 
+  public readonly serviceTypes: WritableSignal<IServiceType[]> = signal([])
   public tabIndex: string = "0";
   public soId: number = 0;
   public serviceOrder: WritableSignal<IServiceOrder | undefined> = signal(undefined);
@@ -42,7 +45,17 @@ export class ServiceOrderView implements OnInit {
       }).finally(() => this._loading.dismiss());
   }
 
+  public getServiceTypes(): void {
+    this._serviceOrderService.getServiceTypes(1, 100, "")
+      .then((res: IPaginationResponse<IServiceType>) => {
+        this.serviceTypes.set(res.items);
+      }).catch(err => {
+        this._toast.showToastError("Erro ao listar tipos de serviço!");
+    })
+  }
+
   public ngOnInit(): void {
     this.getServiceOrder();
+    this.getServiceTypes();
   }
 }

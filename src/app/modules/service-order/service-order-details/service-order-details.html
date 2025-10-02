@@ -69,8 +69,8 @@
         <div class="os-resume h-full p-3 pr-0 border-round-3xl">
           <div class="mr-3">
             <app-service-order-items
-              [soId]="serviceOrder()!.id!"
-              [serviceTypes]="serviceTypes"
+              [soId]="serviceOrder()?.id"
+              [serviceTypes]="serviceTypes()"
               [canAddItems]="true"
               [isDetails]="true"
               [(items)]="soItemList"
@@ -128,7 +128,7 @@
       <app-service-order-item-form
         [soId]="serviceOrder()!.id!"
         [editItem]="currentSoItem"
-        [serviceTypes]="serviceTypes"
+        [serviceTypes]="serviceTypes()"
         (onSaveItem)="onSaveItem($event)"
       />
     </div>

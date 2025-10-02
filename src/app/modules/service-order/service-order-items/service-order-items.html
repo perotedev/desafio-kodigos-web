@@ -75,7 +75,7 @@
 >
   @if (showDialog) {
     <app-service-order-item-form
-      [soId]="soId()"
+      [soId]="soId() || 0"
       [serviceTypes]="serviceTypes()"
       (onSaveItem)="onSaveItem($event)"
     />

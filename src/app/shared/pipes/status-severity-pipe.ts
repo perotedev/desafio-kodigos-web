@@ -9,9 +9,9 @@ export class StatusSeverityPipe implements PipeTransform {
 
   transform(value: ServiceOrderStatusEnum): ButtonSeverity {
     const statusMap: Record<ServiceOrderStatusEnum, string> = {
-      [ServiceOrderStatusEnum.PENDING]: 'info',
+      [ServiceOrderStatusEnum.PENDING]: 'warn',
       [ServiceOrderStatusEnum.IN_PROGRESS]: 'primary',
-      [ServiceOrderStatusEnum.FINISHED]: 'warn',
+      [ServiceOrderStatusEnum.FINISHED]: 'info',
       [ServiceOrderStatusEnum.CANCELED]: 'danger'
     };
 

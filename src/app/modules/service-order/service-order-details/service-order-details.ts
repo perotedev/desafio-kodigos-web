@@ -1,8 +1,7 @@
-import {Component, inject, input, InputSignal, signal, WritableSignal} from '@angular/core';
+import {Component, effect, inject, input, InputSignal, signal, WritableSignal} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {IServiceOrder} from '../../../shared/interfaces/IServiceOrder';
-import {ServiceOrderStatusEnum} from '../../../shared/enums/ServiceOrderStatusEnum';
 import {IServiceOrderItem} from '../../../shared/interfaces/IServiceOrderItem';
 import {ServiceOrderItems} from '../service-order-items/service-order-items';
 import {IServiceType} from '../../../shared/interfaces/IServiceType';
@@ -26,13 +25,21 @@ import {ServiceOrderItemForm} from '../service-order-item-form/service-order-ite
 })
 export class ServiceOrderDetails {
   public readonly isMobile = inject(IS_MOBILE);
+  public serviceTypes: InputSignal<IServiceType[]> = input.required();
   public serviceOrder: InputSignal<IServiceOrder | undefined> = input<IServiceOrder | undefined>(undefined);
 
   public readonly soItemList: WritableSignal<IServiceOrderItem[]> = signal([]);
   public showDialog: boolean = false;
   public showDialogItem: boolean = false;
   public currentSoItem?: IServiceOrderItem;
-  public serviceTypes: IServiceType[] = [];
+
+  constructor() {
+    effect(() => {
+      if (this.serviceOrder()){
+        this.soItemList.set(this.serviceOrder()!.items);
+      }
+    });
+  }
 
   public onSelectItem(index: number): void {
     this.currentSoItem = {...this.soItemList()[index]};

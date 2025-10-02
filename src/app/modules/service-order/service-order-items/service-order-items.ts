@@ -34,7 +34,7 @@ import {ServiceOrderStatusEnum} from '../../../shared/enums/ServiceOrderStatusEn
   styleUrl: './service-order-items.scss'
 })
 export class ServiceOrderItems implements OnInit {
-  public soId: InputSignal<number> = input.required();
+  public soId: InputSignal<number | undefined> = input<number | undefined>(undefined);
   public serviceTypes: InputSignal<IServiceType[]> = input.required();
   public canAddItems: InputSignal<boolean> = input(false);
   public isDetails: InputSignal<boolean> = input(false);
@@ -49,9 +49,9 @@ export class ServiceOrderItems implements OnInit {
   public indexSelected: number = -1;
   public isLoadingItems: boolean = false;
 
-  private getItems(): void {
+  private getItems(serviceOderId: number): void {
     this.isLoadingItems = true;
-    this._soService.getServiceOrderItems(this.soId())
+    this._soService.getServiceOrderItems(serviceOderId)
       .then((res: IServiceOrderItem[]) => {
         this.items.set(res);
       }).catch((err: any) => {
@@ -60,90 +60,9 @@ export class ServiceOrderItems implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.items.set([
-      {
-        status: ServiceOrderStatusEnum.PENDING,
-        service_type_id: 0,
-        service_order_id: 0,
-        service_type: {
-          description: "Serviços de Manutenção Elétrica",
-          name: "Manutenção Elétrica",
-          icon: "pi-bolt",
-        },
-        description: "Troca de Pilhas de Ponta de Acesso",
-        notes: "As Baterias foram trocadas com sucesso.",
-        document_list: []
-      },
-      {
-        status: ServiceOrderStatusEnum.IN_PROGRESS,
-        service_type_id: 1,
-        service_order_id: 1,
-        service_type: {
-          description: "Serviços de Limpeza",
-          name: "Limpeza",
-          icon: "pi-trash",
-        },
-        description: "Limpeza das Áreas Comuns",
-        notes: "Limpeza realizada conforme cronograma.",
-        document_list: []
-      },
-      {
-        status: ServiceOrderStatusEnum.FINISHED,
-        service_type_id: 2,
-        service_order_id: 2,
-        service_type: {
-          description: "Serviços de Pintura",
-          name: "Pintura",
-          icon: "pi-palette",
-        },
-        description: "Pintura da Fachada",
-        notes: "",
-        document_list: []
-      },
-      {
-        status: ServiceOrderStatusEnum.PENDING,
-        service_type_id: 3,
-        service_order_id: 3,
-        service_type: {
-          description: "Serviços Hidráulicos",
-          name: "Hidráulica",
-          icon: "pi-wrench",
-        },
-        description: "Reparo de Vazamento",
-        notes: "Vazamento identificado na tubulação principal.",
-        document_list: []
-      },
-      {
-        status: ServiceOrderStatusEnum.CANCELED,
-        service_type_id: 4,
-        service_order_id: 4,
-        service_type: {
-          description: "Serviços de Jardinagem",
-          name: "Jardinagem",
-          icon: "pi-leaf",
-        },
-        description: "Poda de Árvores",
-        notes: "Serviço cancelado devido às condições climáticas.",
-        document_list: []
-      },
-      {
-        status: ServiceOrderStatusEnum.IN_PROGRESS,
-        service_type_id: 5,
-        service_order_id: 5,
-        service_type: {
-          description: "Serviços de Segurança",
-          name: "Segurança",
-          icon: "pi-shield",
-        },
-        description: "Instalação de Câmeras",
-        notes: "Instalação em andamento no setor norte.",
-        document_list: []
-      }
-    ]);
-
-    if (this.soId()) {
-      this.getItems();
-    }
+    // if (this.soId()) {
+    //   this.getItems(this.soId()!);
+    // }
   }
 
   public onSaveItem(item: IServiceOrderItem): void {

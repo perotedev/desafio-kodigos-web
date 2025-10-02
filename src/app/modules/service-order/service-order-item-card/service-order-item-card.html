@@ -43,7 +43,7 @@
     [class.ellipsis-1]="onlyView()"
   >
     <span>
-      {{soItem().description !== ""?soItem().description:"Sem observações."}}
+      {{soItem().notes?soItem().notes:"Descrição não registrada para este serviço."}}
     </span>
   </div>
 </div>

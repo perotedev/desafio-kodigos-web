@@ -11,7 +11,25 @@
           appendTo="body"
           class="w-full"
           emptyMessage="Nenhum Tipo de Serviço encontrado"
-        />
+        >
+          <ng-template #selectedItem let-selectedOption>
+            <div class="flex align-items-center">
+              <span class="ml-1 pi {{selectedOption.icon}}"></span>
+              <div class="text-overflow-ellipsis">
+                <span class="ml-2">{{selectedOption.name}}</span>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template let-optionItem #item>
+            <div class="flex align-items-center pl-1">
+              <span class="pi {{optionItem.icon}}"></span>
+              <div class="text-overflow-ellipsis">
+                <span class="ml-3">{{optionItem.name}}</span>
+              </div>
+            </div>
+          </ng-template>
+        </p-select>
         <label for="itemType">Tipo de Serviço *</label>
       </p-float-label>
     </div>
@@ -26,7 +44,7 @@
           type="text"
           class="w-full"
         />
-        <label for="itemDescription">Descrição *</label>
+        <label for="itemDescription">Nome *</label>
       </p-float-label>
     </div>
 
@@ -41,7 +59,7 @@
           pTextarea
           fluid
         ></textarea>
-        <label for="itemNotes">Observações </label>
+        <label for="itemNotes">Descrição </label>
       </p-float-label>
     </div>
 

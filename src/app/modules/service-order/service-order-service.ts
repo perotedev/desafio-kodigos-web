@@ -6,6 +6,7 @@ import {IServiceOrder} from '../../shared/interfaces/IServiceOrder';
 import {environment} from '../../../environments/environment';
 import {IServiceOrderDocument} from '../../shared/interfaces/IServiceOrderDocument';
 import {IServiceOrderItem} from '../../shared/interfaces/IServiceOrderItem';
+import {IServiceType} from '../../shared/interfaces/IServiceType';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,11 @@ export class ServiceOrderService {
 
   public getServiceDocuments(id: number): Promise<IServiceOrderDocument[]> {
     return lastValueFrom(this._http.get<IServiceOrderDocument[]>(`${environment.apiUrl}/service-order/${id}/documents`));
+  }
+
+  public getServiceTypes(page: number, size: number, search: string, version = 1): Promise<IPaginationResponse<IServiceType>> {
+    return lastValueFrom(this._http.get<IPaginationResponse<IServiceType>>(
+      `${environment.apiUrl}/api/v${version}/service-types?page=${page}&size=${size}&search=${search}`
+    ));
   }
 }

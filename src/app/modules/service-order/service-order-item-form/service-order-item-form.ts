@@ -1,4 +1,4 @@
-import {Component, inject, input, InputSignal, output, OutputEmitterRef} from '@angular/core';
+import {Component, inject, input, InputSignal, OnInit, output, OutputEmitterRef} from '@angular/core';
 import {IS_MOBILE} from '../../../shared/services/is-mobile';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {IServiceOrderItem} from '../../../shared/interfaces/IServiceOrderItem';
@@ -27,7 +27,7 @@ import {Textarea} from 'primeng/textarea';
   templateUrl: './service-order-item-form.html',
   styleUrl: './service-order-item-form.scss'
 })
-export class ServiceOrderItemForm {
+export class ServiceOrderItemForm implements OnInit {
   public soId: InputSignal<number> = input.required();
   public serviceTypes: InputSignal<IServiceType[]> = input.required();
   public editItem: InputSignal<IServiceOrderItem | undefined> = input<IServiceOrderItem | undefined>(undefined);
@@ -51,6 +51,16 @@ export class ServiceOrderItemForm {
   private saveItem(): void {
     this._loading.present();
 
+  }
+
+  public ngOnInit(): void {
+    if(this.editItem()) {
+      this.formItem.patchValue({
+        service_type_id: this.editItem()!.service_type_id,
+        description: this.editItem()!.description,
+        notes: this.editItem()!.notes
+      });
+    }
   }
 
   public onSubmit(e: Event): void {
